@@ -15,6 +15,20 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+
+    void on_instructions_Button_clicked();
+
+    void on_tracker_Button_clicked();
+
+    void on_calorie_Calculator_Button_clicked();
+
+    void on_back_Button_Instructions_clicked();
+
+    void on_back_Button_Tracker_clicked();
+
+    void on_back_Button_Calculator_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
