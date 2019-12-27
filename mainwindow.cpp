@@ -3,9 +3,7 @@
 #include<QMessageBox>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "instructions.h"
-#include "calorie_calculator.h"
-#include "calorie_tracker.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent)

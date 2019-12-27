@@ -158,9 +158,9 @@
      <widget class="QLabel" name="calculator_Label">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>80</y>
-        <width>591</width>
+        <width>600</width>
         <height>121</height>
        </rect>
       </property>
@@ -171,10 +171,10 @@
      <widget class="QPushButton" name="back_Button_Calculator">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>300</y>
-        <width>391</width>
-        <height>81</height>
+        <x>440</x>
+        <y>480</y>
+        <width>151</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
