@@ -53,3 +53,5 @@ void MainWindow::on_back_Button_Calculator_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
+
+

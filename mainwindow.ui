@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>MS Shell Dlg 2</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -20,8 +25,8 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-40</x>
-      <y>-30</y>
+      <x>-30</x>
+      <y>-40</y>
       <width>1061</width>
       <height>751</height>
      </rect>
@@ -158,7 +163,7 @@
      <widget class="QLabel" name="calculator_Label">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>170</x>
         <y>80</y>
         <width>600</width>
         <height>121</height>
@@ -171,7 +176,7 @@
      <widget class="QPushButton" name="back_Button_Calculator">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>370</x>
         <y>480</y>
         <width>151</width>
         <height>41</height>
@@ -182,6 +187,58 @@
       </property>
       <property name="text">
        <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="calculator_Slider">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>290</y>
+        <width>160</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>400</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="male_Radio__Button">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>220</y>
+        <width>83</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Male</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="female_Radio_Button">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>220</y>
+        <width>83</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Female</string>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="weight_Number_Calculator">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>290</y>
+        <width>64</width>
+        <height>23</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -200,5 +257,22 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>calculator_Slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>weight_Number_Calculator</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>440</x>
+     <y>274</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>529</x>
+     <y>280</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
