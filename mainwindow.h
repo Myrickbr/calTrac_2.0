@@ -29,6 +29,8 @@ private slots:
 
     void on_back_Button_Calculator_clicked();
 
+    void calculate_Calories();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -189,7 +189,7 @@
        <string>Back</string>
       </property>
      </widget>
-     <widget class="QSlider" name="calculator_Slider">
+     <widget class="QSlider" name="calculator_Weight_Slider">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -257,7 +257,7 @@
        <string>Weight (lbs)</string>
       </property>
      </widget>
-     <widget class="QDial" name="dial">
+     <widget class="QDial" name="calculator_Age_Slider">
       <property name="geometry">
        <rect>
         <x>420</x>
@@ -283,7 +283,7 @@
        <string>Age (Years)</string>
       </property>
      </widget>
-     <widget class="QSlider" name="verticalSlider">
+     <widget class="QSlider" name="calculator_Height_Slider">
       <property name="geometry">
        <rect>
         <x>380</x>
@@ -341,7 +341,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QSlider" name="horizontalSlider">
+     <widget class="QSlider" name="calculator_Exercise_Slider">
       <property name="geometry">
        <rect>
         <x>350</x>
@@ -380,7 +380,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber_4">
+     <widget class="QLCDNumber" name="calories_Per_Day_Label">
       <property name="geometry">
        <rect>
         <x>380</x>
@@ -421,7 +421,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>calculator_Slider</sender>
+   <sender>calculator_Weight_Slider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>weight_Number_Calculator</receiver>
    <slot>display(int)</slot>
@@ -437,7 +437,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial</sender>
+   <sender>calculator_Age_Slider</sender>
    <signal>rangeChanged(int,int)</signal>
    <receiver>lcdNumber_2</receiver>
    <slot>display(int)</slot>
@@ -453,7 +453,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>calculator_Slider</sender>
+   <sender>calculator_Weight_Slider</sender>
    <signal>rangeChanged(int,int)</signal>
    <receiver>lcdNumber</receiver>
    <slot>display(int)</slot>
@@ -469,7 +469,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>verticalSlider</sender>
+   <sender>calculator_Height_Slider</sender>
    <signal>rangeChanged(int,int)</signal>
    <receiver>lcdNumber</receiver>
    <slot>display(int)</slot>
@@ -485,7 +485,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>verticalSlider</sender>
+   <sender>calculator_Height_Slider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lcdNumber</receiver>
    <slot>display(int)</slot>
@@ -501,7 +501,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dial</sender>
+   <sender>calculator_Age_Slider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lcdNumber_2</receiver>
    <slot>display(int)</slot>
@@ -517,7 +517,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSlider</sender>
+   <sender>calculator_Exercise_Slider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lcdNumber_3</receiver>
    <slot>display(int)</slot>
