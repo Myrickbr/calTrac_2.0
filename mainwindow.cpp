@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->calculator_Height_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
     connect(ui->calculator_Age_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
     connect(ui->calculator_Exercise_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
-    connect(ui->male_Radio__Button, SIGNAL(isPressed()), this, SLOT(calculate_Calories()));
-    connect(ui->female_Radio_Button, SIGNAL(isPressed()), this, SLOT(calculate_Calories()));
+    connect(ui->male_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
+    connect(ui->female_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
 }
 MainWindow::~MainWindow()
 {
