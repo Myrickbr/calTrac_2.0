@@ -24,6 +24,82 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//Getters and Setters
+double MainWindow::getBMR()
+{
+    return this->BMR;
+}
+double MainWindow::getCalories(){
+    return this->calories;
+}
+double MainWindow::getBodyWeightPounds()
+{
+    return this->body_Weight_Pounds;
+}
+double MainWindow::getHeightInInches()
+{
+    return this->height_In_Inches;
+}
+int MainWindow::getAgeInYears()
+{
+    return this->age_In_Years;
+}
+int MainWindow::getExerciseDays()
+{
+    return this->exercise_Days_Per_Week;
+}
+
+bool MainWindow::getIsFemale()
+{
+    return this->is_Female;
+}
+
+bool MainWindow::getIsMale()
+{
+    return this->is_Male;
+}
+double MainWindow::getExerciseMapValue(int num)
+{
+    return this->exercise_Map[num];
+}
+
+void MainWindow::setBMR(double num)
+{
+    this->BMR = num;
+}
+void MainWindow::setCalories(double num)
+{
+    this->calories = num;
+}
+void MainWindow::setBodyWeightPounds(double num)
+{
+    this->body_Weight_Pounds = num;
+}
+void MainWindow::setHeightInches(double num)
+{
+    this->height_In_Inches = num;
+}
+void MainWindow::setAgeInYears(double num)
+{
+    this->age_In_Years = num;
+}
+void MainWindow::setExerciseDays(double num)
+{
+    this->exercise_Days_Per_Week = num;
+}
+void MainWindow::setFemale(bool tOf)
+{
+    this->is_Female = tOf;
+}
+void MainWindow::setMale(bool tOf)
+{
+    this->is_Male = tOf;
+}
+void MainWindow::setExerciseMapValue(int num, double val)
+{
+    this->exercise_Map[num] = val;
+}
+
 // Here are the button click events...
 // The stacked widget contains all the scenes for the application,
 // we are resetting the index after pressing the corresponding button.
@@ -62,40 +138,43 @@ void MainWindow::on_back_Button_Calculator_clicked()
 
 void MainWindow::calculate_Calories()
 {
-    double BMR = 0.0;
-    double calories = 0;
-    std::map<int, double> exercise_Map;
-    double body_Weight_Pounds = ui->calculator_Weight_Slider->value();
-    double height_In_Inches = ui->calculator_Height_Slider->value();
-    double age_In_Years = ui->calculator_Age_Slider->value();
-    double exercise_Days_Per_Week = ui->calculator_Exercise_Slider->value();
+    //Collect metrics from the sliders
 
-    bool is_Male = true;
-    bool is_Female = false;
+    setBodyWeightPounds(ui->calculator_Weight_Slider->value());
+    setHeightInches(ui->calculator_Height_Slider->value());
+    setAgeInYears(ui->calculator_Age_Slider->value());
+    setExerciseDays(ui->calculator_Exercise_Slider->value());
+
+    //Default to male is checked, but if female is checked set to true
+
+    setMale(true);
+    setFemale(false);
 
     if(ui->female_Radio_Button->isChecked())
     {
-        is_Female = true;
-        is_Male = false;
+        setFemale(true);
+        setMale(false);
     }
 
-    if(is_Male)
+    if(getIsMale() == true)
     {
-        BMR = 66 + (6.3 * body_Weight_Pounds) + (12.9 * height_In_Inches) - (6.8 * age_In_Years);
+        setBMR(66 + (6.3 * getBodyWeightPounds()) + (12.9 * getHeightInInches()) - (6.8 * getAgeInYears()));
     }else{
-        BMR = 655 + (4.3 * body_Weight_Pounds) + (4.7 * height_In_Inches) - (4.7 * age_In_Years);
+        setBMR(655 + (4.3 * getBodyWeightPounds()) + (4.7 * getHeightInInches()) - (4.7 * getAgeInYears()));
     }
 
-    exercise_Map[0] = 1.2;
-    exercise_Map[1] = 1.375;
-    exercise_Map[2] = 1.375;
-    exercise_Map[3] = 1.375;
-    exercise_Map[4] = 1.55;
-    exercise_Map[5] = 1.55;
-    exercise_Map[6] = 1.725;
-    exercise_Map[7] = 1.725;
+    //Initialize exercise map values
 
-    calories = BMR * exercise_Map[exercise_Days_Per_Week];
+    setExerciseMapValue(0,1.2);
+    setExerciseMapValue(1,1.375);
+    setExerciseMapValue(2,1.375);
+    setExerciseMapValue(3,1.375);
+    setExerciseMapValue(4,1.55);
+    setExerciseMapValue(5,1.55);
+    setExerciseMapValue(6,1.725);
+    setExerciseMapValue(7,1.725);
 
-    ui->calories_Per_Day_Label->display(calories);
+    setCalories(getBMR() * getExerciseMapValue(getExerciseDays()));
+
+    ui->calories_Per_Day_Label->display(getCalories());
 }
