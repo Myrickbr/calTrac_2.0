@@ -2,7 +2,7 @@
 #include<QtGui>
 #include<QMessageBox>
 #include <map>
-#include "mainwindow.h"
+#include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
 
