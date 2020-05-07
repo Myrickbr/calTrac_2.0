@@ -11,7 +11,7 @@
 
 void initStyleSheet()
 {
-    QFile file("mainStyles.css");
+    QFile file("stylesheets/stylesheets.css");
 
     if(!file.open(QIODevice::ReadOnly)){
         exit(0);

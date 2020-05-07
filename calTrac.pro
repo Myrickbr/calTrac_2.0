@@ -34,4 +34,4 @@ RESOURCES += \
     Resources.qrc
 
 DISTFILES += \
-    mainStyles.css
+    stylesheets/stylesheets.css
