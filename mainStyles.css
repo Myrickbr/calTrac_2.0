@@ -1,0 +1,24 @@
+
+QPushButton {
+  background: transparent;
+  border: none;
+  color: #F0F0F0;
+  padding: 3px;
+  outline: none;
+  /* Issue #194 - Special case of QPushButton inside dialogs, for better UI */
+  min-width: 80px;
+  font: 11pt 'Candara';
+}
+#sidebar {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)
+}
+
+Line {
+   border-width:thin;
+}
+#personalLabel{
+    font: 14pt 'Candara';
+    color: #C3C3C3;
+
+}

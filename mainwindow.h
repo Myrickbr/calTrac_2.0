@@ -38,12 +38,6 @@ public:
 
 private slots:
 
-    void on_instructions_Button_clicked();
-
-    void on_tracker_Button_clicked();
-
-    void on_calorie_Calculator_Button_clicked();
-
     void on_back_Button_Instructions_clicked();
 
     void on_back_Button_Tracker_clicked();
@@ -51,6 +45,12 @@ private slots:
     void on_back_Button_Calculator_clicked();
 
     void calculate_Calories();
+
+    void on_personalOverviewButton_clicked();
+
+    void on_nutritionTrackerButton_clicked();
+
+    void on_dailyCalendarButton_clicked();
 
 private:
     Ui::MainWindow *ui;

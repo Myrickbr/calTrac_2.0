@@ -103,22 +103,22 @@ void MainWindow::setExerciseMapValue(int num, double val)
 // Here are the button click events...
 // The stacked widget contains all the scenes for the application,
 // we are resetting the index after pressing the corresponding button.
-void MainWindow::on_instructions_Button_clicked()
+void MainWindow::on_dailyCalendarButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+   ui->stackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::on_tracker_Button_clicked()
+
+void MainWindow::on_nutritionTrackerButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 
-void MainWindow::on_calorie_Calculator_Button_clicked()
+void MainWindow::on_personalOverviewButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(3);
+    ui->stackedWidget->setCurrentIndex(0);
 }
-
 
 void MainWindow::on_back_Button_Instructions_clicked()
 {
@@ -178,3 +178,8 @@ void MainWindow::calculate_Calories()
 
     ui->calories_Per_Day_Label->display(getCalories());
 }
+
+
+
+
+
