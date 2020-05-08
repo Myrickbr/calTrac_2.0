@@ -9,16 +9,60 @@ QPushButton {
   min-width: 80px;
   font: 11pt 'Candara';
 }
+#personalOverviewButtonOn{
+    background-color: #445776;
+    border: 1px solid #86C0ED;
+    font-size: 11 pt;
+    color: #86C0ED;
+}
+#personalOverviewButtonOn:hover{
+    background-color: #7798CE; /* Light Blue*/
+    color: white;
+}
+.QPushButton:hover {
+  background-color: #7798CE; /* Light Blue*/
+  color: white;
+}
+
 #sidebar {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
                 stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)
 }
-
-Line {
-   border-width:thin;
+#header{
+    background: #586FA5;
+    border: none;
+}
+#greyBackground{
+    background: #EAEAEA;
+}
+#lineLogo{
+    border: 2px solid rgba(255,255,255,0.3);
+}
+#lineOne, #lineTwo, #lineThree, #lineFour{
+    border: 2px solid rgba(242, 238, 238, 0.05);
+}
+#userInfoBox {
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+    width: 200px;
+    height: 150px;
+    box-shadow: 10px 10px 5px grey;
+}
+#userInfoHeader{
+    font: 12pt 'Candara';
+    color: #707070;
 }
 #personalLabel{
-    font: 14pt 'Candara';
+    font: 12pt 'Candara';
     color: #C3C3C3;
 
+}
+#personalOverviewMain{
+    font: 13pt 'Candara';
+    color: rgba(102,99,99,1); /* Grey font */
+}
+#back_Button_Tracker{
+    background-color: red;
 }
