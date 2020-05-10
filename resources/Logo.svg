@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="59" height="77" viewBox="0 0 59 77">
+  <g id="Logo" transform="translate(-0.322 0.5)">
+    <rect id="right_dumbell" data-name="right dumbell" width="8" height="25" rx="4" transform="translate(0.322 8.5)" fill="#474343"/>
+    <rect id="Left_dumbell" data-name="Left dumbell" width="8" height="25" rx="4" transform="translate(45.322 8.5)" fill="#474343"/>
+    <rect id="Bar_Dumbell" data-name="Bar Dumbell" width="48" height="8" transform="translate(3.322 16.5)" fill="#474343"/>
+    <path id="Top" d="M14.5,0,29,29H0Z" transform="translate(11.822 -0.5)" fill="#97ccfa"/>
+    <ellipse id="Inner_Circle" data-name="Inner Circle" cx="17" cy="15.5" rx="17" ry="15.5" transform="translate(9.322 21.5)" fill="#97ccfa"/>
+    <path id="Path_2" data-name="Path 2" d="M-.136,15.406C9.532,10.953,5.412-.046,5.412-.046" transform="translate(33.024 33.331) rotate(16)" fill="none" stroke="#bedfff" stroke-linecap="round" stroke-width="2"/>
+    <text id="Hypor" transform="translate(5.322 54.5)" fill="rgba(134,192,237,0.99)" font-size="18" font-family="Candara"><tspan x="0" y="17">Hypor</tspan></text>
+  </g>
+</svg>

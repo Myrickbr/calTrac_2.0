@@ -68,7 +68,7 @@ QPushButton {
     font: 12pt 'Candara';
     color: #707070;
 }
-#lineBelowUserInfo, #aboveDaysExerciseDiv{
+#lineBelowUserInfo, #aboveDaysExerciseDiv, #lineBelowExercise{
     border-color: #E2E2E2;
 }
 #personalLabel{
@@ -94,7 +94,7 @@ QPushButton {
 }
 
 QSlider::groove:horizontal {
-border: 1px solid #bbb;
+border: none;
 background: white;
 height: 10px;
 border-radius: 4px;
@@ -102,24 +102,22 @@ border-radius: 4px;
 
 QSlider::sub-page:horizontal {
 background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #66e, stop: 1 #bbf);
+    stop: 0 #BFD6F6, stop:1 #85B4F5);
 background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #bbf, stop: 1 #55f);
-border:none;
+    stop: 0 #BFD6F6, stop:1 #85B4F5);
+border: none;
 height: 10px;
 border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
 background: #fff;
-border: none;
-height: 10px;
+border: 2px solid rgba(75,152,241,0.1);
 border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #eee, stop:1 #ccc);
+background: #559BEB;
 border: none;
 width: 13px;
 margin-top: -2px;
@@ -129,7 +127,7 @@ border-radius: 4px;
 
 QSlider::handle:horizontal:hover {
 background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-    stop:0 #fff, stop:1 #ddd);
+    stop:0 #BFD6F6, stop:1 #85B4F5);
 border: none;
 border-radius: 4px;
 }
@@ -146,10 +144,17 @@ border-color: #999;
 
 QSlider::handle:horizontal:disabled {
 background: #eee;
-border: 1px solid #aaa;
+border: none;
 border-radius: 4px;
 }
-
+#calculateResultsButton{
+    background-color: rgba(101,154,245,0.8);
+    border-radius: 5px;
+    border: none;
+    font: 12px solid 'Candara';
+    font-weight: bold;
+    color: white;
+}
 #back_Button_Tracker{
     background-color: red;
 }
