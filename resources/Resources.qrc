@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>Logo.svg</file>
+        <file>logoNoText.svg</file>
+        <file>interface.svg</file>
+        <file>calendar.svg</file>
+        <file>healthcare-and-medical.svg</file>
+        <file>medication.svg</file>
     </qresource>
 </RCC>

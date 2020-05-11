@@ -1,11 +1,23 @@
-/* Sidebar and Header Stylesheets */
+/* Sidebar and Header Stylesheets Page 1*/
 #sidebar {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
                 stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)
 }
+#dailyCalendarSymbol, #nutTrackerSymbol, #personalOverviewSymbol{
+    fill: white;
+}
+#personalOverviewLabel{
+    font: 14px solid 'Candara';
+    color: #86C0ED;
+}
+
 #header{
     background: #586FA5;
     border: none;
+}
+#logoText{
+    font: 18px solid 'Candara';
+    color: #86C0ED;
 }
 #usernameLabel{
     font: 12px solid 'Candara';
@@ -148,13 +160,113 @@ border: none;
 border-radius: 4px;
 }
 #calculateResultsButton{
-    background-color: rgba(101,154,245,0.8);
+    background-color: #A2C6F3;
     border-radius: 5px;
     border: none;
     font: 12px solid 'Candara';
     font-weight: bold;
     color: white;
 }
+#back_Button_Tracker{
+    background-color: red;
+}
+
+
+/* StyleSheets Page 2 (Nutrition Tracker) */
+/* -------------------------------------- */
+#sidebar_2 {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)
+}
+#dailyCalendarSymbol_2, #nutTrackerSymbol_2, #personalOverviewSymbol_2{
+    fill: white;
+}
+#nutritionTrackerHeader{
+    font: 13pt 'Candara';
+    color: rgba(102,99,99,1); /* Grey font */
+
+}
+#header_2{
+    background: #586FA5;
+    border: none;
+}
+#logoText_2{
+    font: 18px solid 'Candara';
+    color: #86C0ED;
+}
+#usernameLabel_4{
+    font: 12px solid 'Candara';
+    color: white;
+    font-weight: bold;
+}
+#settingsButton_4 {
+    font: 20px solid;
+    color: white;
+    background: transparent;
+}
+#personalLabel_2{
+    font: 12pt 'Candara';
+    color: #C3C3C3;
+
+}
+/* Main Section Stylsheets */
+
+QPushButton {
+  background: transparent;
+  border: none;
+  color: #F0F0F0;
+  padding: 3px;
+  outline: none;
+  /* Issue #194 - Special case of QPushButton inside dialogs, for better UI */
+  min-width: 80px;
+  font: 11pt 'Candara';
+}
+#personalOverviewButtonOn{
+    background-color: #445776;
+    border: 1px solid #86C0ED;
+    font-size: 11 pt;
+    color: #86C0ED;
+}
+#personalOverviewButtonOn:hover{
+    background-color: #7798CE; /* Light Blue*/
+    color: white;
+}
+
+
+#greyBackground_2{
+    background: #EAEAEA;
+}
+#lineLogo{
+    border: 2px solid rgba(255,255,255,0.3);
+}
+#lineOne_2, #lineTwo_2, #lineThree_2, #lineFour_2{
+    border: 2px solid rgba(242, 238, 238, 0.05);
+}
+#lineBelowUserInfo_2, #aboveDaysExerciseDiv_2, #lineBelowExercise_2{
+    border-color: #E2E2E2;
+}
+#personalLabel{
+    font: 12pt 'Candara';
+    color: #C3C3C3;
+
+}
+#heightLabel, #ageLabel, #weightLabel, #genderLabel, #daysExerciseLabel {
+    font: 10pt 'Candara';
+    color: #6C6868;
+}
+#heightFeetEntry, #heightInchesEntry, #ageEntry, #weightEntry, #maleButton,
+#femaleButton{
+    background-color: #F6F6F6;
+    border: 1px solid rgba(112,112,112,0.5);
+    border-radius: 5px;
+    padding: 4px;
+    font: 20pt 'Candara';
+}
+#personalOverviewMain{
+    font: 13pt 'Candara';
+    color: rgba(102,99,99,1); /* Grey font */
+}
+
 #back_Button_Tracker{
     background-color: red;
 }

@@ -105,22 +105,17 @@ void MainWindow::setExerciseMapValue(int num, double val)
 // we are resetting the index after pressing the corresponding button.
 void MainWindow::on_dailyCalendarButton_clicked()
 {
-   ui->stackedWidget->setCurrentIndex(1);
+   ui->stackedWidget->setCurrentIndex(2);
 }
 
 
 void MainWindow::on_nutritionTrackerButton_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(2);
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
 void MainWindow::on_personalOverviewButton_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-void MainWindow::on_back_Button_Instructions_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }

@@ -38,8 +38,6 @@ public:
 
 private slots:
 
-    void on_back_Button_Instructions_clicked();
-
     void on_back_Button_Tracker_clicked();
 
     void on_back_Button_Calculator_clicked();
