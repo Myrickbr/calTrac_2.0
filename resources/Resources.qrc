@@ -5,5 +5,7 @@
         <file>calendar.svg</file>
         <file>healthcare-and-medical.svg</file>
         <file>medication.svg</file>
+        <file>femaleLogo.svg</file>
+        <file>maleLogo.svg</file>
     </qresource>
 </RCC>

@@ -433,7 +433,7 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>Male</string>
         </property>
        </widget>
        <widget class="QPushButton" name="femaleButton">
@@ -446,7 +446,7 @@
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>Female</string>
         </property>
        </widget>
        <widget class="QGroupBox" name="aboveDaysExerciseDiv">
@@ -768,6 +768,41 @@
         </property>
         <property name="text">
          <string>years</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="maleLogo">
+        <property name="geometry">
+         <rect>
+          <x>237</x>
+          <y>92</y>
+          <width>41</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/Resources.qrc">:/maleLogo.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="femaleLogo">
+        <property name="geometry">
+         <rect>
+          <x>237</x>
+          <y>188</y>
+          <width>41</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../resources/Resources.qrc">:/femaleLogo.svg</pixmap>
         </property>
        </widget>
       </widget>
