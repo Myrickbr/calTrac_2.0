@@ -20,7 +20,6 @@ void initStyleSheet()
     QTextStream in(&file);
     QString css = in.readAll();
     qApp->setStyleSheet(css);
-    qApp->setFont(QFont("Times", 9));
 
     return;
 }
@@ -29,11 +28,8 @@ void initStyleSheet()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //QString blah =  QDir::currentPath();
-    //qDebug() << blah;
-    //std::cout << "current directory   " << blah.toStdString();
-    initStyleSheet();
 
+    initStyleSheet();
     MainWindow w;
     w.show();
     return a.exec();

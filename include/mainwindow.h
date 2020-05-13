@@ -12,10 +12,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
+    /* Constructors */
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    // Getters and Setters
+    /* Getters and Setters */
     double getBMR();
     double getCalories();
     double getBodyWeightPounds();
@@ -31,8 +34,8 @@ public:
     void setHeightInches(double num);
     void setAgeInYears(double num);
     void setExerciseDays(double num);
-    void setFemale(bool);
-    void setMale(bool);
+    void setMaleCheck(bool);
+    void setFemaleCheck(bool);
     void setExerciseMapValue(int num, double val);
 
 
@@ -44,14 +47,27 @@ private slots:
 
     void calculate_Calories();
 
+    void displayWeightValue();
+
+    void displayAgeValue();
+
     void on_personalOverviewButton_clicked();
 
     void on_nutritionTrackerButton_clicked();
 
     void on_dailyCalendarButton_clicked();
 
+    void on_maleButton_clicked();
+
+    void on_femaleButton_clicked();
+
+
 private:
     Ui::MainWindow *ui;
+
+    /* Instance variables */
+    bool maleChecked;
+    bool femaleChecked;
     double BMR; //This stands for Basal Metabolic Rate
     double calories;
     std::map<int, double> exercise_Map;
@@ -60,7 +76,5 @@ private:
     double age_In_Years;
     int exercise_Days_Per_Week;
 
-    bool is_Male;
-    bool is_Female;
 };
 #endif // MAINWINDOW_H

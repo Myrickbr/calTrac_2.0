@@ -1,7 +1,9 @@
 #include <QtCore>
 #include<QtGui>
 #include<QMessageBox>
+#include<QVariant>
 #include <map>
+#include <string>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -11,6 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    /* Initialize instance variables */
+    this->femaleChecked = false;
+    this->maleChecked = false;
+
+    /* Set up sliders */
+
     ui->setupUi(this);
     connect(ui->calculator_Weight_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
     connect(ui->calculator_Height_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
@@ -18,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->calculator_Exercise_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
     connect(ui->male_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
     connect(ui->female_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
+
+    connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
+    connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
 }
 MainWindow::~MainWindow()
 {
@@ -51,12 +62,12 @@ int MainWindow::getExerciseDays()
 
 bool MainWindow::getIsFemale()
 {
-    return this->is_Female;
+    return this->femaleChecked;
 }
 
 bool MainWindow::getIsMale()
 {
-    return this->is_Male;
+    return this->maleChecked;
 }
 double MainWindow::getExerciseMapValue(int num)
 {
@@ -87,19 +98,17 @@ void MainWindow::setExerciseDays(double num)
 {
     this->exercise_Days_Per_Week = num;
 }
-void MainWindow::setFemale(bool tOf)
-{
-    this->is_Female = tOf;
-}
-void MainWindow::setMale(bool tOf)
-{
-    this->is_Male = tOf;
-}
+
 void MainWindow::setExerciseMapValue(int num, double val)
 {
     this->exercise_Map[num] = val;
 }
-
+void MainWindow::setMaleCheck(bool tOf){
+    this->maleChecked = tOf;
+}
+void MainWindow::setFemaleCheck(bool tOf){
+    this->femaleChecked = tOf;
+}
 // Here are the button click events...
 // The stacked widget contains all the scenes for the application,
 // we are resetting the index after pressing the corresponding button.
@@ -131,6 +140,67 @@ void MainWindow::on_back_Button_Calculator_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+void MainWindow::on_maleButton_clicked(){
+
+    /* When male button is clicked, we will update the stylesheets for
+       the male button and the female button (set back to grey)
+    */
+
+    QString maleButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";
+    ui->maleButton->setStyleSheet(maleButtonStyleSheet);
+
+    QString femaleButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+    ui->femaleButton->setStyleSheet(femaleButtonStyleSheet);
+
+    /* Set maleChecked to true and femaleChecked to false */
+
+    this->setMaleCheck(true);
+    this->setFemaleCheck(false);
+
+}
+
+void MainWindow::on_femaleButton_clicked(){
+
+    /*When the female button is clicked, we will update the stylesheets for
+      the female button and the male button (set back to grey)
+    */
+
+    QString femaleButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";
+    ui->femaleButton->setStyleSheet(femaleButtonStyleSheet);
+
+    QString maleButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+    ui->maleButton->setStyleSheet(maleButtonStyleSheet);
+
+    /* Set femaleChecked to true and maleChecked to false */
+
+    this->setFemaleCheck(true);
+    this->setFemaleCheck(false);
+
+}
+
+
+void MainWindow::displayWeightValue(){
+    //Retrieve value from slider, convert to qstring
+    int sliderValue = ui->weightSlider->value();
+
+    QVariant var(sliderValue);
+    QString valueAsString = var.toString();
+
+    ui->weightShowBox->setText(valueAsString);
+    ui->weightShowBox->repaint();
+}
+void MainWindow::displayAgeValue(){
+    //Retrieve value from slider, convert to qstring
+    int sliderValue = ui->ageSlider->value();
+
+    QVariant var(sliderValue);
+    QString valueAsString = var.toString();
+
+    ui->ageShowBox->setText(valueAsString);
+    ui->ageShowBox->repaint();
+
+}
+
 void MainWindow::calculate_Calories()
 {
     //Collect metrics from the sliders
@@ -142,16 +212,16 @@ void MainWindow::calculate_Calories()
 
     //Default to male is checked, but if female is checked set to true
 
-    setMale(true);
-    setFemale(false);
+    //setMale(true);
+    //setFemale(false);
 
     if(ui->female_Radio_Button->isChecked())
     {
-        setFemale(true);
-        setMale(false);
+        //setFemale(true);
+        //setMale(false);
     }
 
-    if(getIsMale() == true)
+    if(1 == 1)
     {
         setBMR(66 + (6.3 * getBodyWeightPounds()) + (12.9 * getHeightInInches()) - (6.8 * getAgeInYears()));
     }else{

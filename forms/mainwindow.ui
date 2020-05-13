@@ -394,7 +394,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Weight (Pounds)</string>
+         <string>Weight</string>
         </property>
        </widget>
        <widget class="QLabel" name="genderLabel">
@@ -420,7 +420,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Age (Years)</string>
+         <string>Age </string>
         </property>
        </widget>
        <widget class="QPushButton" name="maleButton">
@@ -443,32 +443,6 @@
           <y>180</y>
           <width>112</width>
           <height>80</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="maleRadioButton">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>80</y>
-          <width>21</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="femaleRadioButton">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>180</y>
-          <width>21</width>
-          <height>20</height>
          </rect>
         </property>
         <property name="text">
@@ -567,7 +541,7 @@
          <rect>
           <x>40</x>
           <y>80</y>
-          <width>41</width>
+          <width>35</width>
           <height>31</height>
          </rect>
         </property>
@@ -616,9 +590,9 @@
        <widget class="QComboBox" name="heightInchesBox">
         <property name="geometry">
          <rect>
-          <x>90</x>
+          <x>100</x>
           <y>80</y>
-          <width>65</width>
+          <width>35</width>
           <height>31</height>
          </rect>
         </property>
@@ -695,6 +669,9 @@
           <height>20</height>
          </rect>
         </property>
+        <property name="maximum">
+         <number>300</number>
+        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -715,27 +692,82 @@
        <widget class="QLabel" name="weightShowBox">
         <property name="geometry">
          <rect>
-          <x>56</x>
-          <y>144</y>
-          <width>71</width>
+          <x>80</x>
+          <y>145</y>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </widget>
        <widget class="QLabel" name="ageShowBox">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>220</y>
-          <width>71</width>
+          <x>85</x>
+          <y>216</y>
+          <width>31</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string/>
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="poundsLabel">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>150</y>
+          <width>47</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>lbs</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="feetLabel">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>90</y>
+          <width>16</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ft</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="inchesLabel">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>90</y>
+          <width>16</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>in</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="yearsLabel">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>220</y>
+          <width>41</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>years</string>
         </property>
        </widget>
       </widget>

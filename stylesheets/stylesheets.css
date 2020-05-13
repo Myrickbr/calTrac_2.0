@@ -88,6 +88,14 @@ QPushButton {
     color: #C3C3C3;
 
 }
+ #inchesLabel, #poundsLabel, #feetLabel, #yearsLabel{
+    font: 10pt 'Candara';
+    color: #757575;
+}
+#weightShowBox, #ageShowBox{
+    font: 14pt 'Candara';
+    color: #757575;
+}
 #heightLabel, #ageLabel, #weightLabel, #genderLabel, #daysExerciseLabel {
     font: 10pt 'Candara';
     color: #6C6868;
