@@ -847,9 +847,9 @@
        <widget class="QChartView" name="bmiPercentileChart">
         <property name="geometry">
          <rect>
-          <x>95</x>
+          <x>200</x>
           <y>41</y>
-          <width>471</width>
+          <width>600</width>
           <height>261</height>
          </rect>
         </property>

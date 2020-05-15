@@ -21,9 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    QChart *bmiChart = new QChart();
-
-    bmiChart = configureBMIChart();
+    QChart * bmiChart = configureBMIChart();
 
     ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiPercentileChart->setChart(bmiChart);
@@ -215,6 +213,8 @@ QChart * MainWindow::configureBMIChart(){
         // Configure your chart
     QChart *chart = new QChart();
     chart->legend()->hide();
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0);
     chart->addSeries(series);
     chart->createDefaultAxes();
     chart->setTitle("Simple line chart example");

@@ -22,7 +22,7 @@ SOURCES += \
 
 HEADERS += \
     include/mainwindow.h \
-    src/nutritiontracker.h
+    include/nutritiontracker.h
 
 FORMS += \
     forms/mainwindow.ui

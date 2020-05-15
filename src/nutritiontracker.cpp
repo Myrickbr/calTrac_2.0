@@ -1,4 +1,4 @@
-#include "nutritiontracker.h"
+#include "../include/nutritiontracker.h"
 
 nutritionTracker::nutritionTracker()
 {
