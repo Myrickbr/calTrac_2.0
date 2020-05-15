@@ -1,13 +1,17 @@
 #include "include/mainwindow.h"
-#include<QStackedWidget>
+#include "ui_mainwindow.h"
+#include <QStackedWidget>
 #include <iostream>
 #include <string>
-
 #include <QApplication>
 #include <QDir>
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QtCharts>
+#include<QBrush>
+
+QT_CHARTS_USE_NAMESPACE
 
 void initStyleSheet()
 {
@@ -25,11 +29,13 @@ void initStyleSheet()
 }
 
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     initStyleSheet();
+
     MainWindow w;
     w.show();
     return a.exec();

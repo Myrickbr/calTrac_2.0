@@ -110,6 +110,9 @@ QPushButton {
     font-size: 14px;
     color: #7C7C7C;
 }
+#bmiPercentileChart{
+
+}
 #personalOverviewMain{
     font: 13pt 'Candara';
     color: rgba(102,99,99,1); /* Grey font */

@@ -2,11 +2,11 @@
 #include<QtGui>
 #include<QMessageBox>
 #include<QVariant>
+#include<QtCharts>
 #include <map>
 #include <string>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
-
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,15 +17,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->femaleChecked = false;
     this->maleChecked = false;
 
-    /* Set up sliders */
+    /* Set up sliders and chart */
 
     ui->setupUi(this);
-    connect(ui->calculator_Weight_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
-    connect(ui->calculator_Height_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
-    connect(ui->calculator_Age_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
-    connect(ui->calculator_Exercise_Slider, SIGNAL(valueChanged(int)), this, SLOT(calculate_Calories()));
-    connect(ui->male_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
-    connect(ui->female_Radio_Button, SIGNAL(clicked()), this, SLOT(calculate_Calories()));
+
+    QChart *bmiChart = new QChart();
+
+    bmiChart = configureBMIChart();
+
+    ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
+    ui->bmiPercentileChart->setChart(bmiChart);
 
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
     connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
@@ -199,6 +200,26 @@ void MainWindow::displayAgeValue(){
     ui->ageShowBox->setText(valueAsString);
     ui->ageShowBox->repaint();
 
+}
+
+QChart * MainWindow::configureBMIChart(){
+
+    QLineSeries *series = new QLineSeries();
+    series->append(0, 6);
+    series->append(2, 4);
+    series->append(3, 8);
+    series->append(7, 4);
+    series->append(10, 5);
+   //     *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) <<   QPointF(20, 2);
+
+        // Configure your chart
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Simple line chart example");
+
+    return chart;
 }
 
 void MainWindow::calculate_Calories()

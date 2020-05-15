@@ -844,6 +844,16 @@
          <string>BMI Percentile</string>
         </property>
        </widget>
+       <widget class="QChartView" name="bmiPercentileChart">
+        <property name="geometry">
+         <rect>
+          <x>95</x>
+          <y>41</y>
+          <width>471</width>
+          <height>261</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="calorieIntakeBox">
        <property name="geometry">
@@ -1462,6 +1472,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">QtCharts</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resources/Resources.qrc"/>
  </resources>

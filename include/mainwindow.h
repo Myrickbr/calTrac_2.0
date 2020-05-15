@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QtCharts>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +38,7 @@ public:
     void setMaleCheck(bool);
     void setFemaleCheck(bool);
     void setExerciseMapValue(int num, double val);
+    QChart * configureBMIChart();
 
 
 private slots:
