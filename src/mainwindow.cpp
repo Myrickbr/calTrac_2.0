@@ -5,6 +5,8 @@
 #include<QtCharts>
 #include <map>
 #include <string>
+#include <iostream>
+#include <fstream>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -202,15 +204,33 @@ void MainWindow::displayAgeValue(){
 
 QChart * MainWindow::configureBMIChart(){
 
-    QLineSeries *series = new QLineSeries();
-    series->append(0, 6);
-    series->append(2, 4);
-    series->append(3, 8);
-    series->append(7, 4);
-    series->append(10, 5);
-   //     *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) <<   QPointF(20, 2);
+    /* Retrieve bmi percentile data from text file */
 
-        // Configure your chart
+    double bmiValues [99];
+    std::string currentLine;
+    std::ifstream infile;
+    infile.open("data/bmiPercentileData.txt");
+    if(!infile)
+    {
+        perror("Text file for bmi data could not be opened!");
+    }
+
+    int index = 0;
+    while(!infile.eof())
+    {
+        getline(infile,currentLine);
+        bmiValues[index] = atof(currentLine.c_str());
+        ++index;
+    }
+    infile.close();
+
+    QLineSeries *series = new QLineSeries();
+
+    for(int i = 0; i < (sizeof(bmiValues)/sizeof(bmiValues[0])); ++i){
+
+        series->append(i+1, bmiValues[i]);
+    }
+
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->layout()->setContentsMargins(0, 0, 0, 0);

@@ -36,4 +36,5 @@ RESOURCES += \
     resources/Resources.qrc
 
 DISTFILES += \
+    data/bmiPercentileData.txt \
     stylesheets/stylesheets.css
