@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/nutritiontracker.cpp
+    src/nutritiontracker.cpp \
+    src/userinformation.cpp
 
 HEADERS += \
     include/mainwindow.h \
-    include/nutritiontracker.h
+    include/nutritiontracker.h \
+    include/userinformation.h
 
 FORMS += \
     forms/mainwindow.ui
