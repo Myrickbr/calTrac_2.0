@@ -31,7 +31,7 @@ public:
     void set_age_years(const int *);
     void set_days_exercise_per_week(const int *);
     void set_bmi(const double *);
-    void set_bmi_percentile(const int *);
+    void set_bmi_percentile(const int &);
     void set_calorie_intake(const double *);
 
 

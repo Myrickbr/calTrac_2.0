@@ -66,8 +66,8 @@ void userInformation::set_days_exercise_per_week(const int * daysExercisePerWeek
 void userInformation::set_bmi(const double * bmi_){
     this->bmi = *bmi_;
 }
-void userInformation::set_bmi_percentile(const int * bmiPercentile){
-    this->bmi_percentile = *bmiPercentile;
+void userInformation::set_bmi_percentile(const int & bmiPercentile){
+    this->bmi_percentile = bmiPercentile;
 }
 void userInformation::set_calorie_intake(const double * calorieIntake){
     this->calorie_intake = *calorieIntake;

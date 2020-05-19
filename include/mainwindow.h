@@ -85,6 +85,7 @@ private:
     double height_In_Inches;
     double age_In_Years;
     int exercise_Days_Per_Week;
+    double * bmiValues;
 
     userInformation * userInfoObject;
 

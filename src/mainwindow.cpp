@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     /* Initialize instance variables */
     this->femaleChecked = false;
     this->maleChecked = false;
+    this->bmiValues = NULL;
 
     this->userInfoObject;
 
@@ -210,13 +211,11 @@ QChart * MainWindow::configureBMIChart(){
 
     /* Retrieve bmi percentile data from text file */
 
-    double * bmiValues = read_bmi_text_file();
+    this->bmiValues = read_bmi_text_file();
     QLineSeries *series = new QLineSeries();
 
-    double value = *bmiValues;
-
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE); ++i){
-        series->append(i+1, *(bmiValues + i));
+        series->append(i+1, *(this->bmiValues + i));
     }
 
     QChart *chart = new QChart();
@@ -231,12 +230,31 @@ QChart * MainWindow::configureBMIChart(){
 }
 
 void MainWindow::calculate_BMI_percentile(){
+    if(this->bmiValues == NULL){
+        perror("BMI Values have not been read in yet!");
+        this->bmiValues = read_bmi_text_file();
+    }
 
+    /* Iterate through bmi value array, once you hit a percentile/index
+       that contains a value lower than the user's bmi, exit loop */
+
+    for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE);++i){
+        if(*(this->userInfoObject->get_bmi()) > *(this->bmiValues + i)){
+            this->userInfoObject->set_bmi_percentile(i+1);
+            break;
+        }
+    }
+
+    /* If you reach this point, you have a bmi value above the 99th percentile */
+
+    perror("The user's bmi is above 99th percentile!");
+    this->userInfoObject->set_bmi_percentile(99);
+    return;
 }
 
 double * MainWindow::read_bmi_text_file(){
 
-    double bmiValues [99];
+    static double bmiValues [99];
     std::string currentLine;
     std::ifstream infile;
     infile.open("data/bmiPercentileData.txt");
@@ -253,11 +271,8 @@ double * MainWindow::read_bmi_text_file(){
         ++index;
     }
     infile.close();
-    double * ptr = &bmiValues[0];
 
-    double val = *ptr;
-
-    return ptr;
+    return bmiValues;
 }
 
 void MainWindow::calculate_Calories()
