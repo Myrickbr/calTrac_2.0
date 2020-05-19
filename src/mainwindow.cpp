@@ -277,45 +277,7 @@ double * MainWindow::read_bmi_text_file(){
 
 void MainWindow::calculate_Calories()
 {
-    //Collect metrics from the sliders
 
-    setBodyWeightPounds(ui->calculator_Weight_Slider->value());
-    setHeightInches(ui->calculator_Height_Slider->value());
-    setAgeInYears(ui->calculator_Age_Slider->value());
-    setExerciseDays(ui->calculator_Exercise_Slider->value());
-
-    //Default to male is checked, but if female is checked set to true
-
-    //setMale(true);
-    //setFemale(false);
-
-    if(ui->female_Radio_Button->isChecked())
-    {
-        //setFemale(true);
-        //setMale(false);
-    }
-
-    if(1 == 1)
-    {
-        setBMR(66 + (6.3 * getBodyWeightPounds()) + (12.9 * getHeightInInches()) - (6.8 * getAgeInYears()));
-    }else{
-        setBMR(655 + (4.3 * getBodyWeightPounds()) + (4.7 * getHeightInInches()) - (4.7 * getAgeInYears()));
-    }
-
-    //Initialize exercise map values
-
-    setExerciseMapValue(0,1.2);
-    setExerciseMapValue(1,1.375);
-    setExerciseMapValue(2,1.375);
-    setExerciseMapValue(3,1.375);
-    setExerciseMapValue(4,1.55);
-    setExerciseMapValue(5,1.55);
-    setExerciseMapValue(6,1.725);
-    setExerciseMapValue(7,1.725);
-
-    setCalories(getBMR() * getExerciseMapValue(getExerciseDays()));
-
-    ui->calories_Per_Day_Label->display(getCalories());
 }
 
 
