@@ -184,6 +184,14 @@ void MainWindow::on_femaleButton_clicked(){
 
 }
 
+void MainWindow::on_calculateResultsButton_clicked()
+{
+    /* This function needs to calculate BMI/BMI percentile
+       then update graphs and views. First check to make sure
+       user info instance variables are not null */
+
+    //if()
+}
 
 void MainWindow::displayWeightValue(){
     //Retrieve value from slider, convert to qstring
@@ -279,6 +287,8 @@ void MainWindow::calculate_Calories()
 {
 
 }
+
+
 
 
 

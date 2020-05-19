@@ -71,6 +71,7 @@ private slots:
 
     void on_femaleButton_clicked();
 
+    void on_calculateResultsButton_clicked();
 
 private:
     Ui::MainWindow *ui;
