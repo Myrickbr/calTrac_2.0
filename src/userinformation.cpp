@@ -1,5 +1,6 @@
 #include "../include/userinformation.h"
 #include <iostream>
+#include <cmath>
 
 userInformation::userInformation()
 {
@@ -75,10 +76,12 @@ void userInformation::set_calorie_intake(const double * calorieIntake){
 
 double userInformation::calculate_BMI(){
 
-    return 0.0;
-}
+    /* To calculate BMI, first convert weight to kilograms and height to meters */
+    double weightKilograms = this->weight_pounds * POUNDS_PER_KILOGRAM;
+    double heightMeters = (this->height_inches * FEET_PER_INCH + this->height_feet) * METERS_PER_FOOT;
 
-double userInformation::calculate_BMI_percentile(){
+    /* Now divide weight (kg) by height squared (m^2) */
+    double bmi = (weightKilograms) / (pow(heightMeters,2));
 
-    return 0.0;
+    return bmi;
 }

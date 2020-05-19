@@ -5,8 +5,11 @@
 class userInformation
 {
 public:
-    /* Enumerations */
+    /* Enumerations and Constants */
     enum class Gender{Null, Male, Female};
+    const double METERS_PER_FOOT = 3.28084;
+    const int FEET_PER_INCH = 0.83333;
+    const double POUNDS_PER_KILOGRAM = 2.20462;
 
     /* Constructors */
     userInformation();
@@ -36,9 +39,6 @@ public:
 
     /* Other Functions */
     double calculate_BMI();
-    double calculate_BMI_percentile();
-
-
 
 
 private:

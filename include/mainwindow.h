@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include<QtCharts>
+#include<../include/userinformation.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -13,6 +14,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
+    /* Enumerations and Constants */
+    const int BMI_PERCENTILE_CHART_SIZE = 99;
 
     /* Constructors */
 
@@ -38,7 +42,11 @@ public:
     void setMaleCheck(bool);
     void setFemaleCheck(bool);
     void setExerciseMapValue(int num, double val);
+
+    /* Other Functions */
     QChart * configureBMIChart();
+    void calculate_BMI_percentile();
+    double * read_bmi_text_file();
 
 
 private slots:
@@ -77,6 +85,8 @@ private:
     double height_In_Inches;
     double age_In_Years;
     int exercise_Days_Per_Week;
+
+    userInformation * userInfoObject;
 
 };
 #endif // MAINWINDOW_H

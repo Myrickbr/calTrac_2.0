@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->femaleChecked = false;
     this->maleChecked = false;
 
+    this->userInfoObject;
+
     /* Set up sliders and chart */
 
     ui->setupUi(this);
@@ -27,6 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiPercentileChart->setChart(bmiChart);
+
+
 
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
     connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
@@ -206,6 +210,32 @@ QChart * MainWindow::configureBMIChart(){
 
     /* Retrieve bmi percentile data from text file */
 
+    double * bmiValues = read_bmi_text_file();
+    QLineSeries *series = new QLineSeries();
+
+    double value = *bmiValues;
+
+    for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE); ++i){
+        series->append(i+1, *(bmiValues + i));
+    }
+
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0);
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Simple line chart example");
+
+    return chart;
+}
+
+void MainWindow::calculate_BMI_percentile(){
+
+}
+
+double * MainWindow::read_bmi_text_file(){
+
     double bmiValues [99];
     std::string currentLine;
     std::ifstream infile;
@@ -223,23 +253,11 @@ QChart * MainWindow::configureBMIChart(){
         ++index;
     }
     infile.close();
+    double * ptr = &bmiValues[0];
 
-    QLineSeries *series = new QLineSeries();
+    double val = *ptr;
 
-    for(int i = 0; i < (sizeof(bmiValues)/sizeof(bmiValues[0])); ++i){
-
-        series->append(i+1, bmiValues[i]);
-    }
-
-    QChart *chart = new QChart();
-    chart->legend()->hide();
-    chart->layout()->setContentsMargins(0, 0, 0, 0);
-    chart->setBackgroundRoundness(0);
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-    chart->setTitle("Simple line chart example");
-
-    return chart;
+    return ptr;
 }
 
 void MainWindow::calculate_Calories()
