@@ -11,8 +11,7 @@ userInformation::userInformation()
     this->weight_pounds = NULL;
     this->age_years = NULL;
     this->gender = Gender::Null;
-    this->age_years = NULL;
-    this->days_exericise_per_week = NULL;
+    this->days_exericise_per_week = 0;
     this->bmi = NULL;
     this->bmi_percentile = NULL;
 

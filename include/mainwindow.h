@@ -17,6 +17,8 @@ public:
 
     /* Enumerations and Constants */
     const int BMI_PERCENTILE_CHART_SIZE = 99;
+    const int MESSAGE_BOX_FIXED_WIDTH = 500;
+    const int MESSAGE_BOX_FIXED_HEIGHT = 200;
 
     /* Constructors */
 
@@ -44,9 +46,10 @@ public:
     void setExerciseMapValue(int num, double val);
 
     /* Other Functions */
-    QChart * configureBMIChart();
+    QChart * configure_BMI_chart();
     void calculate_BMI_percentile();
     double * read_bmi_text_file();
+    bool check_user_input();
 
 
 private slots:

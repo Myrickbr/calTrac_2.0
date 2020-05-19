@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-    QChart * bmiChart = configureBMIChart();
+    QChart * bmiChart = configure_BMI_chart();
 
     ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiPercentileChart->setChart(bmiChart);
@@ -189,8 +189,14 @@ void MainWindow::on_calculateResultsButton_clicked()
     /* This function needs to calculate BMI/BMI percentile
        then update graphs and views. First check to make sure
        user info instance variables are not null */
+    if(!check_user_input()){
+        return;
+    }
 
-    //if()
+    /* Now that user has entered proper input, perform calculation */
+
+
+
 }
 
 void MainWindow::displayWeightValue(){
@@ -215,7 +221,7 @@ void MainWindow::displayAgeValue(){
 
 }
 
-QChart * MainWindow::configureBMIChart(){
+QChart * MainWindow::configure_BMI_chart(){
 
     /* Retrieve bmi percentile data from text file */
 
@@ -281,6 +287,28 @@ double * MainWindow::read_bmi_text_file(){
     infile.close();
 
     return bmiValues;
+}
+
+bool MainWindow::check_user_input(){
+    /* Goal of this function is to make sure user input is a legitimate value.
+       If not, send a message to the user telling them to add corresponding info. */
+    QMessageBox messageBox;
+
+    if(this->userInfoObject->get_weight_pounds() == NULL){
+        messageBox.critical(0,"Error","You must enter a valid weight!");
+        messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
+        return false;
+    }else if(this->userInfoObject->get_age_years() == NULL){
+        messageBox.critical(0,"Error","You must enter a valid age!");
+        messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
+        return false;
+    }else if(this->userInfoObject->get_gender() == NULL){
+        messageBox.critical(0,"Error","You must enter a valid gender!");
+        messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
+        return false;
+    }
+
+    return true;
 }
 
 void MainWindow::calculate_Calories()
