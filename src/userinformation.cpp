@@ -35,8 +35,8 @@ const int * userInformation::get_age_years(){
 const int * userInformation::get_days_exercise_per_week(){
     return &(this->days_exericise_per_week);
 }
-const double * userInformation::get_bmi(){
-    return &(this->bmi);
+const double & userInformation::get_bmi(){
+    return this->bmi;
 }
 const int * userInformation::get_bmi_percentile(){
     return &(this->bmi_percentile);

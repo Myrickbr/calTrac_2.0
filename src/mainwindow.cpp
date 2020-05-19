@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -193,9 +194,11 @@ void MainWindow::on_calculateResultsButton_clicked()
         return;
     }
 
-    /* Now that user has entered proper input, perform calculation */
+    /* Now that user has entered proper input, perform calculation.
+       Then update graphs and other applicable views */
 
-
+    calculate_BMI_percentile();
+    ui->bmiTestLabel->setText(QString::number(this->userInfoObject->get_bmi()));
 
 }
 
@@ -252,8 +255,10 @@ void MainWindow::calculate_BMI_percentile(){
     /* Iterate through bmi value array, once you hit a percentile/index
        that contains a value lower than the user's bmi, exit loop */
 
+    double var = this->userInfoObject->get_bmi();
+
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE);++i){
-        if(*(this->userInfoObject->get_bmi()) > *(this->bmiValues + i)){
+        if(this->userInfoObject->get_bmi() > *(this->bmiValues + i)){
             this->userInfoObject->set_bmi_percentile(i+1);
             break;
         }

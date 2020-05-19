@@ -21,7 +21,7 @@ public:
     const Gender * get_gender();
     const int * get_age_years();
     const int * get_days_exercise_per_week();
-    const double * get_bmi();
+    const double & get_bmi();
     const int * get_bmi_percentile();
     const double * get_calorie_intake();
     void set_height_inches(const int &);
