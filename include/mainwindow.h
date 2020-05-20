@@ -64,6 +64,8 @@ private slots:
 
     void displayAgeValue();
 
+    void displayDaysExerciseValue();
+
     void on_personalOverviewButton_clicked();
 
     void on_nutritionTrackerButton_clicked();
@@ -75,6 +77,7 @@ private slots:
     void on_femaleButton_clicked();
 
     void on_calculateResultsButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

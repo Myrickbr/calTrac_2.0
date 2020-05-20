@@ -52,14 +52,14 @@ void userInformation::set_height_feet(const int & heightFeet){
 void userInformation::set_weight_pounds(const int * weightPounds){
     this->weight_pounds = *weightPounds;
 }
-void userInformation::set_gender(const userInformation::Gender * gender_){
-    this->gender = * gender_;
+void userInformation::set_gender(const userInformation::Gender & gender_){
+    this->gender = gender_;
 }
 void userInformation::set_age_years(const int * ageYears){
     this->age_years = *ageYears;
 }
 void userInformation::set_days_exercise_per_week(const int * daysExercisePerWeek){
-    this->days_exericise_per_week = * daysExercisePerWeek;
+    this->days_exericise_per_week = *daysExercisePerWeek;
 }
 void userInformation::set_bmi(const double * bmi_){
     this->bmi = *bmi_;

@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     /* Initialize instance variables */
-    this->femaleChecked = false;
-    this->maleChecked = true;
     this->bmiValues = NULL;
     this->userInfoObject = new userInformation();
 
@@ -31,8 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiPercentileChart->setChart(bmiChart);
 
+    /* Connect sliders to slots to display and update values from user info object */
+
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
     connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
+    connect(ui->daysExerciseSlider, SIGNAL(valueChanged(int)), this, SLOT(displayDaysExerciseValue()));
 }
 MainWindow::~MainWindow()
 {
@@ -144,6 +145,8 @@ void MainWindow::on_back_Button_Calculator_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+/* Main Window Buttons/Sliders Events */
+
 void MainWindow::on_maleButton_clicked(){
 
     /* When male button is clicked, we will update the stylesheets for
@@ -156,11 +159,8 @@ void MainWindow::on_maleButton_clicked(){
     QString femaleButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
     ui->femaleButton->setStyleSheet(femaleButtonStyleSheet);
 
-    /* Set maleChecked to true and femaleChecked to false */
-
-    this->setMaleCheck(true);
-    this->setFemaleCheck(false);
-
+    /* Update male status in user info object */
+    this->userInfoObject->set_gender(userInformation::Gender::Male);
 }
 
 void MainWindow::on_femaleButton_clicked(){
@@ -175,11 +175,8 @@ void MainWindow::on_femaleButton_clicked(){
     QString maleButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
     ui->maleButton->setStyleSheet(maleButtonStyleSheet);
 
-    /* Set femaleChecked to true and maleChecked to false */
-
-    this->setFemaleCheck(true);
-    this->setFemaleCheck(false);
-
+    /* Update female status in user info object */
+    this->userInfoObject->set_gender(userInformation::Gender::Female);
 }
 
 void MainWindow::on_calculateResultsButton_clicked()
@@ -199,25 +196,40 @@ void MainWindow::on_calculateResultsButton_clicked()
 
 }
 
+/* Non Event Functions */
+
 void MainWindow::displayWeightValue(){
     //Retrieve value from slider, convert to qstring
-    int sliderValue = ui->weightSlider->value();
+    int weightFromSlider = ui->weightSlider->value();
 
-    QVariant var(sliderValue);
+    QVariant var(weightFromSlider);
     QString valueAsString = var.toString();
 
     ui->weightShowBox->setText(valueAsString);
     ui->weightShowBox->repaint();
+
+    /* Update weight value in user info object */
+    this->userInfoObject->set_weight_pounds(&weightFromSlider);
+
 }
 void MainWindow::displayAgeValue(){
     //Retrieve value from slider, convert to qstring
-    int sliderValue = ui->ageSlider->value();
+    int ageFromSlider = ui->ageSlider->value();
 
-    QVariant var(sliderValue);
+    QVariant var(ageFromSlider);
     QString valueAsString = var.toString();
 
     ui->ageShowBox->setText(valueAsString);
     ui->ageShowBox->repaint();
+
+    /* Update age value in user info object */
+    this->userInfoObject->set_age_years(&ageFromSlider);
+}
+
+void MainWindow::displayDaysExerciseValue(){
+
+    int daysExerciseFromSlider = ui->daysExerciseSlider->value();
+    this->userInfoObject->set_days_exercise_per_week(&daysExerciseFromSlider);
 
 }
 
@@ -315,6 +327,8 @@ void MainWindow::calculate_Calories()
 {
 
 }
+
+
 
 
 

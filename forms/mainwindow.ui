@@ -490,6 +490,9 @@
           <height>0</height>
          </size>
         </property>
+        <property name="maximum">
+         <number>7</number>
+        </property>
         <property name="pageStep">
          <number>10</number>
         </property>
@@ -500,14 +503,14 @@
        <widget class="QLabel" name="daysLabel">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>25</x>
           <y>340</y>
-          <width>291</width>
+          <width>331</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>0          1          2          3          4          5          6          7</string>
+         <string>0          1            2            3            4            5            6          7</string>
         </property>
        </widget>
        <widget class="QGroupBox" name="lineBelowExercise">

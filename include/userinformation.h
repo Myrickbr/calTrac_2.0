@@ -29,7 +29,7 @@ public:
     void set_height_inches(const int &);
     void set_height_feet(const int &);
     void set_weight_pounds(const int *);
-    void set_gender(const Gender *);
+    void set_gender(const Gender &);
     void set_age_years(const int *);
     void set_days_exercise_per_week(const int *);
     void set_bmi(const double *);
