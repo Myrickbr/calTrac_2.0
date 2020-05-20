@@ -18,10 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     /* Initialize instance variables */
     this->femaleChecked = false;
-    this->maleChecked = false;
+    this->maleChecked = true;
     this->bmiValues = NULL;
-
-    this->userInfoObject;
+    this->userInfoObject = new userInformation();
 
     /* Set up sliders and chart */
 
@@ -31,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiPercentileChart->setChart(bmiChart);
-
-
 
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
     connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
@@ -255,8 +252,6 @@ void MainWindow::calculate_BMI_percentile(){
     /* Iterate through bmi value array, once you hit a percentile/index
        that contains a value lower than the user's bmi, exit loop */
 
-    double var = this->userInfoObject->get_bmi();
-
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE);++i){
         if(this->userInfoObject->get_bmi() > *(this->bmiValues + i)){
             this->userInfoObject->set_bmi_percentile(i+1);
@@ -299,15 +294,15 @@ bool MainWindow::check_user_input(){
        If not, send a message to the user telling them to add corresponding info. */
     QMessageBox messageBox;
 
-    if(this->userInfoObject->get_weight_pounds() == NULL){
+    if(this->userInfoObject->get_weight_pounds() < 0){
         messageBox.critical(0,"Error","You must enter a valid weight!");
         messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
         return false;
-    }else if(this->userInfoObject->get_age_years() == NULL){
+    }else if(this->userInfoObject->get_age_years() < 0){
         messageBox.critical(0,"Error","You must enter a valid age!");
         messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
         return false;
-    }else if(this->userInfoObject->get_gender() == NULL){
+    }else if(this->userInfoObject->get_gender() == userInformation::Gender::Null){
         messageBox.critical(0,"Error","You must enter a valid gender!");
         messageBox.setFixedSize(MESSAGE_BOX_FIXED_WIDTH,MESSAGE_BOX_FIXED_HEIGHT);
         return false;

@@ -2,14 +2,16 @@
 #define USERINFORMATION_H
 
 
+const double METERS_PER_FOOT = 3.28084;
+const double FEET_PER_INCH = 0.08333;
+const double POUNDS_PER_KILOGRAM = 2.20462;
+
 class userInformation
 {
 public:
     /* Enumerations and Constants */
     enum class Gender{Null, Male, Female};
-    const double METERS_PER_FOOT = 3.28084;
-    const int FEET_PER_INCH = 0.83333;
-    const double POUNDS_PER_KILOGRAM = 2.20462;
+
 
     /* Constructors */
     userInformation();
@@ -17,12 +19,12 @@ public:
     /* Getters and Setters */
     const int & get_height_inches();
     const int & get_height_feet();
-    const int * get_weight_pounds();
-    const Gender * get_gender();
-    const int * get_age_years();
-    const int * get_days_exercise_per_week();
+    const int & get_weight_pounds();
+    const Gender & get_gender();
+    const int & get_age_years();
+    const int & get_days_exercise_per_week();
     const double & get_bmi();
-    const int * get_bmi_percentile();
+    const int & get_bmi_percentile();
     const double * get_calorie_intake();
     void set_height_inches(const int &);
     void set_height_feet(const int &);
