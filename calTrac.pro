@@ -38,5 +38,6 @@ RESOURCES += \
     resources/Resources.qrc
 
 DISTFILES += \
-    data/bmiPercentileData.txt \
+    data/bmiPercentileDataFemale.txt \
+    data/bmiPercentileDataMale.txt \
     stylesheets/stylesheets.css

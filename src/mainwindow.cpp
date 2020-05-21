@@ -17,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     /* Initialize instance variables */
-    this->bmiValues = NULL;
+    this->bmiValuesMale = NULL;
+    this->bmiValuesFemale = NULL;
     this->userInfoObject = new userInformation();
 
     /* Set up sliders and chart */
@@ -192,7 +193,7 @@ void MainWindow::on_calculateResultsButton_clicked()
        Then update graphs and other applicable views */
 
     calculate_BMI_percentile();
-    ui->bmiTestLabel->setText(QString::number(this->userInfoObject->get_bmi()));
+    ui->bmiTestLabel->setText(QString::number(this->userInfoObject->get_bmi_percentile()));
 
 }
 
@@ -237,18 +238,26 @@ QChart * MainWindow::configure_BMI_chart(){
 
     /* Retrieve bmi percentile data from text file */
 
-    this->bmiValues = read_bmi_text_file();
-    QLineSeries *series = new QLineSeries();
+    read_bmi_text_file(MALE_BMI_DATA_FILENAME, FEMALE_BMI_DATA_FILENAME);
+    double valMale = *(this->bmiValuesMale + 10);
+    double valFemale = *(this->bmiValuesFemale + 10);
+
+    QLineSeries *seriesMale = new QLineSeries();
+    QLineSeries *seriesFemale = new QLineSeries();
 
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE); ++i){
-        series->append(i+1, *(this->bmiValues + i));
+        seriesMale->append(i+1, *(this->bmiValuesMale + i));
+    }    
+    for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE); ++i){
+        seriesFemale->append(i+1, *(this->bmiValuesFemale + i));
     }
 
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->layout()->setContentsMargins(0, 0, 0, 0);
     chart->setBackgroundRoundness(0);
-    chart->addSeries(series);
+    chart->addSeries(seriesMale);
+    chart->addSeries(seriesFemale);
     chart->createDefaultAxes();
     chart->setTitle("Simple line chart example");
 
@@ -256,18 +265,34 @@ QChart * MainWindow::configure_BMI_chart(){
 }
 
 void MainWindow::calculate_BMI_percentile(){
-    if(this->bmiValues == NULL){
+    if(this->bmiValuesMale == NULL || this->bmiValuesFemale == NULL){
         perror("BMI Values have not been read in yet!");
-        this->bmiValues = read_bmi_text_file();
+        read_bmi_text_file(MALE_BMI_DATA_FILENAME, FEMALE_BMI_DATA_FILENAME);
     }
 
     /* Iterate through bmi value array, once you hit a percentile/index
        that contains a value lower than the user's bmi, exit loop */
 
+    double calculatedBMI = this->userInfoObject->calculate_BMI();
+    this->userInfoObject->set_bmi(calculatedBMI);
+
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE);++i){
-        if(this->userInfoObject->get_bmi() > *(this->bmiValues + i)){
-            this->userInfoObject->set_bmi_percentile(i+1);
-            break;
+
+        switch(this->userInfoObject->get_gender()){
+            case userInformation::Gender::Male:
+                if(this->userInfoObject->get_bmi() < *(this->bmiValuesMale + i)){
+                    double valMale = *(this->bmiValuesMale + i);
+                    this->userInfoObject->set_bmi_percentile(i+1);
+                    return;
+                }
+                break;
+            case userInformation::Gender::Female:
+                if(this->userInfoObject->get_bmi() < *(this->bmiValuesFemale + i)){
+                    double valfemale = *(this->bmiValuesFemale + i);
+                    this->userInfoObject->set_bmi_percentile(i+1);
+                    return;
+                }
+                break;
         }
     }
 
@@ -278,12 +303,13 @@ void MainWindow::calculate_BMI_percentile(){
     return;
 }
 
-double * MainWindow::read_bmi_text_file(){
+void MainWindow::read_bmi_text_file(std::string maleFileName, std::string femaleFileName){
 
-    static double bmiValues [99];
+    static double bmiValuesFemaleArr [99];
+    static double bmiValuesMaleArr [99];
     std::string currentLine;
     std::ifstream infile;
-    infile.open("data/bmiPercentileData.txt");
+    infile.open(maleFileName);
     if(!infile)
     {
         perror("Text file for bmi data could not be opened!");
@@ -293,12 +319,29 @@ double * MainWindow::read_bmi_text_file(){
     while(!infile.eof())
     {
         getline(infile,currentLine);
-        bmiValues[index] = atof(currentLine.c_str());
+        bmiValuesMaleArr[index] = atof(currentLine.c_str());
         ++index;
     }
     infile.close();
 
-    return bmiValues;
+    infile.open(femaleFileName);
+    if(!infile)
+    {
+        perror("Text file for bmi data could not be opened!");
+    }
+
+    int indexFemale = 0;
+    while(!infile.eof())
+    {
+        getline(infile,currentLine);
+        bmiValuesFemaleArr[indexFemale] = atof(currentLine.c_str());
+        ++indexFemale;
+    }
+    infile.close();
+
+    /* Now assign male and female pointers to corresponding arrays */
+    this->bmiValuesMale = bmiValuesMaleArr;
+    this->bmiValuesFemale = bmiValuesFemaleArr;
 }
 
 bool MainWindow::check_user_input(){

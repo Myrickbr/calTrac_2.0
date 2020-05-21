@@ -61,8 +61,8 @@ void userInformation::set_age_years(const int * ageYears){
 void userInformation::set_days_exercise_per_week(const int * daysExercisePerWeek){
     this->days_exericise_per_week = *daysExercisePerWeek;
 }
-void userInformation::set_bmi(const double * bmi_){
-    this->bmi = *bmi_;
+void userInformation::set_bmi(const double & bmi_){
+    this->bmi = bmi_;
 }
 void userInformation::set_bmi_percentile(const int & bmiPercentile){
     this->bmi_percentile = bmiPercentile;
@@ -75,7 +75,7 @@ void userInformation::set_calorie_intake(const double * calorieIntake){
 double userInformation::calculate_BMI(){
 
     /* To calculate BMI, first convert weight to kilograms and height to meters */
-    double weightKilograms = this->weight_pounds * POUNDS_PER_KILOGRAM;
+    double weightKilograms = this->weight_pounds / KILOGRAMS_PER_POUND;
     double heightMeters = (this->height_inches * FEET_PER_INCH + this->height_feet) * METERS_PER_FOOT;
 
     /* Now divide weight (kg) by height squared (m^2) */

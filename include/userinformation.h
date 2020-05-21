@@ -2,9 +2,9 @@
 #define USERINFORMATION_H
 
 
-const double METERS_PER_FOOT = 3.28084;
+const double METERS_PER_FOOT = 0.30480;
 const double FEET_PER_INCH = 0.08333;
-const double POUNDS_PER_KILOGRAM = 2.20462;
+const double KILOGRAMS_PER_POUND = 2.20642;
 
 class userInformation
 {
@@ -32,7 +32,7 @@ public:
     void set_gender(const Gender &);
     void set_age_years(const int *);
     void set_days_exercise_per_week(const int *);
-    void set_bmi(const double *);
+    void set_bmi(const double &);
     void set_bmi_percentile(const int &);
     void set_calorie_intake(const double *);
 

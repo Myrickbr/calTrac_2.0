@@ -19,6 +19,8 @@ public:
     const int BMI_PERCENTILE_CHART_SIZE = 99;
     const int MESSAGE_BOX_FIXED_WIDTH = 500;
     const int MESSAGE_BOX_FIXED_HEIGHT = 200;
+    const std::string MALE_BMI_DATA_FILENAME = "data/bmiPercentileDataMale.txt";
+    const std::string FEMALE_BMI_DATA_FILENAME = "data/bmiPercentileDataFemale.txt";
 
     /* Constructors */
 
@@ -48,7 +50,7 @@ public:
     /* Other Functions */
     QChart * configure_BMI_chart();
     void calculate_BMI_percentile();
-    double * read_bmi_text_file();
+    void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
 
 
@@ -92,7 +94,8 @@ private:
     double height_In_Inches;
     double age_In_Years;
     int exercise_Days_Per_Week;
-    double * bmiValues;
+    double * bmiValuesMale;
+    double * bmiValuesFemale;
 
     userInformation * userInfoObject;
 
