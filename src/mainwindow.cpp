@@ -252,7 +252,19 @@ QChart * MainWindow::configure_BMI_chart(){
         seriesFemale->append(i+1, *(this->bmiValuesFemale + i));
     }
 
+    /* Custom grid line */
+    QCategoryAxis *axisX = new QCategoryAxis();
+    QCategoryAxis *axisY = new QCategoryAxis();
+
+    axisX->setGridLineVisible(false);
+    axisY->setGridLineVisible(false);
+    axisY->setShadesPen(Qt::NoPen);
+    axisY->setShadesBrush(QBrush(QColor(0x99, 0xcc, 0xcc, 0x55)));
+    axisY->setShadesVisible(true);
+
     QChart *chart = new QChart();
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
     chart->legend()->hide();
     chart->layout()->setContentsMargins(0, 0, 0, 0);
     chart->setBackgroundRoundness(0);
@@ -260,6 +272,8 @@ QChart * MainWindow::configure_BMI_chart(){
     chart->addSeries(seriesFemale);
     chart->createDefaultAxes();
     chart->setTitle("Simple line chart example");
+
+
 
     return chart;
 }
