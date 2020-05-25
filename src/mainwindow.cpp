@@ -311,7 +311,7 @@ QChart * MainWindow::configure_BMI_chart(){
     chart->addSeries(seriesMale);
     chart->addSeries(seriesFemale);
     chart->createDefaultAxes();
-    chart->setTitle("Simple line chart example");
+    chart->setTitle("BMI Percentile Chart");
 
 
 

@@ -67,7 +67,7 @@ QPushButton {
 #lineOne, #lineTwo, #lineThree, #lineFour{
     border: 2px solid rgba(242, 238, 238, 0.05);
 }
-#userInfoBox, #bmiResultsBox, #calorieIntakeBox, #bmiValueBox, #bmiPercentileBox {
+#userInfoBox, #bmiResultsBox, #calorieIntakeBox, #bmiValueBox, #bmiPercentileBox, #bmiPercentileChartBox {
     background-color: white;
     border-radius: 5px; /* Makes rounded corners */
     border: none;
