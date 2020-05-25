@@ -193,7 +193,8 @@ void MainWindow::on_calculateResultsButton_clicked()
        Then update graphs and other applicable views */
 
     calculate_BMI_percentile();
-    ui->bmiTestLabel->setText(QString::number(this->userInfoObject->get_bmi_percentile()));
+    ui->bmiValueLabel->setText(QString::number(this->userInfoObject->get_bmi()));
+    ui->bmiPercentileLabel->setText(QString::number(this->userInfoObject->get_bmi_percentile()));
 
 }
 
@@ -252,17 +253,56 @@ QChart * MainWindow::configure_BMI_chart(){
         seriesFemale->append(i+1, *(this->bmiValuesFemale + i));
     }
 
+    QChart *chart = new QChart();
+
+    // Customize chart title
+    QFont font("Candara", 12, QFont::Bold);
+    chart->setTitleFont(font);
+    chart->setTitle("Customchart example");
+
+    // Customize plot area background
+//    QLinearGradient plotAreaGradient;
+//    plotAreaGradient.setStart(QPointF(0, 1));
+//    plotAreaGradient.setFinalStop(QPointF(1, 0));
+//    plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
+//    plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
+//    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+//    chart->setPlotAreaBackgroundBrush(plotAreaGradient);
+//    chart->setPlotAreaBackgroundVisible(true);
+
     /* Custom grid line */
     QCategoryAxis *axisX = new QCategoryAxis();
     QCategoryAxis *axisY = new QCategoryAxis();
+    // Customize axis label font
+    QFont labelsFont;
+    labelsFont.setPixelSize(12);
+    axisX->setLabelsFont(labelsFont);
+    axisY->setLabelsFont(labelsFont);
 
+    // Customize axis colors
+    QPen axisPen(QRgb(0xd18952));
+    axisPen.setWidth(2);
+    axisX->setLinePen(axisPen);
+    axisY->setLinePen(axisPen);
+
+    // Customize axis label colors
+    QBrush axisBrush(Qt::white);
+    axisX->setLabelsBrush(axisBrush);
+    axisY->setLabelsBrush(axisBrush);
+
+    // Customize grid lines and shades
     axisX->setGridLineVisible(false);
     axisY->setGridLineVisible(false);
     axisY->setShadesPen(Qt::NoPen);
     axisY->setShadesBrush(QBrush(QColor(0x99, 0xcc, 0xcc, 0x55)));
     axisY->setShadesVisible(true);
 
-    QChart *chart = new QChart();
+    axisY->setMin(0);
+    axisY->setMax(40);
+    axisX->setMin(0);
+    axisX->setMax(100);
+
+
     chart->addAxis(axisX, Qt::AlignBottom);
     chart->addAxis(axisY, Qt::AlignLeft);
     chart->legend()->hide();
