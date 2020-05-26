@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
     connect(ui->ageSlider, SIGNAL(valueChanged(int)), this, SLOT(displayAgeValue()));
     connect(ui->daysExerciseSlider, SIGNAL(valueChanged(int)), this, SLOT(displayDaysExerciseValue()));
+    connect(ui->heightFeetBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
+    connect(ui->heightInchesBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
 }
 MainWindow::~MainWindow()
 {
@@ -241,6 +243,11 @@ void MainWindow::displayDaysExerciseValue(){
     int daysExerciseFromSlider = ui->daysExerciseSlider->value();
     this->userInfoObject->set_days_exercise_per_week(&daysExerciseFromSlider);
 
+}
+void MainWindow::updateHeightValue(){
+
+    this->userInfoObject->set_height_inches(ui->heightInchesBox->currentIndex());
+    this->userInfoObject->set_height_feet(ui->heightFeetBox->currentIndex());
 }
 void MainWindow::configure_BMI_chart(){
 

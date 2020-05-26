@@ -20,6 +20,7 @@ public:
     const int BMI_PERCENTILE_CHART_SIZE = 99;
     const int MESSAGE_BOX_FIXED_WIDTH = 500;
     const int MESSAGE_BOX_FIXED_HEIGHT = 200;
+    const int INCHES_PER_FOOT = 12;
     const std::string MALE_BMI_DATA_FILENAME = "data/bmiPercentileDataMale.txt";
     const std::string FEMALE_BMI_DATA_FILENAME = "data/bmiPercentileDataFemale.txt";
 
@@ -69,6 +70,8 @@ private slots:
     void displayAgeValue();
 
     void displayDaysExerciseValue();
+
+    void updateHeightValue();
 
     void on_personalOverviewButton_clicked();
 
