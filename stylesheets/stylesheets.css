@@ -111,7 +111,10 @@ QPushButton {
     font-size: 14px;
     color: #7C7C7C;
 }
-bm
+#bmiValueLabel, #bmiPercentileLabel{
+    font: 24pt 'Candara';
+    color: #656464;
+}
 #bmiPercentileChart{
 
 }

@@ -847,7 +847,7 @@
          <string>BMI Results</string>
         </property>
        </widget>
-       <widget class="QChartView" name="bmiPercentileChart">
+       <widget class="QChartView" name="bmiResultsChart">
         <property name="geometry">
          <rect>
           <x>19</x>
@@ -939,9 +939,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>35</y>
-          <width>100</width>
-          <height>30</height>
+          <y>30</y>
+          <width>120</width>
+          <height>35</height>
          </rect>
         </property>
         <property name="text">
@@ -978,9 +978,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>35</y>
-          <width>100</width>
-          <height>30</height>
+          <y>30</y>
+          <width>120</width>
+          <height>35</height>
          </rect>
         </property>
         <property name="text">
@@ -1000,6 +1000,16 @@
        <property name="title">
         <string/>
        </property>
+       <widget class="QChartView" name="bmiPercentileChartView">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>25</y>
+          <width>150</width>
+          <height>120</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

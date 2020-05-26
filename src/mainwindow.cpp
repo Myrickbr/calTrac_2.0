@@ -3,6 +3,7 @@
 #include<QMessageBox>
 #include<QVariant>
 #include<QtCharts>
+#include<QPen>
 #include <map>
 #include <string>
 #include <iostream>
@@ -20,15 +21,21 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiValuesMale = NULL;
     this->bmiValuesFemale = NULL;
     this->userInfoObject = new userInformation();
+    this->bmiPChartObject = new bmiPercentileChart();
+    this->bmiResultsChart = new QChart();
 
-    /* Set up sliders and chart */
+    /* Set up BMI Results Chart and BMI Percentile Chart */
 
     ui->setupUi(this);
 
-    QChart * bmiChart = configure_BMI_chart();
+    configure_BMI_chart();
+    ui->bmiResultsChart->setRenderHint(QPainter::Antialiasing);
+    ui->bmiResultsChart->setChart(this->bmiResultsChart);
 
-    ui->bmiPercentileChart->setRenderHint(QPainter::Antialiasing);
-    ui->bmiPercentileChart->setChart(bmiChart);
+    bmiPChartObject->init_chart();
+    QChart * bmiPercentileChart = bmiPChartObject->get_chart();
+
+    ui->bmiPercentileChartView->setChart(bmiPercentileChart);
 
     /* Connect sliders to slots to display and update values from user info object */
 
@@ -195,6 +202,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     calculate_BMI_percentile();
     ui->bmiValueLabel->setText(QString::number(this->userInfoObject->get_bmi()));
     ui->bmiPercentileLabel->setText(QString::number(this->userInfoObject->get_bmi_percentile()));
+    plot_user_point();
 
 }
 
@@ -234,8 +242,7 @@ void MainWindow::displayDaysExerciseValue(){
     this->userInfoObject->set_days_exercise_per_week(&daysExerciseFromSlider);
 
 }
-
-QChart * MainWindow::configure_BMI_chart(){
+void MainWindow::configure_BMI_chart(){
 
     /* Retrieve bmi percentile data from text file */
 
@@ -253,12 +260,11 @@ QChart * MainWindow::configure_BMI_chart(){
         seriesFemale->append(i+1, *(this->bmiValuesFemale + i));
     }
 
-    QChart *chart = new QChart();
 
     // Customize chart title
     QFont font("Candara", 12, QFont::Bold);
-    chart->setTitleFont(font);
-    chart->setTitle("Customchart example");
+    this->bmiResultsChart->setTitleFont(font);
+    this->bmiResultsChart->setTitle("Customchart example");
 
     // Customize plot area background
 //    QLinearGradient plotAreaGradient;
@@ -303,19 +309,15 @@ QChart * MainWindow::configure_BMI_chart(){
     axisX->setMax(100);
 
 
-    chart->addAxis(axisX, Qt::AlignBottom);
-    chart->addAxis(axisY, Qt::AlignLeft);
-    chart->legend()->hide();
-    chart->layout()->setContentsMargins(0, 0, 0, 0);
-    chart->setBackgroundRoundness(0);
-    chart->addSeries(seriesMale);
-    chart->addSeries(seriesFemale);
-    chart->createDefaultAxes();
-    chart->setTitle("BMI Percentile Chart");
-
-
-
-    return chart;
+    this->bmiResultsChart->addAxis(axisX, Qt::AlignBottom);
+    this->bmiResultsChart->addAxis(axisY, Qt::AlignLeft);
+    this->bmiResultsChart->legend()->hide();
+    this->bmiResultsChart->layout()->setContentsMargins(0, 0, 0, 0);
+    this->bmiResultsChart->setBackgroundRoundness(0);
+    this->bmiResultsChart->addSeries(seriesMale);
+    this->bmiResultsChart->addSeries(seriesFemale);
+    this->bmiResultsChart->createDefaultAxes();
+    this->bmiResultsChart->setTitle("BMI Percentile Chart");
 }
 
 void MainWindow::calculate_BMI_percentile(){
@@ -419,7 +421,20 @@ bool MainWindow::check_user_input(){
 
     return true;
 }
+void MainWindow::plot_user_point(){
+    /* This function plots the user bmi point on the bmi results chart */
 
+    QLineSeries *userPoint = new QLineSeries();
+    double xCoord = this->userInfoObject->get_bmi_percentile();
+    double yCoord = this->userInfoObject->get_bmi();
+    //userPoint->append();
+    //userPoint->append(xCoord+1,yCoord+1);
+    userPoint->setColor(Qt::darkBlue);
+    QPen pen(Qt::darkBlue,20);
+    userPoint->setPen(pen);
+
+    this->bmiResultsChart->addSeries(userPoint);
+}
 void MainWindow::calculate_Calories()
 {
 

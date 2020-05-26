@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include<QtCharts>
 #include<../include/userinformation.h>
+#include<../include/bmipercentilechart.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -48,10 +49,11 @@ public:
     void setExerciseMapValue(int num, double val);
 
     /* Other Functions */
-    QChart * configure_BMI_chart();
+    void configure_BMI_chart();
     void calculate_BMI_percentile();
     void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
+    void plot_user_point();
 
 
 private slots:
@@ -96,8 +98,10 @@ private:
     int exercise_Days_Per_Week;
     double * bmiValuesMale;
     double * bmiValuesFemale;
+    QChart * bmiResultsChart;
 
     userInformation * userInfoObject;
+    bmiPercentileChart * bmiPChartObject;
 
 };
 #endif // MAINWINDOW_H
