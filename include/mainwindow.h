@@ -55,6 +55,7 @@ public:
     void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
     void plot_user_point();
+    void update_bmi_tags();
 
 
 private slots:

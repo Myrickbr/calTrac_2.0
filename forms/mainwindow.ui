@@ -896,6 +896,19 @@
          <string>Calorie Intake</string>
         </property>
        </widget>
+       <widget class="QGroupBox" name="lineBelowCalorieIntake">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>20</y>
+          <width>711</width>
+          <height>1</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="bmiChartLegend">
        <property name="geometry">
@@ -977,10 +990,23 @@
        <widget class="QLabel" name="bmiPercentileLabel">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>50</x>
           <y>30</y>
           <width>120</width>
           <height>35</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="bmiPercentileGenderIndicator">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>0</y>
+          <width>30</width>
+          <height>85</height>
          </rect>
         </property>
         <property name="text">

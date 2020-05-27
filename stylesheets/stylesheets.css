@@ -80,7 +80,7 @@ QPushButton {
     font: 12pt 'Candara';
     color: #707070;
 }
-#lineBelowUserInfo, #aboveDaysExerciseDiv, #lineBelowExercise, #lineBelowBMIResults{
+#lineBelowUserInfo, #aboveDaysExerciseDiv, #lineBelowExercise, #lineBelowBMIResults, #lineBelowCalorieIntake{
     border-color: #E2E2E2;
 }
 #personalLabel{
@@ -114,9 +114,6 @@ QPushButton {
 #bmiValueLabel, #bmiPercentileLabel{
     font: 24pt 'Candara';
     color: #656464;
-}
-#bmiPercentileChart{
-
 }
 #personalOverviewMain{
     font: 13pt 'Candara';

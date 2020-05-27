@@ -205,6 +205,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     ui->bmiValueLabel->setText(QString::number(this->userInfoObject->get_bmi()));
     ui->bmiPercentileLabel->setText(QString::number(this->userInfoObject->get_bmi_percentile()));
     plot_user_point();
+    update_bmi_tags();
 
 }
 
@@ -225,7 +226,7 @@ void MainWindow::displayWeightValue(){
 
 }
 void MainWindow::displayAgeValue(){
-    //Retrieve value from slider, convert to qstring
+    /* Retrieve value from slider, convert to qstring */
     int ageFromSlider = ui->ageSlider->value();
 
     QVariant var(ageFromSlider);
@@ -249,6 +250,29 @@ void MainWindow::updateHeightValue(){
     this->userInfoObject->set_height_inches(ui->heightInchesBox->currentIndex());
     this->userInfoObject->set_height_feet(ui->heightFeetBox->currentIndex());
 }
+void MainWindow::update_bmi_tags(){
+    /* First update percentile tag based on the selected gender */
+    switch(this->userInfoObject->get_gender()){
+        case userInformation::Gender::Male: {
+            QString maleStyleSheet = "margin-left: 10px; border-radius: 25px; background: #D8EEFF; color: #4A0C46;";
+            ui->bmiPercentileGenderIndicator->setStyleSheet(maleStyleSheet);
+            break;
+        }
+        case userInformation::Gender::Female: {
+            QString femaleStyleSheet = "margin-left: 10px; border-radius: 25px; background: #FED8FF; color: #4A0C46;";
+            ui->bmiPercentileGenderIndicator->setStyleSheet(femaleStyleSheet);
+            break;
+        }
+        case userInformation::Gender::Null: {
+            perror("No Gender was selected when button was pressed!");
+            break;
+        }
+    }
+
+    /* Next update bmi value symbol (indicates low, average, or high) */
+
+
+}
 void MainWindow::configure_BMI_chart(){
 
     /* Retrieve bmi percentile data from text file */
@@ -267,25 +291,15 @@ void MainWindow::configure_BMI_chart(){
         seriesFemale->append(i+1, *(this->bmiValuesFemale + i));
     }
 
-
     // Customize chart title
     QFont font("Candara", 12, QFont::Bold);
     this->bmiResultsChart->setTitleFont(font);
     this->bmiResultsChart->setTitle("Customchart example");
 
-    // Customize plot area background
-//    QLinearGradient plotAreaGradient;
-//    plotAreaGradient.setStart(QPointF(0, 1));
-//    plotAreaGradient.setFinalStop(QPointF(1, 0));
-//    plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
-//    plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
-//    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-//    chart->setPlotAreaBackgroundBrush(plotAreaGradient);
-//    chart->setPlotAreaBackgroundVisible(true);
-
     /* Custom grid line */
     QCategoryAxis *axisX = new QCategoryAxis();
     QCategoryAxis *axisY = new QCategoryAxis();
+
     // Customize axis label font
     QFont labelsFont;
     labelsFont.setPixelSize(12);
@@ -315,6 +329,9 @@ void MainWindow::configure_BMI_chart(){
     axisX->setMin(0);
     axisX->setMax(100);
 
+    QFont serifFont("Candara", 16, QFont::Bold);
+    //axisX->setLabelsFont(serifFont);
+    //axisY->setLabelsFont(serifFont);
 
     this->bmiResultsChart->addAxis(axisX, Qt::AlignBottom);
     this->bmiResultsChart->addAxis(axisY, Qt::AlignLeft);
@@ -431,13 +448,15 @@ bool MainWindow::check_user_input(){
 void MainWindow::plot_user_point(){
     /* This function plots the user bmi point on the bmi results chart */
 
-    QLineSeries *userPoint = new QLineSeries();
+    QScatterSeries * userPoint = new QScatterSeries();
     double xCoord = this->userInfoObject->get_bmi_percentile();
     double yCoord = this->userInfoObject->get_bmi();
-    //userPoint->append();
-    //userPoint->append(xCoord+1,yCoord+1);
+    userPoint->append(20,20);
+    //userPoint->append(20,30);
+    //userPoint->append(20,10);
+    userPoint->append(15,15);
     userPoint->setColor(Qt::darkBlue);
-    QPen pen(Qt::darkBlue,20);
+    QPen pen(Qt::darkBlue,2);
     userPoint->setPen(pen);
 
     this->bmiResultsChart->addSeries(userPoint);
