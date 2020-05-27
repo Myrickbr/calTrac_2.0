@@ -909,6 +909,16 @@
          <string/>
         </property>
        </widget>
+       <widget class="CircularProgress" name="testWidget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>100</y>
+          <width>120</width>
+          <height>80</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="bmiChartLegend">
        <property name="geometry">
@@ -1633,6 +1643,12 @@
    <class>QChartView</class>
    <extends>QGraphicsView</extends>
    <header location="global">QtCharts</header>
+  </customwidget>
+  <customwidget>
+   <class>CircularProgress</class>
+   <extends>QWidget</extends>
+   <header>../libs/include/circularprogress.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
