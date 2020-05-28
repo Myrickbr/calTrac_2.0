@@ -9,10 +9,10 @@ CircularProgress::CircularProgress(QWidget *parent)
     , m_bgColor(QColor("dimgrey"))
     , m_valueColor(QColor("cornflowerblue"))
     , m_min(0)
-    , m_max(100)
-    , m_value(5)
+    , m_max(3500)
+    , m_value(2000)
     , m_startAngle(90 * 16) // All angle must be specified in 1/16th of a degree
-    , m_barWidth(16)
+    , m_barWidth(12)
     , m_showTextPercent(true)
     , m_infinityMode(false)
 {
@@ -175,7 +175,7 @@ void CircularProgress::paintEvent(QPaintEvent *event)
     if (m_showTextPercent){
         font.setPointSize(rectArea.width()/4);
         painter.setFont(font);
-        painter.drawText(rect(), Qt::AlignCenter, (m_infinityMode ? "∞" : QString::number(int((double(m_value-m_min)/double(m_max-m_min))*100))+"%"));
+        painter.drawText(rect(), Qt::AlignCenter, (m_infinityMode ? "∞" : QString::number(m_value)));
     }
     // draw value arc
     pen.setColor(m_valueColor);

@@ -13,6 +13,8 @@ userInformation::userInformation()
     this->height_feet = 5;
     this->height_inches = 7;
     this->gender = Gender::Null;
+    this->basal_metabolic_rate = -1;
+    this->calorie_intake = -1;
 
 }
 
@@ -110,4 +112,35 @@ void userInformation::calculate_basal_metabolic_rate(){
         }
 
     }
+}
+void userInformation::calculate_current_calorie_intake(){
+    /* Take the user BMR and multiply it by the corresponding activity factor */
+    /* 0 Days = Sedentary, 1-2 Days = Mild, 3-6 Days = Moderate, 7 Days = Heavy */
+
+    if(this->get_basal_metabolic_rate() == -1){
+        perror("Basal Metabolic Rate has not been calculated yet!");
+        this->calculate_basal_metabolic_rate();
+    }
+
+    double tempCalorieIntake = 0;
+
+    switch(this->get_days_exercise_per_week()){
+        case 0:
+            tempCalorieIntake = this->get_basal_metabolic_rate() *  SEDENTARY_ACTIVITY_FACTOR;
+            this->set_calorie_intake(tempCalorieIntake);
+            break;
+        case 1 ... 2:
+            tempCalorieIntake = this->get_basal_metabolic_rate() * MILD_ACTIVITY_FACTOR;
+            this->set_calorie_intake(tempCalorieIntake);
+            break;
+        case 3 ... 6:
+            tempCalorieIntake = this->get_basal_metabolic_rate() * MODERATE_ACTIVITY_FACTOR;
+            this->set_calorie_intake(tempCalorieIntake);
+            break;
+        case 7:
+            tempCalorieIntake = this->get_basal_metabolic_rate() * HEAVY_ACTIVITY_FACTOR;
+            this->set_calorie_intake(tempCalorieIntake);
+            break;
+    }
+
 }

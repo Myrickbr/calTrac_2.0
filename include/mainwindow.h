@@ -56,6 +56,7 @@ public:
     bool check_user_input();
     void plot_user_point();
     void update_bmi_tags();
+    void update_circular_calorie_charts();
 
 
 private slots:

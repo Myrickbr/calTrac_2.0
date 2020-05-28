@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->userInfoObject = new userInformation();
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
+    this->circularProgressObject = new CircularProgress();
 
     /* Set up BMI Results Chart and BMI Percentile Chart */
 
@@ -207,6 +208,12 @@ void MainWindow::on_calculateResultsButton_clicked()
     plot_user_point();
     update_bmi_tags();
 
+    /* Update Calorie Intake tab functions */
+
+    this->userInfoObject->calculate_basal_metabolic_rate();
+    this->userInfoObject->calculate_current_calorie_intake();
+    update_circular_calorie_charts();
+
 }
 
 /* Non Event Functions */
@@ -272,6 +279,10 @@ void MainWindow::update_bmi_tags(){
     /* Next update bmi value symbol (indicates low, average, or high) */
 
 
+}
+void MainWindow::update_circular_calorie_charts(){
+
+    this->circularProgressObject->setValue(1000);
 }
 void MainWindow::configure_BMI_chart(){
 

@@ -16,6 +16,10 @@ public:
     const double MSJ_AGE_CONSTANT = 5.0;
     const double MSJ_MALE_TERM_CONSTANT = 5.0;
     const double MSJ_FEMALE_TERM_CONSTANT = 161.0;
+    const double SEDENTARY_ACTIVITY_FACTOR = 1.2;
+    const double MILD_ACTIVITY_FACTOR = 1.3;
+    const double MODERATE_ACTIVITY_FACTOR = 1.5;
+    const double HEAVY_ACTIVITY_FACTOR = 1.7;
     const int INCHES_PER_FOOT = 12;
     const double KILOGRAMS_PER_POUND = 0.45359;
     const double CENTIMETERS_PER_INCH = 2.54;
@@ -52,6 +56,7 @@ public:
     /* Other Functions */
     double calculate_BMI();
     void calculate_basal_metabolic_rate();
+    void calculate_current_calorie_intake();
 
 
 private:
