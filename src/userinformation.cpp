@@ -40,8 +40,11 @@ const double & userInformation::get_bmi(){
 const int & userInformation::get_bmi_percentile(){
     return this->bmi_percentile;
 }
-const double * userInformation::get_calorie_intake(){
-    return &(this->calorie_intake);
+const double & userInformation::get_basal_metabolic_rate(){
+    return this->basal_metabolic_rate;
+}
+const double & userInformation::get_calorie_intake(){
+    return this->calorie_intake;
 }
 void userInformation::set_height_inches(const int & heightInches){
     this->height_inches = heightInches;
@@ -67,11 +70,12 @@ void userInformation::set_bmi(const double & bmi_){
 void userInformation::set_bmi_percentile(const int & bmiPercentile){
     this->bmi_percentile = bmiPercentile;
 }
-void userInformation::set_calorie_intake(const double * calorieIntake){
-    this->calorie_intake = *calorieIntake;
+void userInformation::set_basal_metabolic_rate(const double & basalMetabolicRate){
+    this->basal_metabolic_rate = basalMetabolicRate;
 }
-
-
+void userInformation::set_calorie_intake(const double & calorieIntake){
+    this->calorie_intake = calorieIntake;
+}
 double userInformation::calculate_BMI(){
 
     /* To calculate BMI, first convert weight to kilograms and height to meters */
@@ -82,4 +86,28 @@ double userInformation::calculate_BMI(){
     double bmi = (weightKilograms) / (pow(heightMeters,2));
 
     return bmi;
+}
+void userInformation::calculate_basal_metabolic_rate(){
+    double weightInKilograms = this->weight_pounds * KILOGRAMS_PER_POUND;
+    double heightInCentimeters = this->height_feet * CENTIMETERS_PER_FOOT + this->height_inches * CENTIMETERS_PER_INCH;
+
+    switch(this->get_gender()){
+        case userInformation::Gender::Male:{
+            double tempBMR = weightInKilograms * MSJ_WEIGHT_CONSTANT + heightInCentimeters * MSJ_HEIGHT_CONSTANT -
+                             this->get_age_years() * MSJ_AGE_CONSTANT + MSJ_MALE_TERM_CONSTANT;
+            this->set_basal_metabolic_rate(tempBMR);
+            break;
+        }
+        case userInformation::Gender::Female:{
+            double tempBMR = weightInKilograms * MSJ_WEIGHT_CONSTANT + heightInCentimeters * MSJ_HEIGHT_CONSTANT -
+                             this->get_age_years() * MSJ_AGE_CONSTANT - MSJ_FEMALE_TERM_CONSTANT;
+            this->set_basal_metabolic_rate(tempBMR);
+            break;
+        }
+        case userInformation::Gender::Null:{
+            perror("ERROR: No gender selected!");
+            return;
+        }
+
+    }
 }

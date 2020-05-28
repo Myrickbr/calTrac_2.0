@@ -11,7 +11,15 @@ class userInformation
 public:
     /* Enumerations and Constants */
     enum class Gender{Null, Male, Female};
-
+    const double MSJ_WEIGHT_CONSTANT = 10.0; /* MSJ refers to Mifflin-St Joer Equation Constants */
+    const double MSJ_HEIGHT_CONSTANT = 6.25;
+    const double MSJ_AGE_CONSTANT = 5.0;
+    const double MSJ_MALE_TERM_CONSTANT = 5.0;
+    const double MSJ_FEMALE_TERM_CONSTANT = 161.0;
+    const int INCHES_PER_FOOT = 12;
+    const double KILOGRAMS_PER_POUND = 0.45359;
+    const double CENTIMETERS_PER_INCH = 2.54;
+    const double CENTIMETERS_PER_FOOT = 30.48;
 
     /* Constructors */
     userInformation();
@@ -25,7 +33,8 @@ public:
     const int & get_days_exercise_per_week();
     const double & get_bmi();
     const int & get_bmi_percentile();
-    const double * get_calorie_intake();
+    const double & get_basal_metabolic_rate();
+    const double & get_calorie_intake();
     void set_height_inches(const int &);
     void set_height_feet(const int &);
     void set_weight_pounds(const int *);
@@ -34,13 +43,15 @@ public:
     void set_days_exercise_per_week(const int *);
     void set_bmi(const double &);
     void set_bmi_percentile(const int &);
-    void set_calorie_intake(const double *);
+    void set_basal_metabolic_rate(const double &);
+    void set_calorie_intake(const double &);
 
 
 
 
     /* Other Functions */
     double calculate_BMI();
+    void calculate_basal_metabolic_rate();
 
 
 private:
@@ -53,6 +64,7 @@ private:
     int days_exericise_per_week;
     double bmi;
     int bmi_percentile;
+    double basal_metabolic_rate;
     double calorie_intake;
 
 };

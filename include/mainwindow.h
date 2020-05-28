@@ -5,6 +5,7 @@
 #include<QtCharts>
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
+#include<../libs/include/circularprogress.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +21,6 @@ public:
     const int BMI_PERCENTILE_CHART_SIZE = 99;
     const int MESSAGE_BOX_FIXED_WIDTH = 500;
     const int MESSAGE_BOX_FIXED_HEIGHT = 200;
-    const int INCHES_PER_FOOT = 12;
     const std::string MALE_BMI_DATA_FILENAME = "data/bmiPercentileDataMale.txt";
     const std::string FEMALE_BMI_DATA_FILENAME = "data/bmiPercentileDataFemale.txt";
 
@@ -64,7 +64,7 @@ private slots:
 
     void on_back_Button_Calculator_clicked();
 
-    void calculate_Calories();
+    void calculate_current_calorie_intake();
 
     void displayWeightValue();
 
@@ -106,6 +106,7 @@ private:
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
+    CircularProgress * circularProgressObject;
 
 };
 #endif // MAINWINDOW_H

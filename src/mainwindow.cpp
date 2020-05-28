@@ -461,9 +461,12 @@ void MainWindow::plot_user_point(){
 
     this->bmiResultsChart->addSeries(userPoint);
 }
-void MainWindow::calculate_Calories()
+void MainWindow::calculate_current_calorie_intake()
 {
+    /* Calculate estimated calorie intake for individual */
+    /* To perform this calculation, use Harris-Benedict Equation */
 
+    this->userInfoObject->calculate_basal_metabolic_rate();
 }
 
 
