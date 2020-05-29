@@ -23,8 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->userInfoObject = new userInformation();
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
-    this->circularProgressObject = new CircularProgress();
-
+    QWidget * circWidget = new QWidget();
+    circWidget = (ui->testWidget);
+    //auto val = circWidget;
+    this->circularProgressObject = new CircularProgress(circWidget);
     /* Set up BMI Results Chart and BMI Percentile Chart */
 
     ui->setupUi(this);
@@ -282,7 +284,7 @@ void MainWindow::update_bmi_tags(){
 }
 void MainWindow::update_circular_calorie_charts(){
 
-    this->circularProgressObject->setValue(1000);
+    //this->circularProgressObject->setValue(1000);
 }
 void MainWindow::configure_BMI_chart(){
 

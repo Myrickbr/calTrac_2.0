@@ -10,16 +10,19 @@ CircularProgress::CircularProgress(QWidget *parent)
     , m_valueColor(QColor("cornflowerblue"))
     , m_min(0)
     , m_max(3500)
-    , m_value(2000)
+    , m_value(0)
     , m_startAngle(90 * 16) // All angle must be specified in 1/16th of a degree
     , m_barWidth(12)
     , m_showTextPercent(true)
     , m_infinityMode(false)
 {
     //setMouseTracking(true);
+    //m_value = 0;
+
     connect(this, SIGNAL(minChanged(int)), this, SLOT(update()));
     connect(this, SIGNAL(maxChanged(int)), this, SLOT(update()));
     connect(this, SIGNAL(valueChanged(int)), this, SLOT(update()));
+
 }
 
 void CircularProgress::setProgressType(CircularProgress::ProgressType progressType)
@@ -32,10 +35,10 @@ int CircularProgress::getValue() const
     return m_value;
 }
 
-void CircularProgress::setValue(int value)
+void CircularProgress::setValue(int val)
 {
-    m_value = value;
-    emit valueChanged(value);
+    m_value = val;
+    emit valueChanged(m_value);
 }
 
 int CircularProgress::getMin() const
@@ -149,8 +152,7 @@ void CircularProgress::setStartAngle(int s_angle)
     update();
 }
 
-void CircularProgress::paintEvent(QPaintEvent *event)
-{
+void CircularProgress::paintEvent(QPaintEvent *event){
     QWidget::paintEvent(event);
     QPainter painter(this);
     //painter.fillRect(rect(), QColor(Qt::white));
@@ -183,3 +185,4 @@ void CircularProgress::paintEvent(QPaintEvent *event)
     painter.setPen(pen);
     painter.drawArc(rectArea, m_startAngle, -angle);
 }
+
