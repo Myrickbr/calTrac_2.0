@@ -81,7 +81,7 @@ void userInformation::set_calorie_intake(const double & calorieIntake){
 double userInformation::calculate_BMI(){
 
     /* To calculate BMI, first convert weight to kilograms and height to meters */
-    double weightKilograms = this->weight_pounds / KILOGRAMS_PER_POUND;
+    double weightKilograms = this->weight_pounds * KILOGRAMS_PER_POUND;
     double heightMeters = (this->height_inches * FEET_PER_INCH + this->height_feet) * METERS_PER_FOOT;
 
     /* Now divide weight (kg) by height squared (m^2) */

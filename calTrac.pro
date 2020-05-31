@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     libs/src/circularprogress.cpp \
+    libs/src/circularprogressplugin.cpp \
     src/bmipercentilechart.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -28,7 +29,8 @@ HEADERS += \
     include/mainwindow.h \
     include/nutritiontracker.h \
     include/userinformation.h \
-    libs/include/circularprogress.h
+    libs/include/circularprogress.h \
+    libs/include/circularprogressplugin.h
 
 FORMS += \
     forms/mainwindow.ui

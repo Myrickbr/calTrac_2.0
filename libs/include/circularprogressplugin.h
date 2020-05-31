@@ -1,7 +1,9 @@
 #ifndef CIRCULARPROGRESSPLUGIN_H
 #define CIRCULARPROGRESSPLUGIN_H
-
-#include <QDesignerCustomWidgetInterface>
+#include<QString>
+#include<QWidget>
+#include<QIcon>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 /**
  * @brief CircularProgressPlugin class

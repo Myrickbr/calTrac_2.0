@@ -1,7 +1,9 @@
-#include "circularprogress.h"
-#include "circularprogressplugin.h"
+#include "../include/circularprogress.h"
+#include "../include/circularprogressplugin.h"
 
 #include <QtPlugin>
+#include <QIcon>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 CircularProgressPlugin::CircularProgressPlugin(QObject *parent)
     : QObject(parent)

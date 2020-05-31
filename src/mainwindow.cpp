@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
     QWidget * circWidget = new QWidget();
-    circWidget = (ui->testWidget);
+    //circWidget = (ui->testWidget);
     //auto val = circWidget;
     this->circularProgressObject = new CircularProgress(circWidget);
     /* Set up BMI Results Chart and BMI Percentile Chart */
@@ -257,7 +257,7 @@ void MainWindow::displayDaysExerciseValue(){
 void MainWindow::updateHeightValue(){
 
     this->userInfoObject->set_height_inches(ui->heightInchesBox->currentIndex());
-    this->userInfoObject->set_height_feet(ui->heightFeetBox->currentIndex());
+    this->userInfoObject->set_height_feet((ui->heightFeetBox->currentIndex()+1));
 }
 void MainWindow::update_bmi_tags(){
     /* First update percentile tag based on the selected gender */
@@ -284,7 +284,7 @@ void MainWindow::update_bmi_tags(){
 }
 void MainWindow::update_circular_calorie_charts(){
 
-    //this->circularProgressObject->setValue(1000);
+    this->circularProgressObject->setValue(1000);
 }
 void MainWindow::configure_BMI_chart(){
 
