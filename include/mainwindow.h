@@ -51,6 +51,7 @@ public:
 
     /* Other Functions */
     void configure_BMI_chart();
+    void configure_calorie_exercise_chart();
     void calculate_BMI_percentile();
     void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
@@ -104,6 +105,7 @@ private:
     double * bmiValuesMale;
     double * bmiValuesFemale;
     QChart * bmiResultsChart;
+    QChart * calorieExerciseChart;
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;

@@ -919,6 +919,16 @@
          </rect>
         </property>
        </widget>
+       <widget class="QChartView" name="calorieExerciseChart">
+        <property name="geometry">
+         <rect>
+          <x>385</x>
+          <y>61</y>
+          <width>450</width>
+          <height>250</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="bmiChartLegend">
        <property name="geometry">

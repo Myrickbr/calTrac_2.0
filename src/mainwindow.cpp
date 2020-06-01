@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->userInfoObject = new userInformation();
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
+    this->calorieExerciseChart = new QChart();
     QWidget * circWidget = new QWidget();
     //circWidget = (ui->testWidget);
     //auto val = circWidget;
@@ -355,6 +356,9 @@ void MainWindow::configure_BMI_chart(){
     this->bmiResultsChart->addSeries(seriesFemale);
     this->bmiResultsChart->createDefaultAxes();
     this->bmiResultsChart->setTitle("BMI Percentile Chart");
+}
+void MainWindow::configure_calorie_exercise_chart(){
+
 }
 
 void MainWindow::calculate_BMI_percentile(){

@@ -19,6 +19,7 @@ SOURCES += \
     libs/src/circularprogress.cpp \
     libs/src/circularprogressplugin.cpp \
     src/bmipercentilechart.cpp \
+    src/calorieexercisechart.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/nutritiontracker.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     include/bmipercentilechart.h \
+    include/calorieexercisechart.h \
     include/mainwindow.h \
     include/nutritiontracker.h \
     include/userinformation.h \
