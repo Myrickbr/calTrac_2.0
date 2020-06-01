@@ -1,6 +1,8 @@
 #ifndef USERINFORMATION_H
 #define USERINFORMATION_H
 
+#include<map>
+#include<string>
 
 const double METERS_PER_FOOT = 0.30480;
 const double FEET_PER_INCH = 0.08333;
@@ -20,6 +22,8 @@ public:
     const double MILD_ACTIVITY_FACTOR = 1.3;
     const double MODERATE_ACTIVITY_FACTOR = 1.5;
     const double HEAVY_ACTIVITY_FACTOR = 1.7;
+    const double FIVE_POUND_LOSS_END_TERM = 583.3;
+    const double TEN_POUND_LOSS_END_TERM = 1166.7;
     const int INCHES_PER_FOOT = 12;
     const double KILOGRAMS_PER_POUND = 0.45359;
     const double CENTIMETERS_PER_INCH = 2.54;
@@ -57,6 +61,8 @@ public:
     double calculate_BMI();
     void calculate_basal_metabolic_rate();
     void calculate_current_calorie_intake();
+    double calculate_calorie_deficit(int &, const double &);
+    void configure_calorie_map();
 
 
 private:
@@ -71,6 +77,10 @@ private:
     int bmi_percentile;
     double basal_metabolic_rate;
     double calorie_intake;
+    /* Exercise calories map contains exercise level, lbs lost per month, and calories consumed */
+    /* This map will be used to create the calorie exercise chart on the user info section */
+    std::map<std::string,std::map<int,double>> exercise_calories_map;
+
 
 };
 

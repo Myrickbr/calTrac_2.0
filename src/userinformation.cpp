@@ -1,6 +1,7 @@
 #include "../include/userinformation.h"
 #include <iostream>
 #include <cmath>
+#include <array>
 
 userInformation::userInformation()
 {
@@ -143,4 +144,47 @@ void userInformation::calculate_current_calorie_intake(){
             break;
     }
 
+}
+double userInformation::calculate_calorie_deficit(int & poundLossPerMonth, const double & exerciseCoefficient){
+    double tempCalorieDeficit = 0;
+    if(poundLossPerMonth == 0){
+        tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient;
+    }else if (poundLossPerMonth == 5){
+        tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient - FIVE_POUND_LOSS_END_TERM;
+    }else if (exerciseCoefficient == 10){
+        tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient - TEN_POUND_LOSS_END_TERM;
+    }
+    return tempCalorieDeficit;
+
+}
+void userInformation::configure_calorie_map(){
+    std::string temp_exercise_type_arr[] = {"Sedentary", "Mild", "Moderate", "Heavy"};
+    int temp_pounds_loss_arr[] = {0,5,10};
+    double tempCalorieDeficit = 0;
+
+    for(int exerciseIndex = 0; exerciseIndex < (sizeof(temp_exercise_type_arr)/sizeof(*temp_exercise_type_arr));++exerciseIndex){
+        for(int poundsIndex = 0; poundsIndex < (sizeof(temp_pounds_loss_arr)/sizeof(*temp_pounds_loss_arr)); ++poundsIndex){
+            switch(exerciseIndex){
+                case 0:
+                    tempCalorieDeficit = calculate_calorie_deficit(temp_pounds_loss_arr[poundsIndex], SEDENTARY_ACTIVITY_FACTOR);
+                    break;
+                case 1:
+                    tempCalorieDeficit = calculate_calorie_deficit(temp_pounds_loss_arr[poundsIndex], MILD_ACTIVITY_FACTOR);
+                    break;
+                case 2:
+                    tempCalorieDeficit = calculate_calorie_deficit(temp_pounds_loss_arr[poundsIndex], MODERATE_ACTIVITY_FACTOR);
+                    break;
+                case 3:
+                    tempCalorieDeficit = calculate_calorie_deficit(temp_pounds_loss_arr[poundsIndex], HEAVY_ACTIVITY_FACTOR);
+                    break;
+            }
+
+            /* First initialize inner map (lbs/month as key, calories deficit as value) */
+            std::map<int,double> tempInnerMap;
+            tempInnerMap.insert({temp_pounds_loss_arr[poundsIndex],tempCalorieDeficit});
+
+            /* Now take inner map and use it to insert element into exercise calorie map */
+            this->exercise_calories_map.insert({temp_exercise_type_arr[exerciseIndex], tempInnerMap});
+        }
+    }
 }
