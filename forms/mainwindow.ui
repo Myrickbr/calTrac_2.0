@@ -929,16 +929,6 @@
          </rect>
         </property>
        </widget>
-       <widget class="QTimeEdit" name="testTime">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>50</y>
-          <width>118</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
       <widget class="QLabel" name="bmiChartLegend">
        <property name="geometry">
