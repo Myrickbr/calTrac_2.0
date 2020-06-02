@@ -15,11 +15,23 @@ calorieExerciseChart::calorieExerciseChart()
     this->set_height_pixels(HEIGHT_PIXELS);
     this->chart = new QChart();
     this->series = new QBarSeries();
+    this->categories = new QStringList();
     this->sedentarySet= new QBarSet("Sedentary");
     this->mildSet = new QBarSet("Mild");
     this->moderateSet = new QBarSet("Moderate");
     this->moderateSet = new QBarSet("Heavy");
 
+    this->chart->setTitle("Weight Loss Chart");
+
+    /* Set animation styles */
+    this->chart->setAnimationOptions(QChart::AllAnimations);
+    *this->categories << "Sedentary" << "Mild" << "Moderate" << "Heavy";
+    QBarCategoryAxis * axis = new QBarCategoryAxis();
+    axis->append(*categories);
+    this->chart->createDefaultAxes();
+    this->chart->setAxisX(axis, this->series);
+    this->chart->legend()->setVisible(true);
+    this->chart->legend()->setAlignment(Qt::AlignBottom);
 }
 const double & calorieExerciseChart::get_height_pixels(){
     return this->heightPixels;
@@ -36,11 +48,8 @@ void calorieExerciseChart::set_height_pixels(const double &heightPX){
 void calorieExerciseChart::set_width_pixels(const double &widthPX){
     this->widthPixels = widthPX;
 }
-void calorieExerciseChart::init_chart(std::map<std::string,std::map<int,double>> & calorieExerciseMap){
+void calorieExerciseChart::update_chart(std::map<std::string,std::map<int,double>> & calorieExerciseMap){
     /* Use the calorie exercise map that was initialized and derived from user info object to create chart*/
-    std::map<std::string, std::map<int, double>> testMap;
-    std::map<int,double>testMapInner = {{1,2.0},{2,4.0}};
-    testMap.insert({"Hello",testMapInner});
 
     *this->sedentarySet << (calorieExerciseMap.find("Sedentary")->second).find(0)->second \
                         << (calorieExerciseMap.find("Sedentary")->second).find(1)->second \
@@ -56,7 +65,7 @@ void calorieExerciseChart::init_chart(std::map<std::string,std::map<int,double>>
 
     *this->sedentarySet << (calorieExerciseMap.find("Heavy")->second).find(0)->second \
                         << (calorieExerciseMap.find("Heavy")->second).find(1)->second \
-                        << (calorieExerciseMap.find("Heavyy")->second).find(2)->second;
+                        << (calorieExerciseMap.find("Heavy")->second).find(2)->second;
 
     this->series->append(sedentarySet);
     this->series->append(mildSet);
@@ -64,10 +73,6 @@ void calorieExerciseChart::init_chart(std::map<std::string,std::map<int,double>>
     this->series->append(sedentarySet);
 
     this->chart->addSeries(series);
-    this->chart->setTitle("Weight Loss Chart");
-
-    /* Set animation styles */
-    this->chart->setAnimationOptions(QChart::AllAnimations);
 
 
 

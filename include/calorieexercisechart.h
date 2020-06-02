@@ -23,13 +23,14 @@ public:
     void set_width_pixels(const double & widthPX);
 
     /* Other Functions */
-    void init_chart(std::map<std::string,std::map<int,double>> &);
+    void update_chart(std::map<std::string,std::map<int,double>> &);
 
 private:
     double heightPixels;
     double widthPixels;
     QChart * chart;
     QBarSeries * series;
+    QStringList * categories;
     QBarSet * sedentarySet;
     QBarSet * mildSet;
     QBarSet * moderateSet;

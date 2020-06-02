@@ -40,9 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->bmiPercentileChartView->setChart(bmiPercentileChart);
 
-    this->userInfoObject->configure_calorie_map();
-    this->calorieExerciseObject->init_chart(this->userInfoObject->get_exercise_calories_map());
-
+    configure_calorie_exercise_chart();
     /* Connect sliders to slots to display and update values from user info object */
 
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
@@ -219,6 +217,11 @@ void MainWindow::on_calculateResultsButton_clicked()
     this->userInfoObject->calculate_current_calorie_intake();
     update_circular_calorie_charts();
 
+    /* Update Calorie/Exercise/Weight Loss Chart */
+    this->userInfoObject->configure_calorie_map();
+    this->calorieExerciseObject->update_chart(this->userInfoObject->get_exercise_calories_map());
+    configure_calorie_exercise_chart();
+
 }
 
 /* Non Event Functions */
@@ -360,7 +363,12 @@ void MainWindow::configure_BMI_chart(){
     this->bmiResultsChart->setTitle("BMI Percentile Chart");
 }
 void MainWindow::configure_calorie_exercise_chart(){
-
+    ui->calorieExerciseChart->setChart(this->calorieExerciseObject->get_chart());
+    ui->calorieExerciseChart->setRenderHint(QPainter::Antialiasing);
+    QPalette pal = qApp->palette();
+    pal.setColor(QPalette::Window, QRgb(0xffffff));
+    pal.setColor(QPalette::WindowText, QRgb(0x404040));
+    qApp->setPalette(pal);
 }
 
 void MainWindow::calculate_BMI_percentile(){
