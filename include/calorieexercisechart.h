@@ -23,7 +23,7 @@ public:
     void set_width_pixels(const double & widthPX);
 
     /* Other Functions */
-    void init_chart();
+    void init_chart(std::map<std::string,std::map<int,double>> &);
 
 private:
     double heightPixels;

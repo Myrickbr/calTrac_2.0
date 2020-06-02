@@ -43,6 +43,8 @@ public:
     const int & get_bmi_percentile();
     const double & get_basal_metabolic_rate();
     const double & get_calorie_intake();
+    std::map<std::string,std::map<int,double>> & get_exercise_calories_map();
+
     void set_height_inches(const int &);
     void set_height_feet(const int &);
     void set_weight_pounds(const int *);

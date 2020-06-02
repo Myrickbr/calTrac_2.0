@@ -24,22 +24,24 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
     this->calorieExerciseChart = new QChart();
+    this->calorieExerciseObject = new class calorieExerciseChart();
     QWidget * circWidget = new QWidget();
-    //circWidget = (ui->testWidget);
-    //auto val = circWidget;
     this->circularProgressObject = new CircularProgress(circWidget);
-    /* Set up BMI Results Chart and BMI Percentile Chart */
+    /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
 
     ui->setupUi(this);
 
-    configure_BMI_chart();
+    this->configure_BMI_chart();
     ui->bmiResultsChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiResultsChart->setChart(this->bmiResultsChart);
 
-    bmiPChartObject->init_chart();
+    this->bmiPChartObject->init_chart();
     QChart * bmiPercentileChart = bmiPChartObject->get_chart();
 
     ui->bmiPercentileChartView->setChart(bmiPercentileChart);
+
+    this->userInfoObject->configure_calorie_map();
+    this->calorieExerciseObject->init_chart(this->userInfoObject->get_exercise_calories_map());
 
     /* Connect sliders to slots to display and update values from user info object */
 

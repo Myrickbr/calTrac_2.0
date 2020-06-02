@@ -49,6 +49,9 @@ const double & userInformation::get_basal_metabolic_rate(){
 const double & userInformation::get_calorie_intake(){
     return this->calorie_intake;
 }
+std::map<std::string,std::map<int,double>> & userInformation::get_exercise_calories_map(){
+    return this->exercise_calories_map;
+}
 void userInformation::set_height_inches(const int & heightInches){
     this->height_inches = heightInches;
 }

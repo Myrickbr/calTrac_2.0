@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 #include<QtCharts>
+#include <../include/calorieexercisechart.h>
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
 #include<../libs/include/circularprogress.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -110,6 +112,7 @@ private:
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
     CircularProgress * circularProgressObject;
+    class calorieExerciseChart * calorieExerciseObject;
 
 };
 #endif // MAINWINDOW_H
