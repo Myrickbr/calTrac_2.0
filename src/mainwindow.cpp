@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->userInfoObject = new userInformation();
     this->bmiPChartObject = new bmiPercentileChart();
     this->bmiResultsChart = new QChart();
-    this->calorieExerciseChart = new QChart();
     this->calorieExerciseObject = new class calorieExerciseChart();
     QWidget * circWidget = new QWidget();
     this->circularProgressObject = new CircularProgress(circWidget);
@@ -352,6 +351,7 @@ void MainWindow::configure_BMI_chart(){
     //axisX->setLabelsFont(serifFont);
     //axisY->setLabelsFont(serifFont);
 
+    this->bmiResultsChart->setAnimationOptions(QChart::AllAnimations);
     this->bmiResultsChart->addAxis(axisX, Qt::AlignBottom);
     this->bmiResultsChart->addAxis(axisY, Qt::AlignLeft);
     this->bmiResultsChart->legend()->hide();
@@ -369,6 +369,7 @@ void MainWindow::configure_calorie_exercise_chart(){
     pal.setColor(QPalette::Window, QRgb(0xffffff));
     pal.setColor(QPalette::WindowText, QRgb(0x404040));
     qApp->setPalette(pal);
+
 }
 
 void MainWindow::calculate_BMI_percentile(){

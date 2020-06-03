@@ -31,10 +31,10 @@ private:
     QChart * chart;
     QBarSeries * series;
     QStringList * categories;
-    QBarSet * sedentarySet;
-    QBarSet * mildSet;
-    QBarSet * moderateSet;
-    QBarSet * heavySet;
+    QBarSet * noPoundLossSet;
+    QBarSet * fivePoundLossSet;
+    QBarSet * tenPoundLossSet;
+
 };
 
 #endif // CALORIEEXERCISECHART_H

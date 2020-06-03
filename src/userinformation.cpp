@@ -154,7 +154,7 @@ double userInformation::calculate_calorie_deficit(int & poundLossPerMonth, const
         tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient;
     }else if (poundLossPerMonth == 5){
         tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient - FIVE_POUND_LOSS_END_TERM;
-    }else if (exerciseCoefficient == 10){
+    }else if (poundLossPerMonth == 10){
         tempCalorieDeficit = this->get_basal_metabolic_rate() * exerciseCoefficient - TEN_POUND_LOSS_END_TERM;
     }
     return tempCalorieDeficit;
@@ -164,8 +164,11 @@ void userInformation::configure_calorie_map(){
     std::string temp_exercise_type_arr[] = {"Sedentary", "Mild", "Moderate", "Heavy"};
     int temp_pounds_loss_arr[] = {0,5,10};
     double tempCalorieDeficit = 0;
+    double tempCalorieDeficitArr[(sizeof(temp_pounds_loss_arr)/sizeof(*temp_pounds_loss_arr))];
 
     for(int exerciseIndex = 0; exerciseIndex < (sizeof(temp_exercise_type_arr)/sizeof(*temp_exercise_type_arr));++exerciseIndex){
+        std::map<int,double> tempInnerMap;
+
         for(int poundsIndex = 0; poundsIndex < (sizeof(temp_pounds_loss_arr)/sizeof(*temp_pounds_loss_arr)); ++poundsIndex){
             switch(exerciseIndex){
                 case 0:
@@ -183,11 +186,27 @@ void userInformation::configure_calorie_map(){
             }
 
             /* First initialize inner map (lbs/month as key, calories deficit as value) */
-            std::map<int,double> tempInnerMap;
+            tempCalorieDeficitArr[poundsIndex] = tempCalorieDeficit;
             tempInnerMap.insert({temp_pounds_loss_arr[poundsIndex],tempCalorieDeficit});
 
-            /* Now take inner map and use it to insert element into exercise calorie map */
-            this->exercise_calories_map.insert({temp_exercise_type_arr[exerciseIndex], tempInnerMap});
         }
+            /* Now take inner map and use it to insert element into exercise calorie map */
+
+            //std::map<char, int>::iterator it = tempInnerMap.find();
+            double number1 = tempCalorieDeficitArr[0];
+            double number2 = tempCalorieDeficitArr[1];
+            double number3 = tempCalorieDeficitArr[2];
+            std::map<std::string, std::map<int,double>>::iterator it = this->exercise_calories_map.find(temp_exercise_type_arr[exerciseIndex]);
+            if(it != this->exercise_calories_map.end()){
+                for(int i = 0; i < (sizeof(temp_pounds_loss_arr)/sizeof(*temp_pounds_loss_arr)); ++i){
+                    (this->exercise_calories_map[temp_exercise_type_arr[exerciseIndex]]).find(temp_pounds_loss_arr[i])->second = tempCalorieDeficitArr[i];
+                    //double value = (this->exercise_calories_map[temp_exercise_type_arr[exerciseIndex]]).find(i)->second;
+
+                }
+
+            }else{
+                this->exercise_calories_map.insert({temp_exercise_type_arr[exerciseIndex], tempInnerMap});
+            }
+
     }
 }

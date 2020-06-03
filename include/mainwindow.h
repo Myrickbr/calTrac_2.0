@@ -107,7 +107,6 @@ private:
     double * bmiValuesMale;
     double * bmiValuesFemale;
     QChart * bmiResultsChart;
-    QChart * calorieExerciseChart;
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
