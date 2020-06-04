@@ -192,15 +192,10 @@ void userInformation::configure_calorie_map(){
         }
             /* Now take inner map and use it to insert element into exercise calorie map */
 
-            //std::map<char, int>::iterator it = tempInnerMap.find();
-            double number1 = tempCalorieDeficitArr[0];
-            double number2 = tempCalorieDeficitArr[1];
-            double number3 = tempCalorieDeficitArr[2];
             std::map<std::string, std::map<int,double>>::iterator it = this->exercise_calories_map.find(temp_exercise_type_arr[exerciseIndex]);
             if(it != this->exercise_calories_map.end()){
                 for(int i = 0; i < (sizeof(temp_pounds_loss_arr)/sizeof(*temp_pounds_loss_arr)); ++i){
                     (this->exercise_calories_map[temp_exercise_type_arr[exerciseIndex]]).find(temp_pounds_loss_arr[i])->second = tempCalorieDeficitArr[i];
-                    //double value = (this->exercise_calories_map[temp_exercise_type_arr[exerciseIndex]]).find(i)->second;
 
                 }
 

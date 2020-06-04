@@ -27,11 +27,9 @@ calorieExerciseChart::calorieExerciseChart()
     this->chart->setAnimationOptions(QChart::AllAnimations);
     *this->categories << "Sedentary" << "Mild" << "Moderate" << "Heavy";
     QBarCategoryAxis * axisX = new QBarCategoryAxis();
-    QValueAxis * axisY = new QValueAxis();
+
     axisX->append(*categories);
-    axisY->setRange(0,3000);
     this->chart->setAxisX(axisX, this->series);
-    this->chart->setAxisY(axisY, this->series);
     this->chart->legend()->setVisible(true);
     this->chart->legend()->setAlignment(Qt::AlignBottom);
 }
@@ -75,8 +73,7 @@ void calorieExerciseChart::update_chart(std::map<std::string,std::map<int,double
     this->series->append(noPoundLossSet);
     this->series->append(fivePoundLossSet);
     this->series->append(tenPoundLossSet);
-    QValueAxis * newAxis = new QValueAxis();
-    this->series->attachAxis(newAxis);
+    this->chart->createDefaultAxes();
 
     this->chart->addSeries(series);
 

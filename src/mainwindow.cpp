@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    /* TODO: Move all initialization to their own functions */
+
     /* Initialize instance variables */
     this->bmiValuesMale = NULL;
     this->bmiValuesFemale = NULL;
@@ -40,6 +42,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->bmiPercentileChartView->setChart(bmiPercentileChart);
 
     configure_calorie_exercise_chart();
+
+    /* Set weight loss button visibility to false */
+    ui->sedentaryButton->setVisible(false);
+    ui->mildButton->setVisible(false);
+    ui->moderateButton->setVisible(false);
+    ui->heavyButton->setVisible(false);
+
     /* Connect sliders to slots to display and update values from user info object */
 
     connect(ui->weightSlider, SIGNAL(valueChanged(int)), this, SLOT(displayWeightValue()));
@@ -223,6 +232,12 @@ void MainWindow::on_calculateResultsButton_clicked()
     this->calorieExerciseObject->update_chart(this->userInfoObject->get_exercise_calories_map());
     configure_calorie_exercise_chart();
 
+    /* Set Weight Loss Buttons to Visible */
+    ui->sedentaryButton->setVisible(true);
+    ui->mildButton->setVisible(true);
+    ui->moderateButton->setVisible(true);
+    ui->heavyButton->setVisible(true);
+
 }
 
 /* Non Event Functions */
@@ -292,6 +307,9 @@ void MainWindow::update_bmi_tags(){
 void MainWindow::update_circular_calorie_charts(){
 
     this->circularProgressObject->setValue(1000);
+}
+void MainWindow::update_weight_loss_labels(){
+
 }
 void MainWindow::configure_BMI_chart(){
 

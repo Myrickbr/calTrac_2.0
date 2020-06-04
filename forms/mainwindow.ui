@@ -912,10 +912,10 @@
        <widget class="CircularProgress" name="testWidget" native="true">
         <property name="geometry">
          <rect>
-          <x>79</x>
-          <y>69</y>
-          <width>111</width>
-          <height>111</height>
+          <x>50</x>
+          <y>50</y>
+          <width>90</width>
+          <height>90</height>
          </rect>
         </property>
        </widget>
@@ -927,6 +927,68 @@
           <width>450</width>
           <height>300</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="CircularProgress" name="testWidget2" native="true">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>50</y>
+          <width>90</width>
+          <height>90</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="sedentaryButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>160</y>
+          <width>80</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Sedentary</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="mildButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>205</y>
+          <width>80</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mild</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="moderateButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>250</y>
+          <width>80</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Moderate</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="heavyButton">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>295</y>
+          <width>80</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Heavy</string>
         </property>
        </widget>
       </widget>
