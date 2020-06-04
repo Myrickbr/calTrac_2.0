@@ -43,11 +43,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     configure_calorie_exercise_chart();
 
-    /* Set weight loss button visibility to false */
+    /* Set weight loss button/label visibility to false */
     ui->sedentaryButton->setVisible(false);
     ui->mildButton->setVisible(false);
     ui->moderateButton->setVisible(false);
     ui->heavyButton->setVisible(false);
+    ui->maintainWeightLabel->setVisible(false);
+    ui->loseFivePoundsLabel->setVisible(false);
+    ui->loseTenPoundsLabel->setVisible(false);
+    ui->maintainWeightText->setVisible(false);
+    ui->loseFivePoundsText->setVisible(false);
+    ui->loseTenPoundsText->setVisible(false);
+    ui->calLabel1->setVisible(false);
+    ui->calLabel2->setVisible(false);
+    ui->calLabel3->setVisible(false);
+
+
+    ui->calorieIntakeBeforeCalculationLabel->setVisible(true);
 
     /* Connect sliders to slots to display and update values from user info object */
 
@@ -136,9 +148,12 @@ void MainWindow::setMaleCheck(bool tOf){
 void MainWindow::setFemaleCheck(bool tOf){
     this->femaleChecked = tOf;
 }
+
+
 // Here are the button click events...
 // The stacked widget contains all the scenes for the application,
 // we are resetting the index after pressing the corresponding button.
+
 void MainWindow::on_dailyCalendarButton_clicked()
 {
    ui->stackedWidget->setCurrentIndex(2);
@@ -237,10 +252,106 @@ void MainWindow::on_calculateResultsButton_clicked()
     ui->mildButton->setVisible(true);
     ui->moderateButton->setVisible(true);
     ui->heavyButton->setVisible(true);
+    ui->maintainWeightLabel->setVisible(true);
+    ui->loseFivePoundsLabel->setVisible(true);
+    ui->loseTenPoundsLabel->setVisible(true);
+    ui->maintainWeightText->setVisible(true);
+    ui->loseFivePoundsText->setVisible(true);
+    ui->loseTenPoundsText->setVisible(true);
+    ui->calLabel1->setVisible(true);
+    ui->calLabel2->setVisible(true);
+    ui->calLabel3->setVisible(true);
+
+    ui->calorieIntakeBeforeCalculationLabel->setVisible(false);
+
+}
+void MainWindow::on_sedentaryButton_clicked(){
+
+    /* Update StyleSheets for all weight loss buttons */
+
+    QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
+    QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+
+    ui->sedentaryButton->setStyleSheet(selectedButtonStyleSheet);
+    ui->mildButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->heavyButton->setStyleSheet(unselectedButtonStyleSheet);
+
+    /*Update weight loss labels using calorie exercise map */
+    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(0)->second);
+    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(5)->second);
+    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(10)->second);
+
+    ui->maintainWeightLabel->setText(maintainCalories);
+    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
+    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
+
+
+}
+void MainWindow::on_mildButton_clicked(){
+
+    QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
+    QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+
+    ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->mildButton->setStyleSheet(selectedButtonStyleSheet);
+    ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->heavyButton->setStyleSheet(unselectedButtonStyleSheet);
+
+    /*Update weight loss labels using calorie exercise map */
+    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(0)->second);
+    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(5)->second);
+    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(10)->second);
+
+    ui->maintainWeightLabel->setText(maintainCalories);
+    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
+    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
+
+}
+void MainWindow::on_moderateButton_clicked(){
+
+    QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
+    QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+
+    ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->mildButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->moderateButton->setStyleSheet(selectedButtonStyleSheet);
+    ui->heavyButton->setStyleSheet(unselectedButtonStyleSheet);
+
+    /*Update weight loss labels using calorie exercise map */
+    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Moderate")->second).find(0)->second);
+    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Moderate")->second).find(5)->second);
+    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Moderate")->second).find(10)->second);
+
+    ui->maintainWeightLabel->setText(maintainCalories);
+    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
+    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
+
+}
+void MainWindow::on_heavyButton_clicked(){
+
+    QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
+    QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+
+    ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->mildButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->heavyButton->setStyleSheet(selectedButtonStyleSheet);
+
+    /*Update weight loss labels using calorie exercise map */
+    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Heavy")->second).find(0)->second);
+    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Heavy")->second).find(5)->second);
+    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Heavy")->second).find(10)->second);
+
+    ui->maintainWeightLabel->setText(maintainCalories);
+    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
+    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
 
 }
 
-/* Non Event Functions */
+/* ------------------------------------------- */
+/* ---------  Non Event Functions  ----------- */
+/* ------------------------------------------- */
 
 void MainWindow::displayWeightValue(){
     //Retrieve value from slider, convert to qstring

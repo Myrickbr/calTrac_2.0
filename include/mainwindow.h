@@ -65,12 +65,6 @@ public:
 
 private slots:
 
-    void on_back_Button_Tracker_clicked();
-
-    void on_back_Button_Calculator_clicked();
-
-    void calculate_current_calorie_intake();
-
     void displayWeightValue();
 
     void displayAgeValue();
@@ -78,6 +72,12 @@ private slots:
     void displayDaysExerciseValue();
 
     void updateHeightValue();
+
+    void on_back_Button_Tracker_clicked();
+
+    void on_back_Button_Calculator_clicked();
+
+    void calculate_current_calorie_intake();
 
     void on_personalOverviewButton_clicked();
 
@@ -91,6 +91,13 @@ private slots:
 
     void on_calculateResultsButton_clicked();
 
+    void on_sedentaryButton_clicked();
+
+    void on_mildButton_clicked();
+
+    void on_moderateButton_clicked();
+
+    void on_heavyButton_clicked();
 
 private:
     Ui::MainWindow *ui;
