@@ -44,22 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     configure_calorie_exercise_chart();
 
     /* Set weight loss button/label visibility to false */
-    ui->sedentaryButton->setVisible(false);
-    ui->mildButton->setVisible(false);
-    ui->moderateButton->setVisible(false);
-    ui->heavyButton->setVisible(false);
-    ui->maintainWeightLabel->setVisible(false);
-    ui->loseFivePoundsLabel->setVisible(false);
-    ui->loseTenPoundsLabel->setVisible(false);
-    ui->maintainWeightText->setVisible(false);
-    ui->loseFivePoundsText->setVisible(false);
-    ui->loseTenPoundsText->setVisible(false);
-    ui->calLabel1->setVisible(false);
-    ui->calLabel2->setVisible(false);
-    ui->calLabel3->setVisible(false);
-
-
-    ui->calorieIntakeBeforeCalculationLabel->setVisible(true);
+    toggle_weight_loss_view(false);
 
     /* Connect sliders to slots to display and update values from user info object */
 
@@ -248,21 +233,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     configure_calorie_exercise_chart();
 
     /* Set Weight Loss Buttons to Visible */
-    ui->sedentaryButton->setVisible(true);
-    ui->mildButton->setVisible(true);
-    ui->moderateButton->setVisible(true);
-    ui->heavyButton->setVisible(true);
-    ui->maintainWeightLabel->setVisible(true);
-    ui->loseFivePoundsLabel->setVisible(true);
-    ui->loseTenPoundsLabel->setVisible(true);
-    ui->maintainWeightText->setVisible(true);
-    ui->loseFivePoundsText->setVisible(true);
-    ui->loseTenPoundsText->setVisible(true);
-    ui->calLabel1->setVisible(true);
-    ui->calLabel2->setVisible(true);
-    ui->calLabel3->setVisible(true);
-
-    ui->calorieIntakeBeforeCalculationLabel->setVisible(false);
+    toggle_weight_loss_view(true);
 
 }
 void MainWindow::on_sedentaryButton_clicked(){
@@ -421,6 +392,28 @@ void MainWindow::update_circular_calorie_charts(){
 }
 void MainWindow::update_weight_loss_labels(){
 
+}
+void MainWindow::toggle_weight_loss_view(bool viewFull){
+
+    QWidget * uiUpdateList[] = {ui->sedentaryButton, ui->mildButton, ui->moderateButton, ui->heavyButton,
+                                ui->maintainWeightLabel, ui->loseFivePoundsLabel, ui->loseTenPoundsLabel,
+                                ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
+                                ui->calLabel1, ui->calLabel2, ui->calLabel3};
+
+    if(viewFull == true){
+         for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
+               (uiUpdateList[i])->setVisible(true);
+         }
+
+         ui->calorieIntakeBeforeCalculationLabel->setVisible(false);
+
+    }else{
+        for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
+              (uiUpdateList[i])->setVisible(false);
+        }
+
+        ui->calorieIntakeBeforeCalculationLabel->setVisible(true);
+    }
 }
 void MainWindow::configure_BMI_chart(){
 

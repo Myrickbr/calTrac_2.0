@@ -61,6 +61,7 @@ public:
     void update_bmi_tags();
     void update_circular_calorie_charts();
     void update_weight_loss_labels();
+    void toggle_weight_loss_view(bool viewFull);
 
 
 private slots:

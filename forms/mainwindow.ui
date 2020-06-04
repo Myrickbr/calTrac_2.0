@@ -925,7 +925,7 @@
           <x>385</x>
           <y>30</y>
           <width>450</width>
-          <height>300</height>
+          <height>311</height>
          </rect>
         </property>
        </widget>
@@ -1034,9 +1034,9 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>179</y>
           <width>361</width>
-          <height>160</height>
+          <height>131</height>
          </rect>
         </property>
         <property name="text">
