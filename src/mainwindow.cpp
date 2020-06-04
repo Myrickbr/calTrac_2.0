@@ -22,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiValuesFemale = NULL;
     this->userInfoObject = new userInformation();
     this->bmiPChartObject = new bmiPercentileChart();
+    this->calorieExerciseObject = new calorieExerciseChart();
     this->bmiResultsChart = new QChart();
-    this->calorieExerciseObject = new class calorieExerciseChart();
     QWidget * circWidget = new QWidget();
     this->circularProgressObject = new CircularProgress(circWidget);
     /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
@@ -217,6 +217,8 @@ void MainWindow::on_calculateResultsButton_clicked()
     update_circular_calorie_charts();
 
     /* Update Calorie/Exercise/Weight Loss Chart */
+    /* Need to create new chart object to update chart */
+    this->calorieExerciseObject = new calorieExerciseChart();
     this->userInfoObject->configure_calorie_map();
     this->calorieExerciseObject->update_chart(this->userInfoObject->get_exercise_calories_map());
     configure_calorie_exercise_chart();
@@ -363,6 +365,7 @@ void MainWindow::configure_BMI_chart(){
     this->bmiResultsChart->setTitle("BMI Percentile Chart");
 }
 void MainWindow::configure_calorie_exercise_chart(){
+
     ui->calorieExerciseChart->setChart(this->calorieExerciseObject->get_chart());
     ui->calorieExerciseChart->setRenderHint(QPainter::Antialiasing);
     QPalette pal = qApp->palette();

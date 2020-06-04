@@ -111,7 +111,7 @@ private:
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
     CircularProgress * circularProgressObject;
-    class calorieExerciseChart * calorieExerciseObject;
+    calorieExerciseChart * calorieExerciseObject;
 
 };
 #endif // MAINWINDOW_H
