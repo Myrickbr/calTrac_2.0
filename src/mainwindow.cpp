@@ -38,13 +38,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->bmiPChartObject->init_chart();
     QChart * bmiPercentileChart = bmiPChartObject->get_chart();
-
     ui->bmiPercentileChartView->setChart(bmiPercentileChart);
-
     configure_calorie_exercise_chart();
 
     /* Set weight loss button/label visibility to false */
     toggle_weight_loss_view(false);
+
+
+
+    /* Configure stylesheets manually where necessary (shadows, ect) */
+
+    configure_button_stylesheets();
 
     /* Connect sliders to slots to display and update values from user info object */
 
@@ -536,6 +540,21 @@ void MainWindow::calculate_BMI_percentile(){
     return;
 }
 
+void MainWindow::configure_button_stylesheets(){
+
+    QWidget * widgets_to_configure[] = {ui->calculateResultsButton, ui->maleButton, ui->femaleButton,
+                                        ui->userInfoBox, ui->bmiResultsBox, ui->bmiPercentileBox,
+                                        ui->bmiPercentileChartBox, ui->calorieIntakeBox, ui->bmiValueBox};
+
+    for(QWidget * i : widgets_to_configure){
+        QGraphicsDropShadowEffect * tempEffect = new QGraphicsDropShadowEffect();
+        tempEffect->setBlurRadius(10); //Adjust accordingly
+        tempEffect->setOffset(2,1); //Adjust accordingly
+
+        (i)->setGraphicsEffect(tempEffect);
+    }
+
+}
 void MainWindow::read_bmi_text_file(std::string maleFileName, std::string femaleFileName){
 
     static double bmiValuesFemaleArr [99];

@@ -4,7 +4,7 @@
                 stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)
 }
 #dailyCalendarSymbol, #nutTrackerSymbol, #personalOverviewSymbol{
-    fill: white;
+    /* fill: white; */
 }
 #personalOverviewLabel{
     font: 14px solid 'Candara';
@@ -150,7 +150,8 @@ QPushButton {
     /* padding: 4px; */
     font: 14pt 'Candara';
     color: #fcfcfc;
-    padding: 2px;
+    padding-left: 3px;
+    padding-bottom: 2px;
 }
 #calLabel1, #calLabel2, #calLabel3{
     font: 11pt 'Candara';

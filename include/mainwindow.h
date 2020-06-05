@@ -54,6 +54,7 @@ public:
     /* Other Functions */
     void configure_BMI_chart();
     void configure_calorie_exercise_chart();
+    void configure_button_stylesheets();
     void calculate_BMI_percentile();
     void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
@@ -62,6 +63,7 @@ public:
     void update_circular_calorie_charts();
     void update_weight_loss_labels();
     void toggle_weight_loss_view(bool viewFull);
+
 
 
 private slots:
