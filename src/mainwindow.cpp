@@ -239,6 +239,11 @@ void MainWindow::on_calculateResultsButton_clicked()
     /* Set Weight Loss Buttons to Visible */
     toggle_weight_loss_view(true);
 
+
+    /* Test progress circle update */
+    //QPaintEvent * newEvent;
+    //ui->progCircleObj->paintEvent(newEvent);
+
 }
 void MainWindow::on_sedentaryButton_clicked(){
 
@@ -402,7 +407,7 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
     QWidget * uiUpdateList[] = {ui->sedentaryButton, ui->mildButton, ui->moderateButton, ui->heavyButton,
                                 ui->maintainWeightLabel, ui->loseFivePoundsLabel, ui->loseTenPoundsLabel,
                                 ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
-                                ui->calLabel1, ui->calLabel2, ui->calLabel3};
+                                ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->progCircChart};
 
     if(viewFull == true){
          for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
@@ -544,7 +549,8 @@ void MainWindow::configure_button_stylesheets(){
 
     QWidget * widgets_to_configure[] = {ui->calculateResultsButton, ui->maleButton, ui->femaleButton,
                                         ui->userInfoBox, ui->bmiResultsBox, ui->bmiPercentileBox,
-                                        ui->bmiPercentileChartBox, ui->calorieIntakeBox, ui->bmiValueBox};
+                                        ui->bmiPercentileChartBox, ui->calorieIntakeBox, ui->bmiValueBox,
+                                        ui->bottomLeftGroupBox};
 
     for(QWidget * i : widgets_to_configure){
         QGraphicsDropShadowEffect * tempEffect = new QGraphicsDropShadowEffect();

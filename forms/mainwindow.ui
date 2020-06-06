@@ -1262,6 +1262,29 @@
         </property>
        </widget>
       </widget>
+      <widget class="QGroupBox" name="bottomLeftGroupBox">
+       <property name="geometry">
+        <rect>
+         <x>39</x>
+         <y>529</y>
+         <width>351</width>
+         <height>255</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="ProgressCircle" name="progCircChart" native="true">
+        <property name="geometry">
+         <rect>
+          <x>29</x>
+          <y>29</y>
+          <width>301</width>
+          <height>211</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="nutritionTracker">
@@ -1863,6 +1886,12 @@
    <class>CircularProgress</class>
    <extends>QWidget</extends>
    <header>../libs/include/circularprogress.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProgressCircle</class>
+   <extends>QWidget</extends>
+   <header location="global">../libs/include/progresscircle.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -7,6 +7,7 @@
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
 #include<../libs/include/circularprogress.h>
+#include<../libs/include/progresscircle.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -123,6 +124,7 @@ private:
     bmiPercentileChart * bmiPChartObject;
     CircularProgress * circularProgressObject;
     calorieExerciseChart * calorieExerciseObject;
+    ProgressCircle * progressCircleObject;
 
 };
 #endif // MAINWINDOW_H
