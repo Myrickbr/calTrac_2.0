@@ -20,7 +20,7 @@ ProgressCircle::ProgressCircle(QWidget *parent) :
     mInfiniteAnimation(this, "infiniteAnimationValue"),
     mInfiniteAnimationValue(0.0)
 {
-    mInfiniteAnimation.setLoopCount(-1);//infinite
+    mInfiniteAnimation.setLoopCount(1);//infinite
     mInfiniteAnimation.setDuration(1000);
     mInfiniteAnimation.setStartValue(0.0);
     mInfiniteAnimation.setEndValue(1.0);
@@ -204,7 +204,7 @@ QPixmap ProgressCircle::generatePixmap() const
     {
         //draw as infinite process
         int startAngle = -mInfiniteAnimationValue * 360 * 16;
-        int spanAngle = 0.15 * 360 * 16;
+        int spanAngle = 0.25 * 360 * 16;
         painter.drawPie(rect, startAngle, spanAngle);
     }
     else

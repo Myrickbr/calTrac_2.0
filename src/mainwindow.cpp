@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiResultsChart = new QChart();
     QWidget * circWidget = new QWidget();
     this->circularProgressObject = new CircularProgress(circWidget);
+    //this->progressCircleObject = ui->progCircChart;
     /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
 
     ui->setupUi(this);
@@ -243,6 +244,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     /* Test progress circle update */
     //QPaintEvent * newEvent;
     //ui->progCircleObj->paintEvent(newEvent);
+    ui->progCircChart->mInfiniteAnimation.start();
 
 }
 void MainWindow::on_sedentaryButton_clicked(){

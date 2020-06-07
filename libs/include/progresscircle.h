@@ -48,6 +48,12 @@ public:
 
     QColor color() const;
 
+    int mVisibleValue;
+    QPropertyAnimation mValueAnimation;
+
+    QPropertyAnimation mInfiniteAnimation;
+    qreal mInfiniteAnimationValue;
+
 public slots:
     void setValue(int value);
     void setMaximum(int maximum);
@@ -83,9 +89,5 @@ private:
     QColor mColor;
 
     //value visible to user
-    int mVisibleValue;
-    QPropertyAnimation mValueAnimation;
 
-    QPropertyAnimation mInfiniteAnimation;
-    qreal mInfiniteAnimationValue;
 };
