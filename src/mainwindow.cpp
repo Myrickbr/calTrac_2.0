@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <unistd.h>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -27,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->calorieExerciseObject = new calorieExerciseChart();
     this->bmiResultsChart = new QChart();
     QWidget * circWidget = new QWidget();
-    this->circularProgressObject = new CircularProgress(circWidget);
     //this->progressCircleObject = ui->progCircChart;
     /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
 
@@ -240,12 +240,6 @@ void MainWindow::on_calculateResultsButton_clicked()
     /* Set Weight Loss Buttons to Visible */
     toggle_weight_loss_view(true);
 
-
-    /* Test progress circle update */
-    //QPaintEvent * newEvent;
-    //ui->progCircleObj->paintEvent(newEvent);
-    ui->progCircChart->mInfiniteAnimation.start();
-
 }
 void MainWindow::on_sedentaryButton_clicked(){
 
@@ -399,7 +393,19 @@ void MainWindow::update_bmi_tags(){
 }
 void MainWindow::update_circular_calorie_charts(){
 
-    this->circularProgressObject->setValue(1000);
+    double currentCalorieIntake = this->userInfoObject->get_calorie_intake();
+
+    for(int i = 0; i < currentCalorieIntake; ++i){
+
+        ui->currCalorieCircularChart->setValue(i);
+
+        /* Only repaint every 100 vals so animation is faster */
+        if(i % 50 == 0){
+            ui->currCalorieCircularChart->repaint();
+        }
+    }
+    ui->currCalorieCircularChart->repaint();
+
 }
 void MainWindow::update_weight_loss_labels(){
 
@@ -409,7 +415,7 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
     QWidget * uiUpdateList[] = {ui->sedentaryButton, ui->mildButton, ui->moderateButton, ui->heavyButton,
                                 ui->maintainWeightLabel, ui->loseFivePoundsLabel, ui->loseTenPoundsLabel,
                                 ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
-                                ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->progCircChart};
+                                ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->progCircChart, ui->lineAboveWeightLossLabel};
 
     if(viewFull == true){
          for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){

@@ -16,15 +16,16 @@ ProgressCircle::ProgressCircle(QWidget *parent) :
     mOuterRadius(1.0),
     mColor(110,190,235),
     mVisibleValue(0),
+    mSpanAngle(0),
     mValueAnimation(this, "visibleValue"),
     mInfiniteAnimation(this, "infiniteAnimationValue"),
     mInfiniteAnimationValue(0.0)
 {
-    mInfiniteAnimation.setLoopCount(1);//infinite
-    mInfiniteAnimation.setDuration(1000);
-    mInfiniteAnimation.setStartValue(0.0);
-    mInfiniteAnimation.setEndValue(1.0);
-    //mInfiniteAnimation.start();
+        mInfiniteAnimation.setLoopCount(1);
+        mInfiniteAnimation.setDuration(1000);
+        mInfiniteAnimation.setStartValue(0.0);
+        mInfiniteAnimation.setEndValue(1.0);
+        //mInfiniteAnimation.start();
 }
 
 int ProgressCircle::value() const
@@ -121,6 +122,13 @@ void ProgressCircle::setColor(QColor color)
         update();
     }
 }
+void ProgressCircle::setSpanAngle(double angle){
+    if(angle != mSpanAngle){
+        mSpanAngle = angle;
+        //update();
+
+    }
+}
 
 QRectF squared(QRectF rect)
 {
@@ -203,9 +211,10 @@ QPixmap ProgressCircle::generatePixmap() const
     if(mMaximum == 0)
     {
         //draw as infinite process
-        int startAngle = -mInfiniteAnimationValue * 360 * 16;
-        int spanAngle = 0.25 * 360 * 16;
-        painter.drawPie(rect, startAngle, spanAngle);
+        int startAngle = -mInfiniteAnimationValue * 270 * 16;
+        //int spanAngle = -0.25 * 360 * 16;
+        int spanAngle = this->mSpanAngle;
+        painter.drawPie(rect,startAngle, -spanAngle);
     }
     else
     {

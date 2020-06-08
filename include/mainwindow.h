@@ -122,7 +122,6 @@ private:
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
-    CircularProgress * circularProgressObject;
     calorieExerciseChart * calorieExerciseObject;
     ProgressCircle * progressCircleObject;
 

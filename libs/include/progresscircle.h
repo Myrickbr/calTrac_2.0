@@ -57,6 +57,7 @@ public:
 public slots:
     void setValue(int value);
     void setMaximum(int maximum);
+    void setSpanAngle(double angle);
 
     void setInnerRadius(qreal innerRadius);
     void setOuterRadius(qreal outerRadius);
@@ -84,6 +85,7 @@ private:
     //actual current value
     int mValue;
     int mMaximum;
+    int mSpanAngle;
     qreal mInnerRadius;
     qreal mOuterRadius;
     QColor mColor;
