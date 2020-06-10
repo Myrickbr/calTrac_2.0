@@ -166,8 +166,7 @@ QPushButton {
     padding-left: 3px;
     padding-bottom: 2px;
 }
-#userWeightStatusLabel{
-    background: #FC8686;
+#overweightStripe{
     border-radius: 5px;
     padding-left: 10px;
 }

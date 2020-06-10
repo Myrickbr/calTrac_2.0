@@ -1287,19 +1287,6 @@
        <property name="title">
         <string/>
        </property>
-       <widget class="QLabel" name="userWeightStatusLabel">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>50</y>
-          <width>30</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
        <widget class="QLabel" name="resultsHeader">
         <property name="geometry">
          <rect>
@@ -1368,10 +1355,10 @@
        <widget class="QLabel" name="overweightStripe">
         <property name="geometry">
          <rect>
-          <x>286</x>
-          <y>3</y>
-          <width>41</width>
-          <height>251</height>
+          <x>290</x>
+          <y>0</y>
+          <width>31</width>
+          <height>261</height>
          </rect>
         </property>
         <property name="text">

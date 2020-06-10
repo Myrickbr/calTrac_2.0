@@ -446,6 +446,29 @@ void MainWindow::update_results_section(){
     double currentHeightFeet = this->userInfoObject->get_height_feet() + (this->userInfoObject->get_height_inches())/12.0;
     ui->losePoundsLabel->setText(QString::fromStdString(pObj->get_healthy_weight_statement(currentWeightPounds,currentHeightFeet)));
 
+    switch(pObj->getWeightStatus()){
+        case pInfoResultsHelper::WeightStatus::Underweight:{
+            QString underweightStyleSheet = "background-color: #FC8686;"; // Red
+            ui->overweightStripe->setStyleSheet(underweightStyleSheet);
+            break;
+        }
+        case pInfoResultsHelper::WeightStatus::Healthy:{
+            QString underweightStyleSheet = "background-color: #86FC94;"; // Green
+            ui->overweightStripe->setStyleSheet(underweightStyleSheet);
+            break;
+        }
+        case pInfoResultsHelper::WeightStatus::Overweight:{
+            QString underweightStyleSheet = "background-color: #FC8686;"; // Red
+            ui->overweightStripe->setStyleSheet(underweightStyleSheet);
+            break;
+        }
+        case pInfoResultsHelper::WeightStatus::Obese:{
+        QString underweightStyleSheet = "background-color: #FC8686;"; // Red
+        ui->overweightStripe->setStyleSheet(underweightStyleSheet);
+        break;
+        }
+
+    }
 
 }
 void MainWindow::configure_BMI_chart(){
