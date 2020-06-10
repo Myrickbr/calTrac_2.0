@@ -138,8 +138,12 @@ QPushButton {
     border-radius: 8px;
     padding-left: 4px;
 }
-#bmiValueLabel, #bmiPercentileLabel{
+#bmiValueLabel, #bmiPercentileLabel, #overweightLabel{
     font: 24pt 'Candara';
+    color: #656464;
+}
+#losePoundsLabel{
+    font: 16pt 'Candara';
     color: #656464;
 }
 #maintainWeightText, #loseFivePoundsText, #loseTenPoundsText{

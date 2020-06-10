@@ -31,6 +31,7 @@ public:
     /* Other functions */
     std::string is_threshold(const double &);
     std::string get_healthy_weight_statement(double &, double &);
+
 private:
     WeightStatus weightStatus;
 

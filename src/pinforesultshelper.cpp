@@ -1,6 +1,8 @@
 #include "../include/pinforesultshelper.h"
 #include<string>
 #include<cmath>
+#include <iomanip>
+#include <sstream>
 
 pInfoResultsHelper::pInfoResultsHelper()
 {
@@ -19,7 +21,7 @@ std::string pInfoResultsHelper::is_threshold(const double & bmi){
         return "UNDERWEIGHT";
     }else if(bmi < HEALTHY_WEIGHT_BMI_THRESHOLD){
         setWeightStatus(pInfoResultsHelper::WeightStatus::Healthy);
-        return "HEALTHY WEIGHT";
+        return "HEALTHY";
     }else if(bmi < OVERWEIGHT_BMI_THRESHOLD){
         setWeightStatus(pInfoResultsHelper::WeightStatus::Overweight);
         return "OVERWEIGHT";
@@ -39,25 +41,52 @@ std::string pInfoResultsHelper::get_healthy_weight_statement(double & currentWei
             double weightInKGAfterWeightLoss = UNDERWEIGHT_BMI_THRESHOLD * pow(currentHeightMeters,2.0);
             double weightInLbsAfterWeightLoss = weightInKGAfterWeightLoss * POUNDS_PER_KILOGRAM;
             double totalWeightGainPounds = weightInLbsAfterWeightLoss - currentWeightLbs;
-            healthyWeightStatement = "Gain " + std::to_string(totalWeightGainPounds) + "pounds";
+
+            std::ostringstream streamObj3;
+            streamObj3 << std::fixed;
+
+            // Set precision to 2 digits
+            streamObj3 << std::setprecision(2);
+            streamObj3 << totalWeightGainPounds;
+            std::string weightGainString = streamObj3.str();
+
+            healthyWeightStatement = "Gain " + weightGainString + " pounds";
             break;
         }
         case WeightStatus::Healthy:{
-            healthyWeightStatement = "Do nothing, you are a healthy weight!";
+            healthyWeightStatement = "Stay the same!";
             break;
         }
         case WeightStatus::Overweight:{
             double weightInKGAfterWeightLoss = HEALTHY_WEIGHT_BMI_THRESHOLD * pow(currentHeightMeters,2.0);
             double weightInLbsAfterWeightLoss = weightInKGAfterWeightLoss * POUNDS_PER_KILOGRAM;
             double totalWeightLossPounds = currentWeightLbs - weightInLbsAfterWeightLoss;
-            healthyWeightStatement = "Lose " + std::to_string(totalWeightLossPounds) + "pounds";
+
+            std::ostringstream streamObj3;
+            streamObj3 << std::fixed;
+
+            // Set precision to 2 digits
+            streamObj3 << std::setprecision(2);
+            streamObj3 << totalWeightLossPounds;
+            std::string weightLossString = streamObj3.str();
+
+            healthyWeightStatement = "Lose " + weightLossString + " pounds";
             break;
         }
         case WeightStatus::Obese:{
             double weightInKGAfterWeightLoss = HEALTHY_WEIGHT_BMI_THRESHOLD * pow(currentHeightMeters,2.0);
             double weightInLbsAfterWeightLoss = weightInKGAfterWeightLoss * POUNDS_PER_KILOGRAM;
             double totalWeightLossPounds = currentWeightLbs - weightInLbsAfterWeightLoss;
-            healthyWeightStatement = "Lose " + std::to_string(totalWeightLossPounds) + "pounds";
+
+            std::ostringstream streamObj3;
+            streamObj3 << std::fixed;
+
+            // Set precision to 2 digits
+            streamObj3 << std::setprecision(2);
+            streamObj3 << totalWeightLossPounds;
+            std::string weightLossString = streamObj3.str();
+
+            healthyWeightStatement = "Lose " + weightLossString + " pounds";
             break;
         }
         case WeightStatus::Null:{
@@ -70,3 +99,4 @@ std::string pInfoResultsHelper::get_healthy_weight_statement(double & currentWei
     return healthyWeightStatement;
 
 }
+

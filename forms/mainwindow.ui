@@ -1342,10 +1342,10 @@
        <widget class="QLabel" name="overweightLabel">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>60</x>
           <y>100</y>
-          <width>101</width>
-          <height>31</height>
+          <width>251</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
@@ -1355,10 +1355,10 @@
        <widget class="QLabel" name="losePoundsLabel">
         <property name="geometry">
          <rect>
-          <x>100</x>
+          <x>50</x>
           <y>180</y>
-          <width>101</width>
-          <height>31</height>
+          <width>231</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="text">
