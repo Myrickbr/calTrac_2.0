@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <unistd.h>
+#include <pthread.h>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -37,15 +38,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->bmiResultsChart->setRenderHint(QPainter::Antialiasing);
     ui->bmiResultsChart->setChart(this->bmiResultsChart);
 
-    this->bmiPChartObject->init_chart();
-    QChart * bmiPercentileChart = bmiPChartObject->get_chart();
-    ui->bmiPercentileChartView->setChart(bmiPercentileChart);
     configure_calorie_exercise_chart();
 
     /* Set weight loss button/label visibility to false */
     toggle_weight_loss_view(false);
-
-
 
     /* Configure stylesheets manually where necessary (shadows, ect) */
 
@@ -224,6 +220,9 @@ void MainWindow::on_calculateResultsButton_clicked()
     plot_user_point();
     update_bmi_tags();
 
+    /* Set Weight Loss Buttons to Visible */
+    toggle_weight_loss_view(true);
+
     /* Update Calorie Intake tab functions */
 
     this->userInfoObject->calculate_basal_metabolic_rate();
@@ -237,8 +236,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     this->calorieExerciseObject->update_chart(this->userInfoObject->get_exercise_calories_map());
     configure_calorie_exercise_chart();
 
-    /* Set Weight Loss Buttons to Visible */
-    toggle_weight_loss_view(true);
+    update_results_section();
 
 }
 void MainWindow::on_sedentaryButton_clicked(){
@@ -394,13 +392,17 @@ void MainWindow::update_bmi_tags(){
 void MainWindow::update_circular_calorie_charts(){
 
     double currentCalorieIntake = this->userInfoObject->get_calorie_intake();
+    double bmiPercentile = this->userInfoObject->get_bmi_percentile();
+
+    /* Goal is to update charts simulatenously. One option is to use multithreading... */
 
     for(int i = 0; i < currentCalorieIntake; ++i){
 
         ui->currCalorieCircularChart->setValue(i);
+        ui->bmiPercentileChart->setValue(i);
 
         /* Only repaint every 100 vals so animation is faster */
-        if(i % 50 == 0){
+        if(i % 100 == 0){
             ui->currCalorieCircularChart->repaint();
         }
     }
@@ -415,7 +417,8 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
     QWidget * uiUpdateList[] = {ui->sedentaryButton, ui->mildButton, ui->moderateButton, ui->heavyButton,
                                 ui->maintainWeightLabel, ui->loseFivePoundsLabel, ui->loseTenPoundsLabel,
                                 ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
-                                ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->progCircChart, ui->lineAboveWeightLossLabel};
+                                ui->calLabel1, ui->calLabel2, ui->calLabel3,
+                                ui->lineAboveWeightLossLabel, ui->bmiPercentileChart};
 
     if(viewFull == true){
          for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
@@ -423,6 +426,7 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
          }
 
          ui->calorieIntakeBeforeCalculationLabel->setVisible(false);
+         ui->bmiPercentileBeforeCalculationLabel->setVisible(false);
 
     }else{
         for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
@@ -430,7 +434,19 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
         }
 
         ui->calorieIntakeBeforeCalculationLabel->setVisible(true);
+        ui->bmiPercentileBeforeCalculationLabel->setVisible(true);
     }
+}
+void MainWindow::update_results_section(){
+    /* Update overweight label and lose pounds label */
+    pInfoResultsHelper * pObj = new pInfoResultsHelper();
+    ui->overweightLabel->setText(QString::fromStdString(pObj->is_threshold(this->userInfoObject->get_bmi())));
+
+    double currentWeightPounds = this->userInfoObject->get_weight_pounds();
+    double currentHeightFeet = this->userInfoObject->get_height_feet() + (this->userInfoObject->get_height_inches())/12.0;
+    ui->losePoundsLabel->setText(QString::fromStdString(pObj->get_healthy_weight_statement(currentWeightPounds,currentHeightFeet)));
+
+
 }
 void MainWindow::configure_BMI_chart(){
 

@@ -24,6 +24,7 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/nutritiontracker.cpp \
+    src/pinforesultshelper.cpp \
     src/userinformation.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     include/calorieexercisechart.h \
     include/mainwindow.h \
     include/nutritiontracker.h \
+    include/pinforesultshelper.h \
     include/userinformation.h \
     libs/include/circularprogress.h \
     libs/include/circularprogressplugin.h \

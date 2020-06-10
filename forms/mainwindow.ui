@@ -1251,14 +1251,27 @@
        <property name="title">
         <string/>
        </property>
-       <widget class="QChartView" name="bmiPercentileChartView">
+       <widget class="CircularProgress" name="bmiPercentileChart" native="true">
         <property name="geometry">
          <rect>
-          <x>25</x>
-          <y>25</y>
-          <width>150</width>
-          <height>120</height>
+          <x>50</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="bmiPercentileBeforeCalculationLabel">
+        <property name="geometry">
+         <rect>
+          <x>6</x>
+          <y>60</y>
+          <width>191</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter User Info to See Results!</string>
         </property>
        </widget>
       </widget>
@@ -1274,14 +1287,95 @@
        <property name="title">
         <string/>
        </property>
-       <widget class="ProgressCircle" name="progCircChart" native="true">
+       <widget class="QLabel" name="userWeightStatusLabel">
         <property name="geometry">
          <rect>
-          <x>29</x>
-          <y>29</y>
-          <width>301</width>
-          <height>211</height>
+          <x>300</x>
+          <y>50</y>
+          <width>30</width>
+          <height>30</height>
          </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="resultsHeader">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>61</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Results </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="accordingStatementLabel">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>63</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>According to your BMI, you are ...</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="healthyRangeStatementLabel">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>144</y>
+          <width>201</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>To be in the healthy weight range ...</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="overweightLabel">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>100</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="losePoundsLabel">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>180</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="overweightStripe">
+        <property name="geometry">
+         <rect>
+          <x>286</x>
+          <y>3</y>
+          <width>41</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
@@ -1886,12 +1980,6 @@
    <class>CircularProgress</class>
    <extends>QWidget</extends>
    <header>../libs/include/circularprogress.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ProgressCircle</class>
-   <extends>QWidget</extends>
-   <header location="global">../libs/include/progresscircle.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

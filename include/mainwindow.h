@@ -6,8 +6,10 @@
 #include <../include/calorieexercisechart.h>
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
+#include<../include/pinforesultshelper.h>
 #include<../libs/include/circularprogress.h>
 #include<../libs/include/progresscircle.h>
+
 
 
 QT_BEGIN_NAMESPACE
@@ -63,6 +65,7 @@ public:
     void update_bmi_tags();
     void update_circular_calorie_charts();
     void update_weight_loss_labels();
+    void update_results_section();
     void toggle_weight_loss_view(bool viewFull);
 
 
