@@ -271,7 +271,22 @@ void MainWindow::on_mildButton_clicked(){
 
     QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
     QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
-  
+    ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->mildButton->setStyleSheet(selectedButtonStyleSheet);
+    ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
+    ui->heavyButton->setStyleSheet(unselectedButtonStyleSheet);
+
+    /*Update weight loss labels using calorie exercise map */
+    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(0)->second);
+    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(5)->second);
+    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(10)->second);
+
+    ui->maintainWeightLabel->setText(maintainCalories);
+    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
+    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
+
+
+}
 /*button click events for nutrition tracker window*/
 
 void MainWindow::on_meatButton_clicked()
@@ -331,21 +346,7 @@ void MainWindow::on_clearButton_clicked()
 }
 
 /* Non Event Functions */
-    ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
-    ui->mildButton->setStyleSheet(selectedButtonStyleSheet);
-    ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
-    ui->heavyButton->setStyleSheet(unselectedButtonStyleSheet);
 
-    /*Update weight loss labels using calorie exercise map */
-    QString maintainCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(0)->second);
-    QString fivePoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(5)->second);
-    QString tenPoundLossCalories = QString::number(((this->userInfoObject->get_exercise_calories_map()).find("Mild")->second).find(10)->second);
-
-    ui->maintainWeightLabel->setText(maintainCalories);
-    ui->loseFivePoundsLabel->setText(fivePoundLossCalories);
-    ui->loseTenPoundsLabel->setText(tenPoundLossCalories);
-
-}
 void MainWindow::on_moderateButton_clicked(){
 
     QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
