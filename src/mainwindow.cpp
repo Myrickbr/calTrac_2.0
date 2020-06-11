@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiPChartObject = new bmiPercentileChart();
     this->calorieExerciseObject = new calorieExerciseChart();
     this->bmiResultsChart = new QChart();
+    this->list = new nutritionTracker();
+
     QWidget * circWidget = new QWidget();
     //this->progressCircleObject = ui->progCircChart;
     /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
@@ -54,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->daysExerciseSlider, SIGNAL(valueChanged(int)), this, SLOT(displayDaysExerciseValue()));
     connect(ui->heightFeetBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
     connect(ui->heightInchesBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
+
 }
 MainWindow::~MainWindow()
 {
@@ -144,7 +147,9 @@ void MainWindow::on_dailyCalendarButton_clicked()
 {
    ui->stackedWidget->setCurrentIndex(2);
 }
-
+void MainWindow::testUpdateIndex(){
+    ui->testLabel->setText("WORKED");
+}
 
 void MainWindow::on_nutritionTrackerButton_clicked()
 {
@@ -266,7 +271,66 @@ void MainWindow::on_mildButton_clicked(){
 
     QString selectedButtonStyleSheet = "border-color: #5EA0EB; background-color: #D8EEFF";\
     QString unselectedButtonStyleSheet = "background-color: #F6F6F6;border: 1px solid rgba(112,112,112,0.5);";
+  
+/*button click events for nutrition tracker window*/
 
+void MainWindow::on_meatButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Meat));
+    list->setFoodType(nutritionTracker::FoodOptions::Meat);
+}
+void MainWindow::on_dairyButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Dairy));
+    list->setFoodType(nutritionTracker::FoodOptions::Dairy);
+}
+void MainWindow::on_carbButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Carbs));
+    list->setFoodType(nutritionTracker::FoodOptions::Carbs);
+}
+void MainWindow::on_vegButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Veg));
+    list->setFoodType(nutritionTracker::FoodOptions::Veg);
+}
+void MainWindow::on_otherButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Other));
+    list->setFoodType(nutritionTracker::FoodOptions::Other);
+}
+void MainWindow::on_addButton_clicked()
+{
+    QString currentFoodItem = ui->foodListCBox->currentText();
+    //std::vector<nutritionTracker::foodData> foodItems = list->getFoodMapItems(list->getFoodType());
+    ui->foodListEntries->addItem(currentFoodItem);
+    ui->foodServingEntries->addItem(ui->servingCBox->currentText());
+    for(unsigned int i = 0; i < list->getFoodMapItems(list->getFoodType()).size();i++){
+        if(currentFoodItem.toStdString().compare(list->getFoodMapItems(list->getFoodType()).at(i).descrip)==0){
+            totalCals += list->getFoodMapItems(list->getFoodType()).at(i).cal;
+            break;
+        }
+    }
+    ui->calCountLabel->setText(QString::number(totalCals));
+    //for(int i = 0; i < ui->)
+    //tempTotalCals += ui->foodListCBox->currentText()
+    //ui->calCountLabel->setText(QString::number());
+
+}
+void MainWindow::on_clearButton_clicked()
+{
+    totalCals = 0;
+    ui->calCountLabel->setText(QString::number(0));
+    ui->foodListEntries->clear();
+    ui->foodServingEntries->clear();
+}
+
+/* Non Event Functions */
     ui->sedentaryButton->setStyleSheet(unselectedButtonStyleSheet);
     ui->mildButton->setStyleSheet(selectedButtonStyleSheet);
     ui->moderateButton->setStyleSheet(unselectedButtonStyleSheet);
@@ -326,6 +390,7 @@ void MainWindow::on_heavyButton_clicked(){
 /* ------------------------------------------- */
 /* ---------  Non Event Functions  ----------- */
 /* ------------------------------------------- */
+
 
 void MainWindow::displayWeightValue(){
     //Retrieve value from slider, convert to qstring
@@ -693,6 +758,11 @@ void MainWindow::calculate_current_calorie_intake()
 
     this->userInfoObject->calculate_basal_metabolic_rate();
 }
+
+
+
+
+
 
 
 

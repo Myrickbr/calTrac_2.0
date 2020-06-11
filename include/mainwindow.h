@@ -8,9 +8,8 @@
 #include<../include/bmipercentilechart.h>
 #include<../include/pinforesultshelper.h>
 #include<../libs/include/circularprogress.h>
+#include <../include/nutritiontracker.h>
 #include<../libs/include/progresscircle.h>
-
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -68,8 +67,6 @@ public:
     void update_results_section();
     void toggle_weight_loss_view(bool viewFull);
 
-
-
 private slots:
 
     void displayWeightValue();
@@ -79,6 +76,9 @@ private slots:
     void displayDaysExerciseValue();
 
     void updateHeightValue();
+
+
+    void testUpdateIndex();
 
     void on_back_Button_Tracker_clicked();
 
@@ -106,6 +106,15 @@ private slots:
 
     void on_heavyButton_clicked();
 
+    void on_meatButton_clicked();
+    void on_dairyButton_clicked();
+    void on_carbButton_clicked();
+    void on_vegButton_clicked();
+    void on_otherButton_clicked();
+    void on_addButton_clicked();
+
+    void on_clearButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -119,12 +128,15 @@ private:
     double height_In_Inches;
     double age_In_Years;
     int exercise_Days_Per_Week;
+    int totalCals = 0;
     double * bmiValuesMale;
     double * bmiValuesFemale;
     QChart * bmiResultsChart;
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
+
+    nutritionTracker * list;
     calorieExerciseChart * calorieExerciseObject;
     ProgressCircle * progressCircleObject;
 
