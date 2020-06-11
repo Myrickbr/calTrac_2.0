@@ -6,8 +6,11 @@
 #include <../include/calorieexercisechart.h>
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
+#include<../include/pinforesultshelper.h>
 #include<../libs/include/circularprogress.h>
 #include <../include/nutritiontracker.h>
+#include<../libs/include/progresscircle.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -53,20 +56,18 @@ public:
     /* Other Functions */
     void configure_BMI_chart();
     void configure_calorie_exercise_chart();
+    void configure_button_stylesheets();
     void calculate_BMI_percentile();
     void read_bmi_text_file(std::string maleFileName, std::string femaleFileName);
     bool check_user_input();
     void plot_user_point();
     void update_bmi_tags();
     void update_circular_calorie_charts();
+    void update_weight_loss_labels();
+    void update_results_section();
+    void toggle_weight_loss_view(bool viewFull);
 
 private slots:
-
-    void on_back_Button_Tracker_clicked();
-
-    void on_back_Button_Calculator_clicked();
-
-    void calculate_current_calorie_intake();
 
     void displayWeightValue();
 
@@ -76,7 +77,14 @@ private slots:
 
     void updateHeightValue();
 
+
     void testUpdateIndex();
+
+    void on_back_Button_Tracker_clicked();
+
+    void on_back_Button_Calculator_clicked();
+
+    void calculate_current_calorie_intake();
 
     void on_personalOverviewButton_clicked();
 
@@ -90,6 +98,13 @@ private slots:
 
     void on_calculateResultsButton_clicked();
 
+    void on_sedentaryButton_clicked();
+
+    void on_mildButton_clicked();
+
+    void on_moderateButton_clicked();
+
+    void on_heavyButton_clicked();
 
     void on_meatButton_clicked();
     void on_dairyButton_clicked();
@@ -117,13 +132,13 @@ private:
     double * bmiValuesMale;
     double * bmiValuesFemale;
     QChart * bmiResultsChart;
-    QChart * calorieExerciseChart;
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
+
     nutritionTracker * list;
-    CircularProgress * circularProgressObject;
-    class calorieExerciseChart * calorieExerciseObject;
+    calorieExerciseChart * calorieExerciseObject;
+    ProgressCircle * progressCircleObject;
 
 };
 #endif // MAINWINDOW_H

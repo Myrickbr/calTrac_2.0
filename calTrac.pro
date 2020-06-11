@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     libs/src/circularprogress.cpp \
     libs/src/circularprogressplugin.cpp \
+    libs/src/progresscircle.cpp \
     src/bmipercentilechart.cpp \
     src/calorieexercisechart.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/nutritiontracker.cpp \
+    src/pinforesultshelper.cpp \
     src/userinformation.cpp
 
 HEADERS += \
@@ -30,9 +32,11 @@ HEADERS += \
     include/calorieexercisechart.h \
     include/mainwindow.h \
     include/nutritiontracker.h \
+    include/pinforesultshelper.h \
     include/userinformation.h \
     libs/include/circularprogress.h \
-    libs/include/circularprogressplugin.h
+    libs/include/circularprogressplugin.h \
+    libs/include/progresscircle.h
 
 FORMS += \
     forms/mainwindow.ui
