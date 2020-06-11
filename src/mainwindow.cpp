@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->bmiResultsChart = new QChart();
     this->calorieExerciseChart = new QChart();
     this->calorieExerciseObject = new class calorieExerciseChart();
+    this->list = new nutritionTracker();
     QWidget * circWidget = new QWidget();
     this->circularProgressObject = new CircularProgress(circWidget);
     /* Set up BMI Results Chart, BMI Percentile Chart, and Calorie Exercise Chart */
@@ -50,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->daysExerciseSlider, SIGNAL(valueChanged(int)), this, SLOT(displayDaysExerciseValue()));
     connect(ui->heightFeetBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
     connect(ui->heightInchesBox, SIGNAL(currentTextChanged(QString)), this, SLOT(updateHeightValue()));
+
 }
 MainWindow::~MainWindow()
 {
@@ -130,6 +132,8 @@ void MainWindow::setMaleCheck(bool tOf){
 void MainWindow::setFemaleCheck(bool tOf){
     this->femaleChecked = tOf;
 }
+
+
 // Here are the button click events...
 // The stacked widget contains all the scenes for the application,
 // we are resetting the index after pressing the corresponding button.
@@ -137,7 +141,9 @@ void MainWindow::on_dailyCalendarButton_clicked()
 {
    ui->stackedWidget->setCurrentIndex(2);
 }
-
+void MainWindow::testUpdateIndex(){
+    ui->testLabel->setText("WORKED");
+}
 
 void MainWindow::on_nutritionTrackerButton_clicked()
 {
@@ -219,6 +225,64 @@ void MainWindow::on_calculateResultsButton_clicked()
     this->userInfoObject->calculate_current_calorie_intake();
     update_circular_calorie_charts();
 
+}
+
+/*button click events for nutrition tracker window*/
+
+void MainWindow::on_meatButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Meat));
+    list->setFoodType(nutritionTracker::FoodOptions::Meat);
+}
+void MainWindow::on_dairyButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Dairy));
+    list->setFoodType(nutritionTracker::FoodOptions::Dairy);
+}
+void MainWindow::on_carbButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Carbs));
+    list->setFoodType(nutritionTracker::FoodOptions::Carbs);
+}
+void MainWindow::on_vegButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Veg));
+    list->setFoodType(nutritionTracker::FoodOptions::Veg);
+}
+void MainWindow::on_otherButton_clicked()
+{
+    ui->foodListCBox->clear();
+    ui->foodListCBox->addItems(list->getFoodList(nutritionTracker::FoodOptions::Other));
+    list->setFoodType(nutritionTracker::FoodOptions::Other);
+}
+void MainWindow::on_addButton_clicked()
+{
+    QString currentFoodItem = ui->foodListCBox->currentText();
+    //std::vector<nutritionTracker::foodData> foodItems = list->getFoodMapItems(list->getFoodType());
+    ui->foodListEntries->addItem(currentFoodItem);
+    ui->foodServingEntries->addItem(ui->servingCBox->currentText());
+    for(unsigned int i = 0; i < list->getFoodMapItems(list->getFoodType()).size();i++){
+        if(currentFoodItem.toStdString().compare(list->getFoodMapItems(list->getFoodType()).at(i).descrip)==0){
+            totalCals += list->getFoodMapItems(list->getFoodType()).at(i).cal;
+            break;
+        }
+    }
+    ui->calCountLabel->setText(QString::number(totalCals));
+    //for(int i = 0; i < ui->)
+    //tempTotalCals += ui->foodListCBox->currentText()
+    //ui->calCountLabel->setText(QString::number());
+
+}
+void MainWindow::on_clearButton_clicked()
+{
+    totalCals = 0;
+    ui->calCountLabel->setText(QString::number(0));
+    ui->foodListEntries->clear();
+    ui->foodServingEntries->clear();
 }
 
 /* Non Event Functions */
@@ -487,6 +551,11 @@ void MainWindow::calculate_current_calorie_intake()
 
     this->userInfoObject->calculate_basal_metabolic_rate();
 }
+
+
+
+
+
 
 
 

@@ -48,4 +48,5 @@ RESOURCES += \
 DISTFILES += \
     data/bmiPercentileDataFemale.txt \
     data/bmiPercentileDataMale.txt \
+    data/testFile.csv \
     stylesheets/stylesheets.css

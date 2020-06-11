@@ -1,3 +1,39 @@
+/* Common to all windows */
+#userInfoBox, #bmiResultsBox, #calorieIntakeBox, #bmiValueBox, #bmiPercentileBox, #bmiPercentileChartBox, #foodListBox,
+#foodSelectBox, #calCountBox, #breakdownBox {
+    background-color: white;
+    border-radius: 5px; /* Makes rounded corners */
+    border: none;
+    padding: 4px;
+    width: 200px;
+    height: 150px;
+    box-shadow: 10px 10px 5px grey;
+}
+#addButton, #calculateResultsButton {
+    background-color: #A2C6F3;
+    border-radius: 5px;
+    border: none;
+    font: 12px solid 'Candara';
+    font-weight: bold;
+    color: white;
+}
+#maleButton,#femaleButton, #meatButton, #dairyButton, #vegButton,
+#carbButton, #otherButton {
+    background-color: #F6F6F6;
+    border: 1px solid rgba(112,112,112,0.5);
+    border-radius: 5px;
+    padding: 4px;
+    padding-top: 48px;
+    font: solid 'Candara';
+    font-size: 14px;
+    color: #7C7C7C;
+}
+#userInfoHeader, #bmiPercentileHeader, #calorieIntakeHeader, #foodListHeader,
+#calCountHeader, #foodSelectHeader{
+    font: 12pt 'Candara';
+    color: #707070;
+}
+
 /* Sidebar and Header Stylesheets Page 1*/
 #sidebar {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
@@ -67,19 +103,8 @@ QPushButton {
 #lineOne, #lineTwo, #lineThree, #lineFour{
     border: 2px solid rgba(242, 238, 238, 0.05);
 }
-#userInfoBox, #bmiResultsBox, #calorieIntakeBox, #bmiValueBox, #bmiPercentileBox, #bmiPercentileChartBox {
-    background-color: white;
-    border-radius: 5px; /* Makes rounded corners */
-    border: none;
-    padding: 4px;
-    width: 200px;
-    height: 150px;
-    box-shadow: 10px 10px 5px grey;
-}
-#userInfoHeader, #bmiPercentileHeader, #calorieIntakeHeader{
-    font: 12pt 'Candara';
-    color: #707070;
-}
+
+
 #lineBelowUserInfo, #aboveDaysExerciseDiv, #lineBelowExercise, #lineBelowBMIResults, #lineBelowCalorieIntake{
     border-color: #E2E2E2;
 }
@@ -101,16 +126,7 @@ QPushButton {
     font: 10pt 'Candara';
     color: #6C6868;
 }
-#maleButton,#femaleButton{
-    background-color: #F6F6F6;
-    border: 1px solid rgba(112,112,112,0.5);
-    border-radius: 5px;
-    padding: 4px;
-    padding-top: 48px;
-    font: solid 'Candara';
-    font-size: 14px;
-    color: #7C7C7C;
-}
+
 #bmiValueLabel, #bmiPercentileLabel{
     font: 24pt 'Candara';
     color: #656464;
@@ -174,14 +190,7 @@ background: #eee;
 border: none;
 border-radius: 4px;
 }
-#calculateResultsButton{
-    background-color: #A2C6F3;
-    border-radius: 5px;
-    border: none;
-    font: 12px solid 'Candara';
-    font-weight: bold;
-    color: white;
-}
+
 #back_Button_Tracker{
     background-color: red;
 }
@@ -189,6 +198,7 @@ border-radius: 4px;
 
 /* StyleSheets Page 2 (Nutrition Tracker) */
 /* -------------------------------------- */
+
 #sidebar_2 {
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
                 stop:0 #5D73A6, stop: 0.5 #45577D, stop:0.75 #394968, stop: 1 #31405B)

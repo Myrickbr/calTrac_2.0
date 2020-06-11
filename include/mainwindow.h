@@ -7,8 +7,7 @@
 #include<../include/userinformation.h>
 #include<../include/bmipercentilechart.h>
 #include<../libs/include/circularprogress.h>
-
-
+#include <../include/nutritiontracker.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -61,7 +60,6 @@ public:
     void update_bmi_tags();
     void update_circular_calorie_charts();
 
-
 private slots:
 
     void on_back_Button_Tracker_clicked();
@@ -78,6 +76,8 @@ private slots:
 
     void updateHeightValue();
 
+    void testUpdateIndex();
+
     void on_personalOverviewButton_clicked();
 
     void on_nutritionTrackerButton_clicked();
@@ -90,6 +90,15 @@ private slots:
 
     void on_calculateResultsButton_clicked();
 
+
+    void on_meatButton_clicked();
+    void on_dairyButton_clicked();
+    void on_carbButton_clicked();
+    void on_vegButton_clicked();
+    void on_otherButton_clicked();
+    void on_addButton_clicked();
+
+    void on_clearButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -104,6 +113,7 @@ private:
     double height_In_Inches;
     double age_In_Years;
     int exercise_Days_Per_Week;
+    int totalCals = 0;
     double * bmiValuesMale;
     double * bmiValuesFemale;
     QChart * bmiResultsChart;
@@ -111,6 +121,7 @@ private:
 
     userInformation * userInfoObject;
     bmiPercentileChart * bmiPChartObject;
+    nutritionTracker * list;
     CircularProgress * circularProgressObject;
     class calorieExerciseChart * calorieExerciseObject;
 
