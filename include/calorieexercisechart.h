@@ -11,6 +11,7 @@ public:
     /* Enumerations and Constants */
     const double HEIGHT_PIXELS = 250.0;
     const double WIDTH_PIXELS = 450.0;
+    const int LABEL_FONT_SIZE = 9;
 
     /* Constructors */
     calorieExerciseChart();
@@ -34,6 +35,7 @@ private:
     QBarSet * noPoundLossSet;
     QBarSet * fivePoundLossSet;
     QBarSet * tenPoundLossSet;
+    QFont *labelFont;
 
 };
 

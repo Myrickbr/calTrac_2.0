@@ -49,6 +49,7 @@ public slots:
     void setRange(int min, int max);
     void setBgColor(QColor bgcolor);
     void setValueColor(QColor valuecolor);
+    void setTextColor(QColor textColor);
     void setBarWidth(int bwidth);
     void setTextVisible(bool visible = true);
     void setInfinityMode(bool infinite);
@@ -60,7 +61,7 @@ protected:
 private:
     QPropertyAnimation *m_animation;
     ProgressType m_progressType;
-    QColor m_bgColor, m_valueColor;
+    QColor m_bgColor, m_valueColor, m_textColor;
     int m_min, m_max, m_value;
     int m_startAngle, m_barWidth;
     bool m_showTextPercent, m_infinityMode;

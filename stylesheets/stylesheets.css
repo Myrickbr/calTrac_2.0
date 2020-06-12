@@ -136,7 +136,8 @@ QPushButton {
     color: #757575;
 }
 #heightLabel, #ageLabel, #weightLabel, #genderLabel, #daysExerciseLabel,
-#bmiValueText, #bmiPercentileText, #accordingStatementLabel, #healthyRangeStatementLabel {
+#bmiValueText, #bmiPercentileText, #accordingStatementLabel,
+#healthyRangeStatementLabel, #bmiPercentileChartText {
     font: 10pt 'Candara';
     color: #6C6868;
 }
@@ -169,6 +170,14 @@ QPushButton {
 }
 #bmiPercentileBeforeCalculationLabel{
     font: 10pt 'Candara';
+    color: #C4C4C4;
+    background: #F7F5F5;
+    text-align: center;
+    border-radius: 8px;
+    padding-left: 4px;
+}
+#resultsBeforeCalculationLabel{
+    font: 14pt 'Candara';
     color: #C4C4C4;
     background: #F7F5F5;
     text-align: center;
@@ -210,6 +219,10 @@ QPushButton {
 #calLabel1, #calLabel2, #calLabel3{
     font: 11pt 'Candara';
     color: #c7c5c5;
+}
+#calorieExerciseChartTitle{
+    font: 12pt 'Candara';
+    color: #878787;
 }
 
 #personalOverviewMain{

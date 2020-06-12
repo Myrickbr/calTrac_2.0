@@ -19,19 +19,29 @@ calorieExerciseChart::calorieExerciseChart()
     this->noPoundLossSet= new QBarSet("Maintain");
     this->fivePoundLossSet = new QBarSet("Five Lbs Loss");
     this->tenPoundLossSet = new QBarSet("Ten Lbs Loss");
-
-
-    this->chart->setTitle("Weight Loss Chart");
+    this->labelFont = new QFont("Candara");
 
     /* Set animation styles */
+
     this->chart->setAnimationOptions(QChart::AllAnimations);
     *this->categories << "Sedentary" << "Mild" << "Moderate" << "Heavy";
     QBarCategoryAxis * axisX = new QBarCategoryAxis();
+    QValueAxis * axisY = new QValueAxis();
+
+    labelFont->setPointSize(LABEL_FONT_SIZE);
+    axisX->setLabelsFont(*labelFont);
+    axisY->setRange(0, 3500);
+    axisY->setMin(0);
+    axisY->setMax(3500);
+    axisY->setTickCount(7);
 
     axisX->append(*categories);
-    this->chart->setAxisX(axisX, this->series);
+    this->chart->setAxisX(axisX);
+    this->chart->setAxisY(axisY);
     this->chart->legend()->setVisible(true);
     this->chart->legend()->setAlignment(Qt::AlignBottom);
+    this->series->attachAxis(axisX);
+    this->series->attachAxis(axisY);
 }
 const double & calorieExerciseChart::get_height_pixels(){
     return this->heightPixels;
@@ -69,6 +79,14 @@ void calorieExerciseChart::update_chart(std::map<std::string,std::map<int,double
 
     double calVal0 = (calorieExerciseMap.find("Sedentary")->second).find(0)->second;
     double calVal1 = (calorieExerciseMap.find("Mild")->second).find(0)->second;
+
+    QColor noPoundLossColor(3, 132, 252);
+    QColor fivePoundLossColor(52, 153, 247);
+    QColor tenPoundLossColor(74, 168, 255);
+
+    this->noPoundLossSet->setColor(noPoundLossColor);
+    this->fivePoundLossSet->setColor(fivePoundLossColor);
+    this->tenPoundLossSet->setColor(tenPoundLossColor);
 
     this->series->append(noPoundLossSet);
     this->series->append(fivePoundLossSet);

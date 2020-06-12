@@ -6,8 +6,9 @@ CircularProgress::CircularProgress(QWidget *parent)
     : QWidget(parent)
     , m_animation(new QPropertyAnimation(this, "startAngle"))
     , m_progressType(CircularProgress::Ellipse)
-    , m_bgColor(QColor("dimgrey"))
+    , m_bgColor(QColor(199, 199, 199))
     , m_valueColor(QColor("cornflowerblue"))
+    , m_textColor(QColor(124,124,124))
     , m_min(0)
     , m_max(3500)
     , m_value(0)
@@ -92,7 +93,10 @@ void CircularProgress::setValueColor(QColor valuecolor)
     m_valueColor = valuecolor;
     update();
 }
-
+void CircularProgress::setTextColor(QColor textcolor){
+    m_textColor = textcolor;
+    update();
+}
 int CircularProgress::getBarWidth() const
 {
     return m_barWidth;
@@ -176,12 +180,16 @@ void CircularProgress::paintEvent(QPaintEvent *event){
     // draw value text
     if (m_showTextPercent){
         font.setPointSize(rectArea.width()/4);
+        font.setFamily("Candara");
+        QPen textPen = painter.pen();
+        textPen.setColor(m_textColor);
+        painter.setPen(textPen);
         painter.setFont(font);
         painter.drawText(rect(), Qt::AlignCenter, (m_infinityMode ? "∞" : QString::number(m_value)));
     }
     // draw value arc
     pen.setColor(m_valueColor);
-    pen.setWidth(m_barWidth-m_barWidth/3);
+    pen.setWidth(m_barWidth-m_barWidth/10);
     painter.setPen(pen);
     painter.drawArc(rectArea, m_startAngle, -angle);
 }

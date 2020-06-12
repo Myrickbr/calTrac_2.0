@@ -38,7 +38,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="mainWindow">
      <widget class="QGroupBox" name="sidebar">
@@ -912,10 +912,10 @@
        <widget class="CircularProgress" name="currCalorieCircularChart" native="true">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>30</x>
           <y>50</y>
-          <width>90</width>
-          <height>90</height>
+          <width>75</width>
+          <height>75</height>
          </rect>
         </property>
        </widget>
@@ -929,13 +929,13 @@
          </rect>
         </property>
        </widget>
-       <widget class="CircularProgress" name="testWidget2" native="true">
+       <widget class="CircularProgress" name="loseFiveCircularChart" native="true">
         <property name="geometry">
          <rect>
-          <x>210</x>
+          <x>140</x>
           <y>50</y>
-          <width>90</width>
-          <height>90</height>
+          <width>75</width>
+          <height>75</height>
          </rect>
         </property>
        </widget>
@@ -1034,7 +1034,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>179</y>
+          <y>100</y>
           <width>361</width>
           <height>131</height>
          </rect>
@@ -1132,6 +1132,29 @@
         </property>
         <property name="text">
          <string>Cal</string>
+        </property>
+       </widget>
+       <widget class="CircularProgress" name="loseTenCircularChart" native="true">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>50</y>
+          <width>75</width>
+          <height>75</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="calorieExerciseChartTitle">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>10</y>
+          <width>161</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Calorie Exercise Chart</string>
         </property>
        </widget>
       </widget>
@@ -1255,7 +1278,7 @@
         <property name="geometry">
          <rect>
           <x>50</x>
-          <y>30</y>
+          <y>40</y>
           <width>100</width>
           <height>100</height>
          </rect>
@@ -1272,6 +1295,19 @@
         </property>
         <property name="text">
          <string>Enter User Info to See Results!</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="bmiPercentileChartText">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>131</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>BMI Percentile Chart</string>
         </property>
        </widget>
       </widget>
@@ -1363,6 +1399,19 @@
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="resultsBeforeCalculationLabel">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>83</y>
+          <width>321</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter User Information to See Results!</string>
         </property>
        </widget>
       </widget>
@@ -2283,7 +2332,7 @@
      <x>0</x>
      <y>0</y>
      <width>1600</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

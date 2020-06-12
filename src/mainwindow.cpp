@@ -483,8 +483,9 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
     QWidget * uiUpdateList[] = {ui->sedentaryButton, ui->mildButton, ui->moderateButton, ui->heavyButton,
                                 ui->maintainWeightLabel, ui->loseFivePoundsLabel, ui->loseTenPoundsLabel,
                                 ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
-                                ui->calLabel1, ui->calLabel2, ui->calLabel3,
-                                ui->lineAboveWeightLossLabel, ui->bmiPercentileChart};
+                                ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->lineAboveWeightLossLabel,
+                                ui->bmiPercentileChart, ui->currCalorieCircularChart, ui->loseFiveCircularChart,
+                                ui->loseTenCircularChart, ui->accordingStatementLabel, ui->healthyRangeStatementLabel};
 
     if(viewFull == true){
          for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
@@ -493,6 +494,7 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
 
          ui->calorieIntakeBeforeCalculationLabel->setVisible(false);
          ui->bmiPercentileBeforeCalculationLabel->setVisible(false);
+         ui->resultsBeforeCalculationLabel->setVisible(false);
 
     }else{
         for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){
@@ -501,6 +503,8 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
 
         ui->calorieIntakeBeforeCalculationLabel->setVisible(true);
         ui->bmiPercentileBeforeCalculationLabel->setVisible(true);
+        ui->resultsBeforeCalculationLabel->setVisible(true);
+
     }
 }
 void MainWindow::update_results_section(){
@@ -561,14 +565,18 @@ void MainWindow::configure_BMI_chart(){
     this->bmiResultsChart->setTitle("Customchart example");
 
     /* Custom grid line */
-    QCategoryAxis *axisX = new QCategoryAxis();
-    QCategoryAxis *axisY = new QCategoryAxis();
+    //QCategoryAxis *axisX = new QCategoryAxis();
+    //QCategoryAxis *axisY = new QCategoryAxis();
+
+    QValueAxis * axisX = new QValueAxis();
+    QValueAxis *axisY = new QValueAxis();
 
     // Customize axis label font
     QFont labelsFont;
     labelsFont.setPixelSize(12);
     axisX->setLabelsFont(labelsFont);
     axisY->setLabelsFont(labelsFont);
+    //axisY->setLabe
 
     // Customize axis colors
     QPen axisPen(QRgb(0xd18952));
@@ -596,6 +604,8 @@ void MainWindow::configure_BMI_chart(){
     QFont serifFont("Candara", 16, QFont::Bold);
     //axisX->setLabelsFont(serifFont);
     //axisY->setLabelsFont(serifFont);
+    axisX->applyNiceNumbers();
+    axisY->applyNiceNumbers();
 
     this->bmiResultsChart->setAnimationOptions(QChart::AllAnimations);
     this->bmiResultsChart->addAxis(axisX, Qt::AlignBottom);
@@ -739,13 +749,12 @@ bool MainWindow::check_user_input(){
 void MainWindow::plot_user_point(){
     /* This function plots the user bmi point on the bmi results chart */
 
-    QScatterSeries * userPoint = new QScatterSeries();
+    QLineSeries * userPoint = new QLineSeries();
     double xCoord = this->userInfoObject->get_bmi_percentile();
     double yCoord = this->userInfoObject->get_bmi();
-    userPoint->append(20,20);
     //userPoint->append(20,30);
     //userPoint->append(20,10);
-    userPoint->append(15,15);
+    //userPoint->append(15,15);
     userPoint->setColor(Qt::darkBlue);
     QPen pen(Qt::darkBlue,2);
     userPoint->setPen(pen);
