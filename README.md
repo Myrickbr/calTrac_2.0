@@ -21,3 +21,5 @@ To install QT Creator on Windows, it is best to follow the steps provided in: ht
 2. Install QT Creator 4.11.0 (See Prereqs Above)
 3. Turn **Shadow Build** off in project settings
 
+<img src="/screenshots/projectClick.gif" width="300" height="375" /> ! <img src="/screenshots/shadowBuildClick.gif" width="600" height="375" />
+
