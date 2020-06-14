@@ -36,8 +36,8 @@ calorieExerciseChart::calorieExerciseChart()
     axisY->setTickCount(7);
 
     axisX->append(*categories);
-    this->chart->setAxisX(axisX);
-    this->chart->setAxisY(axisY);
+    this->chart->addAxis(axisX, Qt::AlignBottom);
+    this->chart->addAxis(axisY, Qt::AlignLeft);
     this->chart->legend()->setVisible(true);
     this->chart->legend()->setAlignment(Qt::AlignBottom);
     this->series->attachAxis(axisX);
