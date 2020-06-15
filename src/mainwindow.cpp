@@ -10,7 +10,7 @@
 #include <fstream>
 #include <string>
 #include <unistd.h>
-#include <pthread.h>
+#include <QThread>
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -232,7 +232,7 @@ void MainWindow::on_calculateResultsButton_clicked()
 
     this->userInfoObject->calculate_basal_metabolic_rate();
     this->userInfoObject->calculate_current_calorie_intake();
-    update_circular_calorie_charts();
+
 
     /* Update Calorie/Exercise/Weight Loss Chart */
     /* Need to create new chart object to update chart */
@@ -242,6 +242,7 @@ void MainWindow::on_calculateResultsButton_clicked()
     configure_calorie_exercise_chart();
 
     update_results_section();
+    update_circular_calorie_charts();
 
 }
 void MainWindow::on_sedentaryButton_clicked(){
@@ -455,24 +456,87 @@ void MainWindow::update_bmi_tags(){
 
 
 }
+//void MainWindow::paint_circ_chart(MainWindow::CircularChartType chartType){
+//    double currentCalorieIntake = this->userInfoObject->get_calorie_intake();
+//    double bmiPercentile = this->userInfoObject->get_bmi_percentile();
+
+//    switch(chartType){
+//        case MainWindow::CircularChartType::BmiPercentile:
+//            for(int i = 0; i < bmiPercentile; ++i){
+//                ui->bmiPercentileChart->setValue(i);
+
+//                /* Only repaint every 5 vals so animation is faster */
+//                if(i % 5 == 0){
+//                    ui->bmiPercentileChart->repaint();
+//                }
+//            }
+//            ui->bmiPercentileChart->repaint();
+//        case MainWindow::CircularChartType::MaintainWeight:
+//            printf("Hello");
+//        case MainWindow::CircularChartType::LoseFivePounds:
+//            printf("Hello");
+//        case MainWindow::CircularChartType::loseTenPounds:
+//            printf("Hello");
+//        default:
+//            printf("Error");
+//    }
+//}
 void MainWindow::update_circular_calorie_charts(){
 
     double currentCalorieIntake = this->userInfoObject->get_calorie_intake();
     double bmiPercentile = this->userInfoObject->get_bmi_percentile();
 
     /* Goal is to update charts simulatenously. One option is to use multithreading... */
+    /* TODO: Implement multithreading ------------------------------------------------ */
 
-    for(int i = 0; i < currentCalorieIntake; ++i){
+    double valuesArr[]= {this->userInfoObject->get_calorie_intake(), (double)this->userInfoObject->get_bmi_percentile(),
+                        ((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(5)->second,
+                        ((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(10)->second };
 
-        ui->currCalorieCircularChart->setValue(i);
-        ui->bmiPercentileChart->setValue(i);
+    /* Set Chart Maximums, should be stored as constants in header file */
 
-        /* Only repaint every 100 vals so animation is faster */
-        if(i % 100 == 0){
-            ui->currCalorieCircularChart->repaint();
+    ui->bmiPercentileChart->setMax(BMI_PERCENTILE_CHART_MAXIMUM);
+    ui->currCalorieCircularChart->setMax(CALORIE_CHARTS_MAXIMUM);
+    ui->loseFiveCircularChart->setMax(CALORIE_CHARTS_MAXIMUM);
+    ui->loseTenCircularChart->setMax(CALORIE_CHARTS_MAXIMUM);
+
+    double maximumChartValue = 0.0;
+    for(int i = 0; i < (sizeof(valuesArr)/sizeof(valuesArr[0])); ++i){
+        if(valuesArr[i] > maximumChartValue){
+            maximumChartValue = valuesArr[i];
         }
     }
+
+    for(int i = 0; i < maximumChartValue; ++i){
+
+        if(i < this->userInfoObject->get_bmi_percentile()){
+            ui->bmiPercentileChart->setValue(i);
+        }
+        if(i < ((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(5)->second){
+            ui->loseFiveCircularChart->setValue(i);
+        }
+        if(i < ((this->userInfoObject->get_exercise_calories_map()).find("Sedentary")->second).find(10)->second){
+            ui->loseTenCircularChart->setValue(i);
+        }
+
+        ui->currCalorieCircularChart->setValue(i);
+
+        /* Only repaint every 5 vals so animation is faster (or every 100 for calorie circular charts) */
+        if(i % 5 == 0 && i <= 100){
+            ui->bmiPercentileChart->repaint();
+        }else if(i % 100 == 0){
+            ui->currCalorieCircularChart->repaint();
+            ui->loseFiveCircularChart->repaint();
+            ui->loseTenCircularChart->repaint();
+        }
+    }
+
+    /* Repaint once more to ensure exact values are displayed on the chart, not just multiples of 5 or 100 */
+
+    ui->bmiPercentileChart->repaint();
     ui->currCalorieCircularChart->repaint();
+    ui->loseFiveCircularChart->repaint();
+    ui->loseTenCircularChart->repaint();
 
 }
 void MainWindow::update_weight_loss_labels(){
@@ -551,6 +615,11 @@ void MainWindow::configure_BMI_chart(){
 
     QLineSeries *seriesMale = new QLineSeries();
     QLineSeries *seriesFemale = new QLineSeries();
+    QColor blueMaleLineColor(171, 218, 255);
+    QColor pinkFemaleLineColor(248, 195, 250);
+    seriesMale->setColor(blueMaleLineColor);
+    seriesFemale->setColor(pinkFemaleLineColor);
+
 
     for(int i = 0; i < (BMI_PERCENTILE_CHART_SIZE); ++i){
         seriesMale->append(i+1, *(this->bmiValuesMale + i));
@@ -570,6 +639,9 @@ void MainWindow::configure_BMI_chart(){
 
     QValueAxis * axisX = new QValueAxis();
     QValueAxis *axisY = new QValueAxis();
+//    axisX->setTitleVisible();
+//    axisX->setTitleText("BMI Percentile");
+//    axisY->setTitleFont(QFont("Candara"));
 
     // Customize axis label font
     QFont labelsFont;

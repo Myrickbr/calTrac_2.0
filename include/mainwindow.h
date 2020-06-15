@@ -22,9 +22,12 @@ class MainWindow : public QMainWindow
 public:
 
     /* Enumerations and Constants */
+    enum CircularChartType {BmiPercentile, MaintainWeight, LoseFivePounds, loseTenPounds};
     const int BMI_PERCENTILE_CHART_SIZE = 99;
     const int MESSAGE_BOX_FIXED_WIDTH = 500;
     const int MESSAGE_BOX_FIXED_HEIGHT = 200;
+    const int BMI_PERCENTILE_CHART_MAXIMUM = 100;
+    const int CALORIE_CHARTS_MAXIMUM = 3500;
     const std::string MALE_BMI_DATA_FILENAME = "data/bmiPercentileDataMale.txt";
     const std::string FEMALE_BMI_DATA_FILENAME = "data/bmiPercentileDataFemale.txt";
 
@@ -62,7 +65,8 @@ public:
     bool check_user_input();
     void plot_user_point();
     void update_bmi_tags();
-    void update_circular_calorie_charts();
+    void paint_circ_chart(CircularChartType chartType);
+    void update_circular_calorie_charts();  
     void update_weight_loss_labels();
     void update_results_section();
     void toggle_weight_loss_view(bool viewFull);
