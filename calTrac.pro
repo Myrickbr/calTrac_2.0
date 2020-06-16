@@ -53,6 +53,7 @@ DISTFILES += \
     data/bmiPercentileDataFemale.txt \
     data/bmiPercentileDataMale.txt \
     data/testFile.csv \
+    screenshots/personalInfo.gif \
     screenshots/projectClick.gif \
     screenshots/shadowBuildClick.gif \
     stylesheets/stylesheets.css
