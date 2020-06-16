@@ -4,6 +4,9 @@
 A multifunctional fitness application built using QT. This application provides insights on calorie intake, nutritional tracking, and more!
 
 ## About the Project
+This project was designed to be a dashboard style, multipurpose fitness application. The project is currently split into three separate sections: personal information, nutrition tracker, and daily calendar. Currently, two of the three sections have been implemented, the first of which being personal information. The **personal information** section provides insights on the user's bmi and calorie intake based on their height, weight, gender, and exercise level. On the other hand, the **nutrition tracker** section allows the user to explore their nutritional intake based on the food that they enter into the list.
+
+<img src="/screenshots/personalInfo.gif" width="900" height="550" />
 
 
 ## Getting Started
