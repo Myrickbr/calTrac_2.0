@@ -507,6 +507,8 @@ void MainWindow::update_circular_calorie_charts(){
         }
     }
 
+    double numberOfIterations = maximumChartValue / this->userInfoObject->get_bmi_percentile();
+
     for(int i = 0; i < maximumChartValue; ++i){
 
         if(i < this->userInfoObject->get_bmi_percentile()){
@@ -524,7 +526,7 @@ void MainWindow::update_circular_calorie_charts(){
         /* Only repaint every 5 vals so animation is faster (or every 100 for calorie circular charts) */
         if(i % 5 == 0 && i <= 100){
             ui->bmiPercentileChart->repaint();
-        }else if(i % 100 == 0){
+        }else if(i % 200 == 0){
             ui->currCalorieCircularChart->repaint();
             ui->loseFiveCircularChart->repaint();
             ui->loseTenCircularChart->repaint();
@@ -549,7 +551,8 @@ void MainWindow::toggle_weight_loss_view(bool viewFull){
                                 ui->maintainWeightText, ui->loseFivePoundsText, ui->loseTenPoundsText,
                                 ui->calLabel1, ui->calLabel2, ui->calLabel3, ui->lineAboveWeightLossLabel,
                                 ui->bmiPercentileChart, ui->currCalorieCircularChart, ui->loseFiveCircularChart,
-                                ui->loseTenCircularChart, ui->accordingStatementLabel, ui->healthyRangeStatementLabel};
+                                ui->loseTenCircularChart, ui->accordingStatementLabel, ui->healthyRangeStatementLabel,
+                                ui->maintainCircLabel, ui->loseFiveCircLabel, ui->loseTenCircLabel};
 
     if(viewFull == true){
          for(int i = 0; i < (sizeof(uiUpdateList)/sizeof(*uiUpdateList)); ++i){

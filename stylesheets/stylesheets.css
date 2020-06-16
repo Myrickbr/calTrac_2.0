@@ -118,10 +118,11 @@ QPushButton {
     font: 12pt 'Candara';
     color: #707070;
 }
-#lineBelowUserInfo, #aboveDaysExerciseDiv, #lineBelowExercise, #lineBelowBMIResults,
+#lineBelowUserInfo,#aboveDaysExerciseDiv, #lineBelowExercise, #lineBelowBMIResults,
 #lineBelowCalorieIntake, #lineAboveWeightLossLabel{
-    border-color: #E2E2E2;
+    background: rgba(112,112,112,50);
 }
+
 #personalLabel{
     font: 12pt 'Candara';
     color: #C3C3C3;
@@ -211,6 +212,10 @@ QPushButton {
     color: #fcfcfc;
     padding-left: 3px;
     padding-bottom: 2px;
+}
+#maintainCircLabel, #loseFiveCircLabel, #loseTenCircLabel{
+    font: 10pt 'Candara';
+    color: #707070;
 }
 #overweightStripe{
     border-radius: 5px;

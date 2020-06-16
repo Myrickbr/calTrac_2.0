@@ -358,19 +358,6 @@
          <string>User Information</string>
         </property>
        </widget>
-       <widget class="QGroupBox" name="lineBelowUserInfo">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>22</y>
-          <width>191</width>
-          <height>1</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-       </widget>
        <widget class="QLabel" name="heightLabel">
         <property name="geometry">
          <rect>
@@ -808,6 +795,19 @@
          <pixmap resource="../resources/Resources.qrc">:/femaleLogo.svg</pixmap>
         </property>
        </widget>
+       <widget class="QGroupBox" name="lineBelowUserInfo">
+        <property name="geometry">
+         <rect>
+          <x>149</x>
+          <y>22</y>
+          <width>191</width>
+          <height>1</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+       </widget>
       </widget>
       <widget class="QLabel" name="personalOverviewMain">
        <property name="geometry">
@@ -1148,13 +1148,52 @@
         <property name="geometry">
          <rect>
           <x>550</x>
-          <y>10</y>
+          <y>20</y>
           <width>161</width>
           <height>41</height>
          </rect>
         </property>
         <property name="text">
          <string>Calorie Exercise Chart</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="maintainCircLabel">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>130</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Maintain Weight</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="loseFiveCircLabel">
+        <property name="geometry">
+         <rect>
+          <x>131</x>
+          <y>130</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Lose Five Lbs/Mo</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="loseTenCircLabel">
+        <property name="geometry">
+         <rect>
+          <x>246</x>
+          <y>130</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Lose Ten Lbs/Mo</string>
         </property>
        </widget>
       </widget>
